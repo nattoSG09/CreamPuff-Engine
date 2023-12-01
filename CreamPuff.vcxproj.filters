@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Engine\Windows\EditorWindow.h">
+      <Filter>Engine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Windows\Window.h">
+      <Filter>Engine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Windows\WindowManager.h">
+      <Filter>Engine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Application.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Global.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine\Windows\EditorWindow.cpp">
+      <Filter>Engine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Windows\WindowManager.cpp">
+      <Filter>Engine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Windows\Window.cpp">
+      <Filter>Engine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Application.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Main.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{c1eaabdd-7415-45c5-afeb-22d9c19798df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Windows">
+      <UniqueIdentifier>{d921f55d-e2f1-41f6-b0a0-5c3069826ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Assets\Shader\Simple3D.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
