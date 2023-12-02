@@ -17,7 +17,6 @@ Application::~Application()
 {
 }
 
-
 bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 {
     // Window-Initialize...
@@ -57,7 +56,6 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 
     return true;
 }
-
 
 void Application::Excute()
 {

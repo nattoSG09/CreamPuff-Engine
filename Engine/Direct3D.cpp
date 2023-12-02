@@ -31,7 +31,6 @@ bool Direct3D::Initialize(Window* _window)
 	return true;
 }
 
-
 void Direct3D::BeginDraw()
 {
 	// îwåiêF

@@ -54,7 +54,7 @@ void EditorWindow::InitWindowClass(WNDCLASSEX& _wc, HINSTANCE _hInstance,WndProc
     _wc.lpszMenuName = NULL;
     _wc.cbClsExtra = 0;
     _wc.cbWndExtra = 0;
-    _wc.hbrBackground = CreateSolidBrush(RGB(40, 40, 70));
+    _wc.hbrBackground = CreateSolidBrush(RGB(10, 10, 10));
 
     RegisterClassEx(&_wc);
 }
