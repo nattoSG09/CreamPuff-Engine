@@ -129,6 +129,14 @@
   <ItemGroup>
     <ClInclude Include="Engine\Direct3D.h" />
     <ClInclude Include="Engine\Application.h" />
+    <ClInclude Include="Engine\ImGui\imconfig.h" />
+    <ClInclude Include="Engine\ImGui\imgui.h" />
+    <ClInclude Include="Engine\ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="Engine\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="Engine\ImGui\imgui_internal.h" />
+    <ClInclude Include="Engine\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="Engine\ImGui\imstb_textedit.h" />
+    <ClInclude Include="Engine\ImGui\imstb_truetype.h" />
     <ClInclude Include="Engine\Windows\EditorWindow.h" />
     <ClInclude Include="Engine\Windows\Window.h" />
     <ClInclude Include="Engine\Windows\WindowManager.h" />
@@ -138,6 +146,12 @@
   <ItemGroup>
     <ClCompile Include="Engine\Direct3D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Engine\Windows\EditorWindow.cpp" />
     <ClCompile Include="Engine\Windows\Window.cpp" />
     <ClCompile Include="Engine\Windows\WindowManager.cpp" />

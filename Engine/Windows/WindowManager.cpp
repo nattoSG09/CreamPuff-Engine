@@ -21,10 +21,10 @@ Window* WindowManager::GetWindow(const string& key)
 	else return nullptr;
 }
 
-bool WindowManager::InitWindows(HINSTANCE _hInstance, int _nCmdShow)
+bool WindowManager::InitWindows(HINSTANCE _hInstance, int _nCmdShow, WndProcType _wndProc)
 {
 	for (auto it = windows_.begin(); it != windows_.end(); ++it) {
-		if (it->second->Initialize(_hInstance, _nCmdShow, WndProc) == false) return false;
+		if (it->second->Initialize(_hInstance, _nCmdShow, _wndProc) == false) return false;
 	}
 	return true;
 }
@@ -38,14 +38,4 @@ void WindowManager::ReleaseWindows()
 void WindowManager::AddWindow(const string& _key, Window* _window)
 {
 	windows_[_key] = _window;
-}
-
-LRESULT WindowManager::WndProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
-{
-	switch (_msg)
-	{
-	case WM_CLOSE:PostQuitMessage(0); return 0;
-	}
-
-	return DefWindowProc(_hWnd, _msg, _wParam, _lParam);
 }

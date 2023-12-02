@@ -31,22 +31,23 @@ bool Direct3D::Initialize(Window* _window)
 	return true;
 }
 
-void Direct3D::Update()
-{
-	// スワップ（バックバッファを表に表示する）
-	pSwapChain_->Present(0, 0);
-}
 
-void Direct3D::Draw()
+void Direct3D::BeginDraw()
 {
 	// 背景色
-	float clearColor[4] = { 0.0f,0.5f,0.5f,1.0f };
+	float clearColor[4] = { 0.1f,0.1f,0.1f,1.0f };
 
 	// 画面をクリア
 	pContext_->ClearRenderTargetView(pRenderTargetView_, clearColor);
 
 	// 深度バッファクリア
 	pContext_->ClearDepthStencilView(pDepthStencilView_, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void Direct3D::EndDraw()
+{
+	// スワップ（バックバッファを表に表示する）
+	pSwapChain_->Present(0, 0);
 }
 
 void Direct3D::Release()

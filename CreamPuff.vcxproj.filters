@@ -20,6 +20,30 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Engine\ImGui\imconfig.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imgui.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imgui_impl_dx11.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imgui_impl_win32.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imgui_internal.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imstb_rectpack.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imstb_textedit.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ImGui\imstb_truetype.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -41,6 +65,24 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Engine\ImGui\imgui.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGui\imgui_draw.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGui\imgui_impl_win32.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGui\imgui_tables.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -51,6 +93,9 @@
     </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ImGui">
+      <UniqueIdentifier>{b3a9c13e-aeed-4c91-8237-0bf942abdbd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

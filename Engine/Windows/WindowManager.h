@@ -18,9 +18,8 @@ private:
 public:
 	static WindowManager& GetInstance();
 	Window* GetWindow(const string& _key);
-	static LRESULT CALLBACK WndProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
-
-	bool InitWindows(HINSTANCE _hInstance, int nCmdShow);
+	
+	bool InitWindows(HINSTANCE _hInstance, int nCmdShow, WndProcType _wndProc);
 	void ReleaseWindows();
 	void AddWindow(const string& _key, Window* _window);
 

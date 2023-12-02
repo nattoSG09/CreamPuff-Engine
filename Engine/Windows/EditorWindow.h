@@ -17,4 +17,3 @@ private:
 	void InitWindowClass(WNDCLASSEX& _wc, HINSTANCE _hInstance, WndProcType _wndProc);
 	void CalcWindowSize(int& _height, int& _width);
 };
-

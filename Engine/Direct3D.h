@@ -30,8 +30,8 @@ public:
 		return instance;
 	}
 	bool Initialize(Window* _window);
-	void Update();
-	void Draw();
+	void BeginDraw();
+	void EndDraw();
 	void Release();
 
 	ID3D11Device* Device() { return pDevice_; }

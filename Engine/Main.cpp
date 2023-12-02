@@ -1,6 +1,7 @@
 #include "Application.h"
+#include "ImGui/imgui.h"
 
-int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInst, LPSTR _lpCmdLine, int _nCmdShow)
+int APIENTRY WinMain(HINSTANCE _hInstance,HINSTANCE _hPrevInst,LPSTR _lpCmdLine,int _nCmdShow)
 {
 	Application* application = new Application;
 	if (application->Initialize(_hInstance, _nCmdShow))
