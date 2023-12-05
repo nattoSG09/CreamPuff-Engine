@@ -23,4 +23,5 @@ namespace ImGuiManager
 	
 	// ‰ð•ú
 	void ShutDown();
+
 }

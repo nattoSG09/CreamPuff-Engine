@@ -13,11 +13,28 @@ void ImGuiManager::Initialize(HWND windowHandle, ID3D11Device* device, ID3D11Dev
 
 void ImGuiManager::Draw()
 {
-    ImGui::Begin("Hello, world!");
-    if (ImGui::Button("button")) {
-        PostQuitMessage(0);
+    ImGui::Begin("World Outliner"); {
+        if (ImGui::Button("button")) {
+            PostQuitMessage(0);
+        }
     }
     ImGui::End();
+
+    ImGui::Begin("Details"); {
+        if (ImGui::Button("button")) {
+            PostQuitMessage(0);
+        }
+    }
+    ImGui::End();
+    
+
+    ImGui::Begin("Content Browser"); {
+        if (ImGui::Button("button")) {
+            PostQuitMessage(0);
+        }
+    }
+    ImGui::End();
+
 }
 
 void ImGuiManager::BeginFlame()
