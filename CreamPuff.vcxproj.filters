@@ -44,6 +44,9 @@
     <ClInclude Include="Engine\ImGui\imstb_truetype.h">
       <Filter>Engine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\ImGuiManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
       <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ImGuiManager.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
