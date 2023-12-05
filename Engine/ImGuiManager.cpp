@@ -13,6 +13,7 @@ void ImGuiManager::Initialize(HWND windowHandle, ID3D11Device* device, ID3D11Dev
 
 void ImGuiManager::Draw()
 {
+    // ワールドアウトライナの設定...
     ImGui::Begin("World Outliner"); {
         if (ImGui::Button("button")) {
             PostQuitMessage(0);
@@ -20,6 +21,7 @@ void ImGuiManager::Draw()
     }
     ImGui::End();
 
+    // 詳細パネルの設定...
     ImGui::Begin("Details"); {
         if (ImGui::Button("button")) {
             PostQuitMessage(0);
@@ -27,14 +29,13 @@ void ImGuiManager::Draw()
     }
     ImGui::End();
     
-
+    //コンテンツブラウザの設定...
     ImGui::Begin("Content Browser"); {
         if (ImGui::Button("button")) {
             PostQuitMessage(0);
         }
     }
     ImGui::End();
-
 }
 
 void ImGuiManager::BeginFlame()
