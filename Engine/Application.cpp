@@ -36,9 +36,7 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 #ifdef _DEBUG
     // ImGui‚Ì‰Šú‰»
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
-
 #endif // DEBUG
-
     
     pQuad_ = new Quad;
     pQuad_->Initialize();
