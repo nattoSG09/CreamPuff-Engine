@@ -6,6 +6,7 @@
 #include "../Quad.h"
 
 Application::Application()
+    :pQuad_(nullptr)
 {
 }
 
@@ -31,10 +32,14 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     //Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
-    
-    // ImGuiの初期化
-    ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(),d3D.Device(),d3D.Context());
 
+#ifdef _DEBUG
+    // ImGuiの初期化
+    ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
+
+#endif // DEBUG
+
+    
     pQuad_ = new Quad;
     pQuad_->Initialize();
 
@@ -59,9 +64,12 @@ void Application::Excute()
         //メッセージなし
         else
         {
+#ifdef _DEBUG
             // ImGuiの開始 & 描画
             ImGuiManager::BeginFlame();
             ImGuiManager::Draw();
+
+#endif //DEBUG
 
             // Direct3Dの描画
             Direct3D& d3D = Direct3D::GetInstance();
@@ -69,9 +77,12 @@ void Application::Excute()
 
             pQuad_->Draw();
 
+#ifdef _DEBUG
             // ImGuiの終了
             ImGuiManager::EndFlame();
-            
+
+#endif //DEBUG
+
             d3D.EndDraw();
         }
     }
@@ -82,8 +93,11 @@ void Application::Release()
 
     pQuad_->Release();
 
+#ifdef _DEBUG
     // ImGuiの開放
     ImGuiManager::ShutDown();
+
+#endif //DEBUG
 
     // Direct3Dの解放
     Direct3D::GetInstance().Release();

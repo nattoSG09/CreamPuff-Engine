@@ -2,6 +2,7 @@
 #include "Engine/Global.h"
 
 Quad::Quad()
+	:pVertexBuffer_(nullptr),pIndexBuffer_(nullptr),pConstantBuffer_(nullptr)
 {
 }
 
@@ -15,21 +16,21 @@ void Quad::Initialize()
 	// 頂点情報
 	XMVECTOR vertices[] =
 	{
-		XMVectorSet(-10.0f,  10.0f, 0.0f, 0.0f),	// 四角形の頂点（左上）
-		XMVectorSet(10.0f,  10.0f, 0.0f, 0.0f),	// 四角形の頂点（右上）
-		XMVectorSet(10.0f, -10.0f, 0.0f, 0.0f),	// 四角形の頂点（右下）
-		XMVectorSet(-10.0f, -10.0f, 0.0f, 0.0f),	// 四角形の頂点（左下）		
+		XMVectorSet(-1.0f,  1.0f, 0.0f, 0.0f),	// 四角形の頂点（左上）
+		XMVectorSet(1.0f,  1.0f, 0.0f, 0.0f),	// 四角形の頂点（右上）
+		XMVectorSet(1.0f, -1.0f, 0.0f, 0.0f),	// 四角形の頂点（右下）
+		XMVectorSet(-1.0f, -1.0f, 0.0f, 0.0f),	// 四角形の頂点（左下）		
 	};
 
 	// 頂点データ用バッファの設定
-	D3D11_BUFFER_DESC bd_vertex;
+	D3D11_BUFFER_DESC bd_vertex = {};
 	bd_vertex.ByteWidth = sizeof(vertices);
 	bd_vertex.Usage = D3D11_USAGE_DEFAULT;
 	bd_vertex.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd_vertex.CPUAccessFlags = 0;
 	bd_vertex.MiscFlags = 0;
 	bd_vertex.StructureByteStride = 0;
-	D3D11_SUBRESOURCE_DATA data_vertex;
+	D3D11_SUBRESOURCE_DATA data_vertex = {};
 	data_vertex.pSysMem = vertices;
 	d3d.Device()->CreateBuffer(&bd_vertex, &data_vertex, &pVertexBuffer_);
 
@@ -37,21 +38,21 @@ void Quad::Initialize()
 	int index[] = { 0,2,3, 0,1,2 };
 
 	// インデックスバッファを生成する
-	D3D11_BUFFER_DESC   bd;
+	D3D11_BUFFER_DESC   bd = {};
 	bd.Usage = D3D11_USAGE_DEFAULT;
 	bd.ByteWidth = sizeof(index);
 	bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
 
-	D3D11_SUBRESOURCE_DATA InitData;
+	D3D11_SUBRESOURCE_DATA InitData = {};
 	InitData.pSysMem = index;
 	InitData.SysMemPitch = 0;
 	InitData.SysMemSlicePitch = 0;
 	d3d.Device()->CreateBuffer(&bd, &InitData, &pIndexBuffer_);
 
 	//コンスタントバッファ作成
-	D3D11_BUFFER_DESC cb;
+	D3D11_BUFFER_DESC cb = {};
 	cb.ByteWidth = sizeof(CONSTANT_BUFFER);
 	cb.Usage = D3D11_USAGE_DYNAMIC;
 	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -74,7 +75,7 @@ void Quad::Draw()
 	XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0));	//ビュー行列
 	XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 800.0f / 600.0f, 0.1f, 100.0f);//射影行列
 
-	CONSTANT_BUFFER cb;
+	CONSTANT_BUFFER cb = {};
 	cb.matWVP = XMMatrixTranspose(view * proj);
 
 	D3D11_MAPPED_SUBRESOURCE pdata;

@@ -9,6 +9,9 @@
 using std::vector;
 using DirectX::XMVECTOR;
 
+#pragma warning(disable: 6387)
+#pragma warning(disable: 4267)
+
 bool Direct3D::Initialize(Window* _window)
 {
 	DXGI_SWAP_CHAIN_DESC scDesc;
@@ -113,7 +116,9 @@ bool Direct3D::CreateDeviceAndSwapChain(DXGI_SWAP_CHAIN_DESC _scDesc)
 	);
 
 	if (FAILED(hr)) {
+#ifdef _DEBUG
 		MessageBox(NULL, "デバイス、コンテキスト、スワップチェインの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		return false;
 	}
 	return true;
@@ -121,14 +126,18 @@ bool Direct3D::CreateDeviceAndSwapChain(DXGI_SWAP_CHAIN_DESC _scDesc)
 
 bool Direct3D::CreateRenderTargetView()
 {
-	ID3D11Texture2D* pBackBuffer;
+	ID3D11Texture2D* pBackBuffer = nullptr;
 	if (FAILED(pSwapChain_->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer))) {
+#ifdef _DEBUG
 		MessageBox(NULL, "バックバッファの取得に失敗しました", "エラー", MB_OK);
+#endif 
 		return false;
 	}
 
 	if (FAILED(pDevice_->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTargetView_))) {
+#ifdef _DEBUG
 		MessageBox(NULL, "レンダーターゲットビューの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		return false;
 	}
 
@@ -139,7 +148,10 @@ bool Direct3D::CreateRenderTargetView()
 
 void Direct3D::InitViewPort(D3D11_VIEWPORT& _vp, Window* _window)
 {
-	float scale = 0.7f;
+	float scale = 1.0f;
+#ifdef _DEBUG
+	scale = 0.7f;
+#endif 
 	_vp.Width = (float)_window->Width() * scale;
 	_vp.Height = (float)_window->Height() * scale;
 	_vp.MinDepth = 0.0f;
@@ -195,8 +207,9 @@ bool Direct3D::CompileVertexShader()
 	ID3DBlob* pCompileVS = nullptr;
 	D3DCompileFromFile(L"Assets/Shader/Simple3D.hlsl", nullptr, nullptr, "VS", "vs_5_0", NULL, 0, &pCompileVS, NULL);
 	if (FAILED(pDevice_->CreateVertexShader(pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), NULL, &pVertexShader_))) {
-
+#ifdef _DEBUG
 		MessageBox(NULL, "頂点シェーダーの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		SAFE_RELEASE(pCompileVS);
 		return false;
 	}
@@ -208,8 +221,9 @@ bool Direct3D::CompileVertexShader()
 	};
 
 	if (FAILED(pDevice_->CreateInputLayout(layout.data(), layout.size(), pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), &pVertexLayout_))) {
-
+#ifdef _DEBUG
 		MessageBox(NULL, "頂点インプットレイアウトの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		SAFE_RELEASE(pCompileVS);
 		return false;
 	}
@@ -224,7 +238,9 @@ bool Direct3D::CompilePixelShader()
 	D3DCompileFromFile(L"Assets/Shader/Simple3D.hlsl", nullptr, nullptr, "PS", "ps_5_0", NULL, 0, &pCompilePS, NULL);
 	if (FAILED(pDevice_->CreatePixelShader(pCompilePS->GetBufferPointer(), pCompilePS->GetBufferSize(), NULL, &pPixelShader_))) {
 		SAFE_RELEASE(pCompilePS);
+#ifdef _DEBUG
 		MessageBox(NULL, "ピクセルシェーダの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		return false;
 	}
 	SAFE_RELEASE(pCompilePS);
@@ -238,7 +254,9 @@ bool Direct3D::CreateRasterizer()
 	rdc.FillMode = D3D11_FILL_SOLID;
 	rdc.FrontCounterClockwise = FALSE;
 	if (FAILED(pDevice_->CreateRasterizerState(&rdc, &pRasterizerState_))) {
+#ifdef _DEBUG
 		MessageBox(NULL, "ラスタライザの作成に失敗しました", "エラー", MB_OK);
+#endif 
 		return false;
 	}
 	return true;
