@@ -37,7 +37,7 @@ bool Direct3D::Initialize(Window* _window)
 void Direct3D::BeginDraw()
 {
 	// ”wŒiF
-	float clearColor[4] = { 0.1f,0.1f,0.1f,1.0f };
+	float clearColor[4] = { 0.1f,0.2f,0.3f,1.0f };
 
 	// ‰æ–Ê‚ðƒNƒŠƒA
 	pContext_->ClearRenderTargetView(pRenderTargetView_, clearColor);

@@ -5,8 +5,6 @@ void ImGuiManager::Initialize(HWND windowHandle, ID3D11Device* device, ID3D11Dev
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
     ImGui::StyleColorsDark();
 
     ImGui_ImplWin32_Init(windowHandle);
