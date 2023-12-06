@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "Windows/EditorWindow.h"
 #include "Direct3D.h"
-#include "ImGuiManager.h"
+#include "GUI/ImGuiManager.h"
 
 #include "../Quad.h"
 
