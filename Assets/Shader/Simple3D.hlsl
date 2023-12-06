@@ -13,12 +13,13 @@ cbuffer global
 struct VS_OUT
 {
 	float4 pos    : SV_POSITION;	//位置
+    float2 uv : TEXCOORD;
 };
 
 //───────────────────────────────────────
 // 頂点シェーダ
 //───────────────────────────────────────
-VS_OUT VS(float4 pos : POSITION)
+VS_OUT VS(float4 pos : POSITION,float2 uv : TEXCOORD)
 {
 	//ピクセルシェーダーへ渡す情報
 	VS_OUT outData;
@@ -26,7 +27,7 @@ VS_OUT VS(float4 pos : POSITION)
 	//ローカル座標に、ワールド・ビュー・プロジェクション行列をかけて
 	//スクリーン座標に変換し、ピクセルシェーダーへ
 	outData.pos = mul(pos, matWVP);
-
+    outData.uv = uv;
 	//まとめて出力
 	return outData;
 }
@@ -36,5 +37,5 @@ VS_OUT VS(float4 pos : POSITION)
 //───────────────────────────────────────
 float4 PS(VS_OUT inData) : SV_Target
 {
-	return float4(1.0f,0.5f,1.0f,1);
+	return float4(inData.uv.xy,1.0f,1);
 }

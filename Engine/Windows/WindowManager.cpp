@@ -15,9 +15,9 @@ WindowManager& WindowManager::GetInstance()
 	return instance;
 }
 
-Window* WindowManager::GetWindow(const string& key)
+Window* WindowManager::GetWindow(const string& _key)
 {
-	if (windows_.count(key) > 0) return windows_[key];
+	if (windows_.count(_key) > 0) return windows_[_key];
 	else return nullptr;
 }
 

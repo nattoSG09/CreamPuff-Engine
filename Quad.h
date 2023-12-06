@@ -1,19 +1,23 @@
 #pragma once
 #include "Engine/Direct3D.h"
+#include "Engine/AssimpLoader.h"
+
 using namespace DirectX;
 
 struct CONSTANT_BUFFER {
 	XMMATRIX	matWVP;
 };
 
-
 class Quad
 {
 private:
-	ID3D11Buffer* pVertexBuffer_;	//頂点バッファ
-	ID3D11Buffer* pIndexBuffer_;	//インデックスバッファ
-	ID3D11Buffer* pConstantBuffer_;	//コンスタントバッファ
+	std::vector<ID3D11Buffer*> meshVertexBuffers_;
+	std::vector<ID3D11Buffer*> meshIndexBuffers_;
+	std::vector<ID3D11Buffer*> meshConstantBuffers_;
 
+	vector<Mesh> meshes_;
+	vector<Vertex> vertices_;
+	vector<uint32_t> indices_;
 public:
 	Quad();
 	~Quad();

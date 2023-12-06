@@ -17,22 +17,23 @@ bool EditorWindow::Initialize(HINSTANCE _hInstance, int _nCmdShow, WndProcType _
 {
     WNDCLASSEX wc = {};
     InitWindowClass(wc, _hInstance, _wndProc);
+    RegisterClassEx(&wc);
 
     int winH, winW;
     CalcWindowSize(winH, winW);
 
     hWnd_ = CreateWindow(
-        name_.c_str(),         //ウィンドウクラス名
-        name_.c_str(),     //タイトルバーに表示する内容
-        WS_OVERLAPPEDWINDOW, //スタイル（普通のウィンドウ）
-        CW_USEDEFAULT,       //表示位置左（おまかせ）
-        CW_USEDEFAULT,       //表示位置上（おまかせ）
-        winW,                 //ウィンドウ幅
-        winH,                 //ウィンドウ高さ
-        NULL,                //親ウインドウ（なし）
-        NULL,                //メニュー（なし）
-        _hInstance,           //インスタンス
-        NULL                 //パラメータ（なし）
+        name_.c_str(),          //ウィンドウクラス名
+        name_.c_str(),          //タイトルバーに表示する内容
+        WS_OVERLAPPEDWINDOW,    //スタイル（普通のウィンドウ）
+        CW_USEDEFAULT,          //表示位置左（おまかせ）
+        CW_USEDEFAULT,          //表示位置上（おまかせ）
+        winW,                   //ウィンドウ幅
+        winH,                   //ウィンドウ高さ
+        NULL,                   //親ウインドウ（なし）
+        NULL,                   //メニュー（なし）
+        _hInstance,             //インスタンス
+        NULL                    //パラメータ（なし）
     );
 
     if (hWnd_ == nullptr) return false;
@@ -55,8 +56,6 @@ void EditorWindow::InitWindowClass(WNDCLASSEX& _wc, HINSTANCE _hInstance,WndProc
     _wc.cbClsExtra = 0;
     _wc.cbWndExtra = 0;
     _wc.hbrBackground = CreateSolidBrush(RGB(10, 10, 10));
-
-    RegisterClassEx(&_wc);
 }
 
 void EditorWindow::CalcWindowSize(int& _height, int& _width)

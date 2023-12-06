@@ -21,7 +21,7 @@ public:
 	Window(const string _name,const int _height,const int _width);
 	~Window();
 
-	virtual bool Initialize(HINSTANCE _hInstance, int nCmdShow, WndProcType _wndProc) = 0;
+	virtual bool Initialize(HINSTANCE _hInstance, int _nCmdShow, WndProcType _wndProc) = 0;
 
 // ゲッター・セッター //
 	HWND WindowHandle() { return hWnd_; }
