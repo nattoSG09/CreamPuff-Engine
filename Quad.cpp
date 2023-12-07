@@ -8,6 +8,7 @@ Quad::Quad()
 Quad::~Quad()
 {
 }
+
 void Quad::Initialize()
 {
     Direct3D& d3d = Direct3D::GetInstance();
