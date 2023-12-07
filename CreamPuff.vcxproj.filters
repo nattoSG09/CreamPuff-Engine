@@ -20,32 +20,33 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h" />
-    <ClInclude Include="Engine\ImGui\imconfig.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\AssimpLoader.h" />
+    <ClInclude Include="Engine\GUI\ImGui\imconfig.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imgui.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imgui.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imgui_impl_dx11.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imgui_impl_dx11.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imgui_impl_win32.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imgui_impl_win32.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imgui_internal.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imgui_internal.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imstb_rectpack.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imstb_rectpack.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imstb_textedit.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imstb_textedit.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGui\imstb_truetype.h">
-      <Filter>Engine\ImGui</Filter>
+    <ClInclude Include="Engine\GUI\ImGui\imstb_truetype.h">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ImGuiManager.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Engine\GUI\ImGuiManager.h">
+      <Filter>Engine\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,26 +69,27 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Engine\ImGui\imgui.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\AssimpLoader.cpp" />
+    <ClCompile Include="Engine\GUI\ImGui\imgui.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGui\imgui_draw.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\GUI\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGui\imgui_impl_dx11.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\GUI\ImGui\imgui_impl_win32.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGui\imgui_impl_win32.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\GUI\ImGui\imgui_tables.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGui\imgui_tables.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\GUI\ImGui\imgui_draw.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGui\imgui_widgets.cpp">
-      <Filter>Engine\ImGui</Filter>
+    <ClCompile Include="Engine\GUI\ImGui\imgui_widgets.cpp">
+      <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ImGuiManager.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Engine\GUI\ImGuiManager.cpp">
+      <Filter>Engine\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,7 +102,10 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\ImGui">
+    <Filter Include="Engine\GUI">
+      <UniqueIdentifier>{b150fb93-1f77-49d7-ac16-48578f4c5d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI\ImGui">
       <UniqueIdentifier>{b3a9c13e-aeed-4c91-8237-0bf942abdbd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -85,7 +85,7 @@ void Quad::Draw()
         XMVECTOR position = { 0, 120, 75, 0 };
         XMVECTOR target = { 0, 120, 0, 0 };
         XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0)); // メッシュごとのビュー行列
-        XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 800.0f / 600.0f, 0.1f, 100.0f); // メッシュごとの射影行列
+        XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 100.0f); // メッシュごとの射影行列
 
         CONSTANT_BUFFER cb = {};
         cb.matWVP = XMMatrixTranspose(view * proj);

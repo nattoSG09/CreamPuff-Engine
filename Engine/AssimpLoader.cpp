@@ -67,7 +67,7 @@ void AssimpLoader::LoadMesh(Mesh& _dst, const aiMesh* _src, bool _inverseU, bool
         if (_inverseV)uv->y = 1 - uv->y;
 
         Vertex vertex = {};
-        vertex.Position = DirectX::XMFLOAT3(pos->x, pos->y, pos->z);
+        vertex.Position = DirectX::XMFLOAT3(-pos->x, pos->y, pos->z);
         vertex.Normal = DirectX::XMFLOAT3(nor->x, nor->y, nor->z);
         vertex.UV = DirectX::XMFLOAT2(uv->x, uv->y);
         vertex.Tangent = DirectX::XMFLOAT3(tan->x, tan->y, tan->z);
