@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\MyData\Projects\01_active\CreamPuff-Engine\Library\include;D:\GE2A19\Projects\01active\CreamPuff-Engine\Library\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\MyData\Projects\01_active\CreamPuff-Engine\Library\lib;D:\GE2A19\Projects\01active\CreamPuff-Engine\Library\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\Library\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\Library\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>..\Packages\include;$(IncludePath)</IncludePath>
