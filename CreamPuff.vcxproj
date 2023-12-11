@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Components\Component.h" />
     <ClInclude Include="Engine\AssimpLoader.h" />
     <ClInclude Include="Engine\Direct3D.h" />
     <ClInclude Include="Engine\Application.h" />
@@ -154,8 +155,10 @@
     <ClInclude Include="Engine\Windows\WindowManager.h" />
     <ClInclude Include="Engine\Global.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Engine\Components\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Components\Component.cpp" />
     <ClCompile Include="Engine\AssimpLoader.cpp" />
     <ClCompile Include="Engine\Direct3D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
@@ -171,6 +174,7 @@
     <ClCompile Include="Engine\Windows\WindowManager.cpp" />
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Engine\Components\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">

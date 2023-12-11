@@ -7,6 +7,7 @@ Quad::Quad()
 
 Quad::~Quad()
 {
+
 }
 
 void Quad::Initialize()
