@@ -15,25 +15,25 @@ void ImGuiManager::Draw()
 {
     
 
-    // ワールドアウトライナの設定...
-    ImGui::Begin("World Outliner"); {
-        if(ImGui::CollapsingHeader("Help")){
+    //// ワールドアウトライナの設定...
+    //ImGui::Begin("World Outliner"); {
+    //    if(ImGui::CollapsingHeader("Help")){
 
-        }
+    //    }
 
-        if (ImGui::Button("button")) {
-            PostQuitMessage(0);
-        }
-    }
-    ImGui::End();
+    //    if (ImGui::Button("button")) {
+    //        PostQuitMessage(0);
+    //    }
+    //}
+    //ImGui::End();
 
-    // 詳細パネルの設定...
-    ImGui::Begin("Details"); {
-        if (ImGui::Button("button")) {
-            PostQuitMessage(0);
-        }
-    }
-    ImGui::End();
+    //// 詳細パネルの設定...
+    //ImGui::Begin("Details"); {
+    //    if (ImGui::Button("button")) {
+    //        PostQuitMessage(0);
+    //    }
+    //}
+    //ImGui::End();
     
     //コンテンツブラウザの設定...
     ImGui::Begin("Content Browser"); {

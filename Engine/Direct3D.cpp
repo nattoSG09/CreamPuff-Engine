@@ -5,6 +5,7 @@
 #include <DirectXMath.h>
 #include "Windows/Window.h"
 #include "Global.h"
+#include "GUI/ImGuiManager.h"
 
 using std::vector;
 using DirectX::XMVECTOR;
@@ -36,8 +37,12 @@ bool Direct3D::Initialize(Window* _window)
 
 void Direct3D::BeginDraw()
 {
+	
+	static float clearColor[4] = { 0.1f,0.2f,0.3f,1.0f };
+	ImGui::ColorPicker3("ColorPicker3", clearColor,
+		ImGuiColorEditFlags_::ImGuiColorEditFlags_InputRGB);
+
 	// ”wŒiF
-	float clearColor[4] = { 0.1f,0.2f,0.3f,1.0f };
 
 	// ‰æ–Ê‚ðƒNƒŠƒA
 	pContext_->ClearRenderTargetView(pRenderTargetView_, clearColor);
