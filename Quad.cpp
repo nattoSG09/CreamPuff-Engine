@@ -35,7 +35,7 @@ void Quad::Initialize()
 
     // モデルをロード
     AssimpLoader al;
-    al.Load("Assets/Alicia/FBX/Alicia_solid_MMD.FBX", meshes_, true, true);
+    al.Load("Assets/Alicia/FBX/Alicia_solid_MMD.FBX", meshes_, false, true);
 
     for (const auto& mesh : meshes_) {
         // 頂点バッファを用意
@@ -154,15 +154,24 @@ void Quad::Draw()
         // 各メッシュの描画を行う
         UINT stride = sizeof(Vertex);
         UINT offset = 0;
-        d3d.Context()->IASetVertexBuffers(0, 1, &meshVertexBuffers_[i], &stride, &offset); // メッシュごとの頂点バッファ
-        d3d.Context()->IASetIndexBuffer(meshIndexBuffers_[i], DXGI_FORMAT_R32_UINT, 0); // メッシュごとのインデックスバッファ
+
+        //頂点バッファをセット
+        d3d.Context()->IASetVertexBuffers(0, 1, &meshVertexBuffers_[i], &stride, &offset);
+
+        //インデックスバッファをセット
+        d3d.Context()->IASetIndexBuffer(meshIndexBuffers_[i], DXGI_FORMAT_R32_UINT, 0);
+
+
+        //サンプラーをセット
+        ID3D11SamplerState* pSampler = textures_[i]->GetSampler();
+        d3d.Context()->PSSetSamplers(0, 1, &pSampler);
+        
+        //シェーダーリソースビューをセット
+        ID3D11ShaderResourceView* pSRV = textures_[i]->GetSRV();
+        d3d.Context()->PSSetShaderResources(0, 1, &pSRV);
 
         d3d.Context()->DrawIndexed(meshes_[i].Indices.size(), 0, 0); // メッシュごとの描画
 
-        ID3D11SamplerState* pSampler = textures_[i]->GetSampler();
-        d3d.Context()->PSSetSamplers(0, 1, &pSampler);
-        ID3D11ShaderResourceView* pSRV = textures_[i]->GetSRV();
-        d3d.Context()->PSSetShaderResources(0, 1, &pSRV);
     }
 }
 
