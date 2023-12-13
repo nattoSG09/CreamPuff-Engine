@@ -111,9 +111,9 @@ void Quad::Draw()
 #ifdef _DEBUG
         ImGui::Begin("transform"); {
             if (ImGui::CollapsingHeader("position_")) {
-                ImGui::SliderFloat("position_x", &transform.position_.x, -50.0f, 50.0f);
-                ImGui::SliderFloat("position_y", &transform.position_.y, -50.0f, 50.0f);
-                ImGui::SliderFloat("position_z", &transform.position_.z, -50.0f, 50.0f);
+                ImGui::SliderFloat("position_x", &transform.position_.x, -100.0f, 100.0f);
+                ImGui::SliderFloat("position_y", &transform.position_.y, -100.0f, 100.0f);
+                ImGui::SliderFloat("position_z", &transform.position_.z, -100.0f, 100.0f);
             }
 
             if (ImGui::CollapsingHeader("rotate_")) {
@@ -137,7 +137,7 @@ void Quad::Draw()
         d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
         // 各メッシュごとに異なるビュー行列や射影行列などの情報を設定する
-        XMVECTOR position = { 0, 140, 75, 0 };
+        XMVECTOR position = { 0, 140, 100, 0 };
         XMVECTOR target = { 0, 120, 0, 0 };
         XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0)); // メッシュごとのビュー行列
         XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 1000.0f); // メッシュごとの射影行列
