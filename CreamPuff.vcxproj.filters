@@ -48,6 +48,13 @@
     <ClInclude Include="Engine\GUI\ImGuiManager.h">
       <Filter>Engine\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Components\Component.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\Transform.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -91,6 +98,13 @@
     <ClCompile Include="Engine\GUI\ImGuiManager.cpp">
       <Filter>Engine\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Components\Component.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\Transform.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -108,10 +122,16 @@
     <Filter Include="Engine\GUI\ImGui">
       <UniqueIdentifier>{b3a9c13e-aeed-4c91-8237-0bf942abdbd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{40bf80ef-a6b4-4f36-9da1-1043a26bf575}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

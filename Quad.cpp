@@ -2,6 +2,23 @@
 #include "Engine/Global.h"
 #include "Engine/Components/Transform.h"
 #include "Engine/GUI/ImGuiManager.h"
+//
+//namespace {
+//    string ChangeFileExtension(const std::string& filePath, const std::string& newExtension) {
+//        size_t dotPosition = filePath.rfind('.');
+//        if (dotPosition != std::string::npos) {
+//            return filePath.substr(0, dotPosition + 1) + newExtension;
+//        }
+//        return filePath + "." + newExtension;
+//    }
+//
+//    string GetExtension(const string& _fileName) {
+//        //「.(ドット)部分が何文字目かを抽出」
+//        auto idx = _fileName.rfind('.');
+//        //sample.fbx = fの部分から末尾にかけての「３文字」sample.fbx(10文字) - idx(6) - 1 を取得
+//        return _fileName.substr(idx + 1, _fileName.length() - idx - 1);
+//    }
+//}
 
 Quad::Quad()
 {
@@ -73,15 +90,23 @@ void Quad::Initialize()
 
         // 作成したコンスタントバッファを配列に追加
         meshConstantBuffers_.push_back(meshConstantBuffer);
+
+        //////テクスチャを読み込む
+        //Texture2D* texture = new Texture2D;
+        //if (GetExtension(mesh.DiffuseMap) == "psd")
+        //    texture->Load(ChangeFileExtension(mesh.DiffuseMap, "tga"));
+        //else 
+        //    texture->Load(mesh.DiffuseMap);
+        //textures_.push_back(texture);
     }
 }
 
 void Quad::Draw()
 {
     Direct3D& d3d = Direct3D::GetInstance();
-
     //変形行列の作成
-    static Transform transform; {
+    static Transform transform;
+#ifdef _DEBUG
         ImGui::Begin("transform"); {
             if (ImGui::CollapsingHeader("position_")) {
                 ImGui::SliderFloat("position_x", &transform.position_.x, -50.0f, 50.0f);
@@ -102,7 +127,7 @@ void Quad::Draw()
             }
         }
         ImGui::End();
-    }
+#endif // _DEBUG
 
     for (int i = 0; i < meshes_.size(); ++i) {
         // メッシュごとのコンスタントバッファをセット
@@ -110,10 +135,10 @@ void Quad::Draw()
         d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
         // 各メッシュごとに異なるビュー行列や射影行列などの情報を設定する
-        XMVECTOR position = { 0, 120, 75, 0 };
+        XMVECTOR position = { 0, 140, 75, 0 };
         XMVECTOR target = { 0, 120, 0, 0 };
         XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0)); // メッシュごとのビュー行列
-        XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 100.0f); // メッシュごとの射影行列
+        XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 1000.0f); // メッシュごとの射影行列
 
         CONSTANT_BUFFER cb = {};
         cb.matWVP = XMMatrixTranspose(transform.WoaldMatrix() * view * proj);
@@ -131,8 +156,14 @@ void Quad::Draw()
         d3d.Context()->IASetIndexBuffer(meshIndexBuffers_[i], DXGI_FORMAT_R32_UINT, 0); // メッシュごとのインデックスバッファ
 
         d3d.Context()->DrawIndexed(meshes_[i].Indices.size(), 0, 0); // メッシュごとの描画
+
+        /*ID3D11SamplerState* pSampler = textures_[i]->GetSampler();
+        d3d.Context()->PSSetSamplers(0, 1, &pSampler);
+        ID3D11ShaderResourceView* pSRV = textures_[i]->GetSRV();
+        d3d.Context()->PSSetShaderResources(0, 1, &pSRV);*/
     }
 }
+
 void Quad::Release()
 {
     for (auto& buffer : meshVertexBuffers_) {

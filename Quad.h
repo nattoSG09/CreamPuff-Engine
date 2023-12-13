@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Direct3D.h"
+#include "Engine/Texture2D.h"
 #include "Engine/AssimpLoader.h"
 
 using namespace DirectX;
@@ -19,6 +20,7 @@ private:
 	vector<Mesh> meshes_;
 	vector<Vertex> vertices_;
 	vector<uint32_t> indices_;
+	vector<Texture2D*> textures_;
 public:
 	Quad();
 	~Quad();

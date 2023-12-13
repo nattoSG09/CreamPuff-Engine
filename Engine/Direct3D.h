@@ -46,6 +46,8 @@ public:
 	ID3D11InputLayout* VertexLayout() { return pVertexLayout_; }
 	ID3D11RasterizerState* RasterizerState() { return pRasterizerState_; }
 
+public:
+	
 private:
 	Direct3D();
 	~Direct3D();
