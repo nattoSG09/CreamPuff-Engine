@@ -12,6 +12,7 @@ class Texture2D
 {
 	ID3D11SamplerState* pSampler_;
 	ID3D11ShaderResourceView* pSRV_;
+	string fileName_;
 public:
 	Texture2D();
 	~Texture2D();
@@ -19,6 +20,7 @@ public:
 	bool Load(string _fileName);
 	ID3D11SamplerState* GetSampler() { return pSampler_; }
 	ID3D11ShaderResourceView* GetSRV() { return pSRV_; }
+	string GetFileName() { return fileName_; }
 private:
 	bool LoadImageFile(string _fileName, TexMetadata& _metaData, ScratchImage& _scImage);
 	bool CreateSampler();
