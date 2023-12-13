@@ -5,6 +5,8 @@
 cbuffer global
 {
 	float4x4	matWVP;			// ワールド・ビュー・プロジェクションの合成行列
+    float4x4 matNormal;			// 法線行列
+								// ※頂点の法線ベクトルを変換するために使用され、光の反射や陰影などの正しい描画を行うため
 };
 
 //───────────────────────────────────────
@@ -19,7 +21,7 @@ struct VS_OUT
 //───────────────────────────────────────
 // 頂点シェーダ
 //───────────────────────────────────────
-VS_OUT VS(float4 pos : POSITION,float2 uv : TEXCOORD)
+VS_OUT VS(float4 pos : POSITION,float2 uv : TEXCOORD,float3 normal : NORMAL)
 {
 	//ピクセルシェーダーへ渡す情報
 	VS_OUT outData;
@@ -28,6 +30,9 @@ VS_OUT VS(float4 pos : POSITION,float2 uv : TEXCOORD)
 	//スクリーン座標に変換し、ピクセルシェーダーへ
 	outData.pos = mul(pos, matWVP);
     outData.uv = uv;
+	
+    normal = mul(float4(normal, 0), matNormal);
+	
 	//まとめて出力
 	return outData;
 }

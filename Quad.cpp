@@ -1,5 +1,7 @@
 #include "Quad.h"
 #include "Engine/Global.h"
+#include "Engine/Components/Transform.h"
+#include "Engine/GUI/ImGuiManager.h"
 
 Quad::Quad()
 {
@@ -78,6 +80,30 @@ void Quad::Draw()
 {
     Direct3D& d3d = Direct3D::GetInstance();
 
+    //変形行列の作成
+    static Transform transform; {
+        ImGui::Begin("transform"); {
+            if (ImGui::CollapsingHeader("position_")) {
+                ImGui::SliderFloat("position_x", &transform.position_.x, -50.0f, 50.0f);
+                ImGui::SliderFloat("position_y", &transform.position_.y, -50.0f, 50.0f);
+                ImGui::SliderFloat("position_z", &transform.position_.z, -50.0f, 50.0f);
+            }
+
+            if (ImGui::CollapsingHeader("rotate_")) {
+                ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
+                ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
+                ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
+            }
+
+            if (ImGui::CollapsingHeader("scale_")) {
+                ImGui::SliderFloat("scale_x", &transform.scale_.x, -5.0f, 5.0f);
+                ImGui::SliderFloat("scale_y", &transform.scale_.y, -5.0f, 5.0f);
+                ImGui::SliderFloat("scale_z", &transform.scale_.z, -5.0f, 5.0f);
+            }
+        }
+        ImGui::End();
+    }
+
     for (int i = 0; i < meshes_.size(); ++i) {
         // メッシュごとのコンスタントバッファをセット
         d3d.Context()->VSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // 頂点シェーダー用    
@@ -90,7 +116,8 @@ void Quad::Draw()
         XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 100.0f); // メッシュごとの射影行列
 
         CONSTANT_BUFFER cb = {};
-        cb.matWVP = XMMatrixTranspose(view * proj);
+        cb.matWVP = XMMatrixTranspose(transform.WoaldMatrix() * view * proj);
+        cb.matNormal = XMMatrixTranspose(transform.NormalMatrix());
 
         D3D11_MAPPED_SUBRESOURCE pdata;
         d3d.Context()->Map(meshConstantBuffers_[i], 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata); // GPUからのデータアクセスを止める

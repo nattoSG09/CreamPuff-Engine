@@ -19,17 +19,17 @@ private:
 
 	XMVECTOR rotationAxis_;
 
-	Transform* pPalent_;	/*親オブジェクトの変換行列*/
+	Transform* pParent_;	/*親オブジェクトの変換行列*/
 public:
 	Transform();
 	void Calclation();
 
 // アクセス関数 //
-	XMFLOAT3 Position() { return position_; }
+	XMFLOAT3 GetPosition() { return position_; }
 	void SetPosition(const XMFLOAT3 _position) { position_ = _position; }
 	void SetPosition(float _x, float _y, float _z) { SetPosition(XMFLOAT3(_x, _y, _z)); }
 
-	XMFLOAT3 Rotate() { return rotate_; }
+	XMFLOAT3 GetRotate() { return rotate_; }
 	void SetRotate(const XMFLOAT3 _rotate) { rotate_ = _rotate; }
 	void SetRotate(float _x, float _y, float _z) { SetRotate(XMFLOAT3(_x, _y, _z)); }
 
@@ -37,7 +37,7 @@ public:
 
 
 
-	XMFLOAT3 Scale() { return scale_; }
+	XMFLOAT3 GetScale() { return scale_; }
 	void SetScale(const XMFLOAT3 _scale) { scale_ = _scale; }
 	void SetScale(float _x, float _y, float _z) { SetScale(XMFLOAT3(_x, _y, _z)); }
 

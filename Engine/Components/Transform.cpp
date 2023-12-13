@@ -20,8 +20,9 @@ void Transform::Calclation()
 	matTranslate_ = XMMatrixTranslation(position_.x, position_.y, position_.z);
 
 	// rotate_.xyzの値をもとに_回転行列_を作成
-	
-
+	matRotate_	= XMMatrixRotationX(rotate_.x)
+				* XMMatrixRotationY(rotate_.y)
+				* XMMatrixRotationZ(rotate_.z);
 
 	// scale_.xyzの値をもとに_拡大縮小行列_を作成
 	matScale_ = XMMatrixScaling(scale_.x, scale_.y, scale_.z);
@@ -29,10 +30,16 @@ void Transform::Calclation()
 
 XMMATRIX Transform::WoaldMatrix()
 {
-	return XMMATRIX();
+	Calclation();
+	if (pParent_) 
+		//親がいる場合は、親の変形行列も合わせる
+		return matScale_ * matRotate_ * matTranslate_ * pParent_->WoaldMatrix();
+	else 
+		//いない場合は、そのままの変形行列
+		return matScale_ * matRotate_ * matTranslate_;
 }
 
 XMMATRIX Transform::NormalMatrix()
 {
-	return XMMATRIX();
+	return matRotate_ * XMMatrixInverse(nullptr, matScale_);
 }
