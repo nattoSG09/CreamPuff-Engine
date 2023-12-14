@@ -4,7 +4,7 @@ Transform::Transform()
 {
 	//変数の初期化
 	position_ = XMFLOAT3(0, 0, 0);
-	rotate_ = XMFLOAT3(0, 0, 0);
+	rotate_ = XMFLOAT4(0, 0, 0, 0);
 	scale_ = XMFLOAT3(1, 1, 1);
 
 	matTranslate_ = XMMatrixIdentity();
@@ -22,7 +22,8 @@ void Transform::Calclation()
 	// rotate_.xyzの値をもとに_回転行列_を作成
 	matRotate_	= XMMatrixRotationX(rotate_.x)
 				* XMMatrixRotationY(rotate_.y)
-				* XMMatrixRotationZ(rotate_.z);
+				* XMMatrixRotationZ(rotate_.z)
+				* XMMatrixRotationAxis(rotationAxis_, rotate_.w);
 
 	// scale_.xyzの値をもとに_拡大縮小行列_を作成
 	matScale_ = XMMatrixScaling(scale_.x, scale_.y, scale_.z);
