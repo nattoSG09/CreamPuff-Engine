@@ -22,6 +22,7 @@ public:
 	~Window();
 
 	virtual bool Initialize(HINSTANCE _hInstance, int _nCmdShow, WndProcType _wndProc) = 0;
+	void Show(int _nCmdShow);
 
 // ゲッター・セッター //
 	HWND WindowHandle() { return hWnd_; }

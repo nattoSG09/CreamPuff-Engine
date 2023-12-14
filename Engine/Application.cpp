@@ -41,6 +41,8 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     pQuad_ = new Quad;
     pQuad_->Initialize();
 
+    //すべての初期化終了時にウィンドウを可視化
+    wm.GetWindow("Editor")->Show(_nCmdShow);
     return true;
 }
 

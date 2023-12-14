@@ -19,9 +19,6 @@ bool AssimpLoader::Load(string _fileName, vector<Mesh>& _meshes, bool _inverseU,
     if (scene == nullptr) {
         MessageBox(NULL, importer.GetErrorString(), "失敗", MB_OK); return false;
     }
-    else {
-        MessageBox(NULL, "モデルのロードに成功しました", "成功", MB_OK);
-    }
 #endif // _DEBUG
 
 // モデルを読み込む //

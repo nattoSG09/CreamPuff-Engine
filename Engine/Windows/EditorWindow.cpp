@@ -37,8 +37,6 @@ bool EditorWindow::Initialize(HINSTANCE _hInstance, int _nCmdShow, WndProcType _
     );
 
     if (hWnd_ == nullptr) return false;
-
-    ShowWindow(hWnd_, _nCmdShow);
 	return true;
 }
 

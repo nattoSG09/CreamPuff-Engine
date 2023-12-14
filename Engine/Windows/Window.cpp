@@ -19,3 +19,8 @@ Window::Window(const string _name, const int _height, const int _width)
 Window::~Window()
 {
 }
+
+void Window::Show(int _nCmdShow)
+{
+	ShowWindow(hWnd_, _nCmdShow);
+}
