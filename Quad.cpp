@@ -108,6 +108,7 @@ void Quad::Draw()
     Direct3D& d3d = Direct3D::GetInstance();
     //変形行列の作成
     static Transform transform;
+    transform.SetRotateAxis(XMVectorSet(1,1,0,0));
 #ifdef _DEBUG
         ImGui::Begin("transform"); {
             if (ImGui::CollapsingHeader("position_")) {
@@ -120,6 +121,7 @@ void Quad::Draw()
                 ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
                 ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
                 ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
+                ImGui::SliderFloat("rotate_q", &transform.rotate_.w, -5.0f, 5.0f);
             }
 
             if (ImGui::CollapsingHeader("scale_")) {
@@ -132,9 +134,6 @@ void Quad::Draw()
 #endif // _DEBUG
 
     for (int i = 0; i < meshes_.size(); ++i) {
-        // メッシュごとのコンスタントバッファをセット
-        d3d.Context()->VSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // 頂点シェーダー用    
-        d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
         // 各メッシュごとに異なるビュー行列や射影行列などの情報を設定する
         XMVECTOR position = { 0, 140, 100, 0 };
@@ -161,6 +160,9 @@ void Quad::Draw()
         //インデックスバッファをセット
         d3d.Context()->IASetIndexBuffer(meshIndexBuffers_[i], DXGI_FORMAT_R32_UINT, 0);
 
+        // メッシュごとのコンスタントバッファをセット
+        d3d.Context()->VSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // 頂点シェーダー用    
+        d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
         //サンプラーをセット
         ID3D11SamplerState* pSampler = textures_[i]->GetSampler();

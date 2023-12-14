@@ -8,14 +8,13 @@ class Transform : public Component
 {
 public:
 	XMFLOAT3 position_;		/*à íu*/
-	XMFLOAT3 rotate_;		/*ï˚å¸*/
+	XMFLOAT4 rotate_;		/*ï˚å¸*/
 	XMFLOAT3 scale_;		/*ägëÂó¶*/
 
 private:
 	XMMATRIX matTranslate_;	/*à⁄ìÆçsóÒ*/
 	XMMATRIX matRotate_;	/*âÒì]çsóÒ*/
 	XMMATRIX matScale_;		/*ägëÂçsóÒ*/
-
 
 	XMVECTOR rotationAxis_;
 
@@ -29,13 +28,11 @@ public:
 	void SetPosition(const XMFLOAT3 _position) { position_ = _position; }
 	void SetPosition(float _x, float _y, float _z) { SetPosition(XMFLOAT3(_x, _y, _z)); }
 
-	XMFLOAT3 GetRotate() { return rotate_; }
-	void SetRotate(const XMFLOAT3 _rotate) { rotate_ = _rotate; }
-	void SetRotate(float _x, float _y, float _z) { SetRotate(XMFLOAT3(_x, _y, _z)); }
-
-	void UseQuaternion(XMVECTOR _rotateAxis);
-
-
+	XMFLOAT4 GetRotate() { return rotate_; }
+	void SetRotate(const XMFLOAT4 _rotate) { rotate_ = _rotate; }
+	void SetRotate(float _x, float _y, float _z) { SetRotate(XMFLOAT4(_x, _y, _z,0.0f)); }
+	void SetRotateAxis(XMVECTOR _rotationAxis) { rotationAxis_ = _rotationAxis; }
+	
 
 	XMFLOAT3 GetScale() { return scale_; }
 	void SetScale(const XMFLOAT3 _scale) { scale_ = _scale; }
