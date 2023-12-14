@@ -16,7 +16,6 @@ private:
 	XMMATRIX matRotate_;	/*回転行列*/
 	XMMATRIX matScale_;		/*拡大行列*/
 
-
 	XMVECTOR rotationAxis_;
 
 	Transform* pParent_;	/*親オブジェクトの変換行列*/

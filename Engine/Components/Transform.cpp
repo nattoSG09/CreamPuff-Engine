@@ -11,7 +11,7 @@ Transform::Transform()
 	matRotate_ = XMMatrixIdentity();
 	matScale_ = XMMatrixIdentity();
 
-	rotationAxis_ = XMVectorSet(0, 0, 0, 0);
+	rotationAxis_ = XMVectorSet(1, 0, 0, 0);
 }
 
 void Transform::Calclation()
