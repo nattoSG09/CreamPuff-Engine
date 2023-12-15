@@ -38,11 +38,13 @@ bool Direct3D::Initialize(Window* _window)
 void Direct3D::BeginDraw()
 {
 	
+	// ”wŒiF
 	static float clearColor[4] = { 0.1f,0.2f,0.3f,1.0f };
+#ifdef _DEBUG
 	ImGui::ColorPicker3("ColorPicker3", clearColor,
 		ImGuiColorEditFlags_::ImGuiColorEditFlags_InputRGB);
+#endif // _DEBUG
 
-	// ”wŒiF
 
 	// ‰æ–Ê‚ðƒNƒŠƒA
 	pContext_->ClearRenderTargetView(pRenderTargetView_, clearColor);
