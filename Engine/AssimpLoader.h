@@ -23,7 +23,7 @@ struct Vertex{
 struct Mesh{
     vector<Vertex> Vertices; // 頂点データの配列
     vector<uint32_t> Indices; // インデックスの配列
-    string DiffuseMap; // テクスチャのファイルパス
+    vector<string> DiffuseMaps; // テクスチャのファイルパス
 };
 
 /// <summary>

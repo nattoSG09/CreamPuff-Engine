@@ -54,7 +54,8 @@ bool Texture2D::LoadImageFile(string _fileName, TexMetadata& _metaData, ScratchI
 	string ext = GetExtension(_fileName);
 
 	if (ext == "png") {
-		if (FAILED(LoadFromWICFile(StringToWString(_fileName).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage))) {
+		HRESULT hr;
+		if (FAILED(hr = LoadFromWICFile(StringToWString(_fileName).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage))) {
 #ifdef _DEBUG
 			MessageBox(NULL, "画像ファイル(.png)の読み込み失敗しました", "エラー", MB_OK);
 #endif // _DEBUG
@@ -62,8 +63,8 @@ bool Texture2D::LoadImageFile(string _fileName, TexMetadata& _metaData, ScratchI
 		}
 	}
 	else if(ext == "tga") {
-		HRESULT hr;
-		if (FAILED(hr = LoadFromTGAFile(StringToWString(_fileName).c_str(), &_metaData, _scImage))) {
+		
+		if (FAILED(LoadFromTGAFile(StringToWString(_fileName).c_str(), &_metaData, _scImage))) {
 #ifdef _DEBUG
 			MessageBox(NULL, "画像(.tga)ファイルの読み込み失敗しました", "エラー", MB_OK);
 #endif // _DEBUG

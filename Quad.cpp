@@ -91,15 +91,18 @@ void Quad::Initialize()
         // 作成したコンスタントバッファを配列に追加
         meshConstantBuffers_.push_back(meshConstantBuffer);
 
-        auto a = mesh.DiffuseMap;
-
         //////テクスチャを読み込む
-        Texture2D* texture = new Texture2D;
-        if (GetExtension(mesh.DiffuseMap) == "psd")
-            texture->Load(ChangeFileExtension(mesh.DiffuseMap, "tga"));
-        else 
-            texture->Load(mesh.DiffuseMap);
-        textures_.push_back(texture);
+        if (mesh.DiffuseMaps.empty() == false) {
+            for (int i = 0; i < mesh.DiffuseMaps.size(); ++i) {
+                Texture2D* texture = new Texture2D;
+                if (GetExtension(mesh.DiffuseMaps[i]) == "psd")
+                    texture->Load(ChangeFileExtension(mesh.DiffuseMaps[i], "tga"));
+                else
+                    texture->Load(mesh.DiffuseMaps[i]);
+
+                textures_.push_back(texture);
+            }
+        }
     }
 }
 
@@ -164,13 +167,16 @@ void Quad::Draw()
         d3d.Context()->VSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // 頂点シェーダー用    
         d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
-        //サンプラーをセット
-        ID3D11SamplerState* pSampler = textures_[i]->GetSampler();
-        d3d.Context()->PSSetSamplers(0, 1, &pSampler);
-        
-        //シェーダーリソースビューをセット
-        ID3D11ShaderResourceView* pSRV = textures_[i]->GetSRV();
-        d3d.Context()->PSSetShaderResources(0, 1, &pSRV);
+        if (textures_.empty() == false) {
+            //サンプラーをセット
+            ID3D11SamplerState* pSampler = textures_[i]->GetSampler();
+            d3d.Context()->PSSetSamplers(0, 1, &pSampler);
+
+            //シェーダーリソースビューをセット
+            ID3D11ShaderResourceView* pSRV = textures_[i]->GetSRV();
+            d3d.Context()->PSSetShaderResources(0, 1, &pSRV);
+
+        }
 
         d3d.Context()->DrawIndexed(meshes_[i].Indices.size(), 0, 0); // メッシュごとの描画
 

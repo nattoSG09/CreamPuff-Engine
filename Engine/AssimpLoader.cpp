@@ -90,18 +90,21 @@ void AssimpLoader::LoadTexture(const string _fileName, Mesh& _dst, const aiMater
     aiString path;
     _src->GetTexture(aiTextureType_DIFFUSE, 0, &path);
     auto x = _src->GetTextureCount(aiTextureType_DIFFUSE);
-    
-    if (_src->Get(AI_MATKEY_TEXTURE_DIFFUSE(0), path) == AI_SUCCESS){
+    _dst.DiffuseMaps.resize(x);
 
-        //現在のカレントディレクトリを取得
-        char defaultCurrentDir[MAX_PATH];
-        GetCurrentDirectory(MAX_PATH, defaultCurrentDir);
+    for (int i = 0; i < x; ++i) {
+        if (_src->Get(AI_MATKEY_TEXTURE_DIFFUSE(0), path) == AI_SUCCESS) {
 
-        //引数のfileNameからディレクトリ部分を取得
-        char dir[MAX_PATH];
-        _splitpath_s(_fileName.c_str(), nullptr, 0, dir, MAX_PATH, nullptr, 0, nullptr, 0);
+            //現在のカレントディレクトリを取得
+            char defaultCurrentDir[MAX_PATH];
+            GetCurrentDirectory(MAX_PATH, defaultCurrentDir);
 
-        _dst.DiffuseMap = dir + string(path.C_Str());
+            //引数のfileNameからディレクトリ部分を取得
+            char dir[MAX_PATH];
+            _splitpath_s(_fileName.c_str(), nullptr, 0, dir, MAX_PATH, nullptr, 0, nullptr, 0);
+
+            _dst.DiffuseMaps[i] = dir + string(path.C_Str());
+        }
+        else _dst.DiffuseMaps[i].clear();
     }
-    else _dst.DiffuseMap.clear();
 }
