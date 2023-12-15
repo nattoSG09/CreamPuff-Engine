@@ -86,7 +86,11 @@ void AssimpLoader::LoadMesh(Mesh& _dst, const aiMesh* _src, bool _inverseU, bool
 
 void AssimpLoader::LoadTexture(const string _fileName, Mesh& _dst, const aiMaterial* _src)
 {
+    aiVector3D temp = {};
     aiString path;
+    _src->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+    auto x = _src->GetTextureCount(aiTextureType_DIFFUSE);
+    
     if (_src->Get(AI_MATKEY_TEXTURE_DIFFUSE(0), path) == AI_SUCCESS){
 
         //現在のカレントディレクトリを取得

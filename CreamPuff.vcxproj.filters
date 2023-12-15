@@ -55,7 +55,6 @@
       <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Texture2D.h" />
-    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -106,7 +105,6 @@
       <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Texture2D.cpp" />
-    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

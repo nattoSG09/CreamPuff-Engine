@@ -137,7 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="Engine\Components\Component.h" />
     <ClInclude Include="Engine\AssimpLoader.h" />
     <ClInclude Include="Engine\Direct3D.h" />
@@ -160,7 +159,6 @@
     <ClInclude Include="Engine\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Engine\Components\Component.cpp" />
     <ClCompile Include="Engine\AssimpLoader.cpp" />
     <ClCompile Include="Engine\Direct3D.cpp" />

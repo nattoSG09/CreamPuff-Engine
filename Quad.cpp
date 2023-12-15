@@ -35,7 +35,7 @@ void Quad::Initialize()
 
     // モデルをロード
     AssimpLoader al;
-    al.Load("Assets/Alicia/FBX/Alicia_solid_MMD.FBX", meshes_, false, true);
+    al.Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX", meshes_, false, true);
 
     for (const auto& mesh : meshes_) {
         // 頂点バッファを用意

@@ -101,8 +101,8 @@ void Texture2D::InitSamplerDesc(D3D11_SAMPLER_DESC& _samplerDesc)
 {
 	ZeroMemory(&_samplerDesc, sizeof(D3D11_SAMPLER_DESC));
 	_samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-	_samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
-	_samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	_samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	_samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	_samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 }
 
