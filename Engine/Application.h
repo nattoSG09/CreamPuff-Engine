@@ -1,11 +1,8 @@
 #pragma once
 #include "Windows/WindowManager.h"
 
-class Quad;
-
 class Application
 {
-	Quad* pQuad_;
 public:
 	Application();
 	~Application();

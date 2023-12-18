@@ -27,13 +27,13 @@ void ImGuiManager::Draw()
     //}
     //ImGui::End();
 
-    //// 詳細パネルの設定...
-    //ImGui::Begin("Details"); {
-    //    if (ImGui::Button("button")) {
-    //        PostQuitMessage(0);
-    //    }
-    //}
-    //ImGui::End();
+    // 詳細パネルの設定...
+    ImGui::Begin("Details"); {
+        if (ImGui::Button("button")) {
+            PostQuitMessage(0);
+        }
+    }
+    ImGui::End();
     
     //コンテンツブラウザの設定...
     ImGui::Begin("Content Browser"); {

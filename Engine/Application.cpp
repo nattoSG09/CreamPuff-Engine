@@ -3,10 +3,7 @@
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
 
-#include "../Quad.h"
-
 Application::Application()
-    :pQuad_(nullptr)
 {
 }
 
@@ -38,9 +35,6 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
     
-    pQuad_ = new Quad;
-    pQuad_->Initialize();
-
     //すべての初期化終了時にウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
     return true;
@@ -75,8 +69,6 @@ void Application::Excute()
             Direct3D& d3D = Direct3D::GetInstance();
             d3D.BeginDraw(); 
 
-            pQuad_->Draw();
-
 #ifdef _DEBUG
             // ImGuiの終了
             ImGuiManager::EndFlame();
@@ -90,9 +82,6 @@ void Application::Excute()
 
 void Application::Release()
 {
-
-    pQuad_->Release();
-
 #ifdef _DEBUG
     // ImGuiの開放
     ImGuiManager::ShutDown();

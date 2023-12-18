@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "Texture2D.h"
 
 int APIENTRY WinMain(HINSTANCE _hInstance,HINSTANCE _hPrevInst,LPSTR _lpCmdLine,int _nCmdShow)
 {

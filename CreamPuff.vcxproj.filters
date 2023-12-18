@@ -19,8 +19,6 @@
     <ClInclude Include="Engine\Global.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="Engine\AssimpLoader.h" />
     <ClInclude Include="Engine\GUI\ImGui\imconfig.h">
       <Filter>Engine\GUI\ImGui</Filter>
     </ClInclude>
@@ -54,7 +52,6 @@
     <ClInclude Include="Engine\Components\Transform.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -75,8 +72,6 @@
     <ClCompile Include="Engine\Main.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Engine\AssimpLoader.cpp" />
     <ClCompile Include="Engine\GUI\ImGui\imgui.cpp">
       <Filter>Engine\GUI\ImGui</Filter>
     </ClCompile>
@@ -104,7 +99,6 @@
     <ClCompile Include="Engine\Components\Transform.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
