@@ -112,6 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AssimpLoader.h" />
     <ClInclude Include="Engine\Components\Component.h" />
     <ClInclude Include="Engine\Direct3D.h" />
     <ClInclude Include="Engine\Application.h" />
@@ -154,8 +157,12 @@
     <ClInclude Include="Engine\Windows\WindowManager.h" />
     <ClInclude Include="Engine\Global.h" />
     <ClInclude Include="Engine\Components\Transform.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Structs.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssimpLoader.cpp" />
     <ClCompile Include="Engine\Components\Component.cpp" />
     <ClCompile Include="Engine\Direct3D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
@@ -171,6 +178,8 @@
     <ClCompile Include="Engine\Windows\WindowManager.cpp" />
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Components\Transform.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">
@@ -188,11 +197,17 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\directxtex_desktop_win10.2023.10.31.1\build\native\directxtex_desktop_win10.targets" Condition="Exists('packages\directxtex_desktop_win10.2023.10.31.1\build\native\directxtex_desktop_win10.targets')" />
+    <Import Project="packages\directxtex_uwp.2023.10.31.1\build\native\directxtex_uwp.targets" Condition="Exists('packages\directxtex_uwp.2023.10.31.1\build\native\directxtex_uwp.targets')" />
+    <Import Project="packages\directxtex_desktop_2019.2023.10.31.1\build\native\directxtex_desktop_2019.targets" Condition="Exists('packages\directxtex_desktop_2019.2023.10.31.1\build\native\directxtex_desktop_2019.targets')" />
+    <Import Project="packages\directxtex_desktop_2017.2022.3.24.1\build\native\directxtex_desktop_2017.targets" Condition="Exists('packages\directxtex_desktop_2017.2022.3.24.1\build\native\directxtex_desktop_2017.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\directxtex_desktop_win10.2023.10.31.1\build\native\directxtex_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_desktop_win10.2023.10.31.1\build\native\directxtex_desktop_win10.targets'))" />
+    <Error Condition="!Exists('packages\directxtex_uwp.2023.10.31.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_uwp.2023.10.31.1\build\native\directxtex_uwp.targets'))" />
+    <Error Condition="!Exists('packages\directxtex_desktop_2019.2023.10.31.1\build\native\directxtex_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_desktop_2019.2023.10.31.1\build\native\directxtex_desktop_2019.targets'))" />
+    <Error Condition="!Exists('packages\directxtex_desktop_2017.2022.3.24.1\build\native\directxtex_desktop_2017.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_desktop_2017.2022.3.24.1\build\native\directxtex_desktop_2017.targets'))" />
   </Target>
 </Project>

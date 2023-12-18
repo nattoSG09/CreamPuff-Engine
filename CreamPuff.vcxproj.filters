@@ -52,6 +52,18 @@
     <ClInclude Include="Engine\Components\Transform.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpLoader.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -99,6 +111,15 @@
     <ClCompile Include="Engine\Components\Transform.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="AssimpLoader.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -118,6 +139,9 @@
     </Filter>
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{40bf80ef-a6b4-4f36-9da1-1043a26bf575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{fdd127be-f9d2-400c-8226-069e1abb6e4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
