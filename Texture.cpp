@@ -10,5 +10,5 @@ Texture::~Texture()
 
 bool Texture::Load(string _fileName)
 {
-	return false;
+	return true;
 }

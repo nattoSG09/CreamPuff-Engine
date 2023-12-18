@@ -23,7 +23,8 @@ struct Vertex {
 /// マテリアル情報-構造体
 /// </summary>
 struct Material{
-	vector<Texture*> textures;	//テクスチャ情報
+	vector<Texture*> diffuseTextures;	//ディヒューズテクスチャ情報
+	XMFLOAT4 diffuse;					//ディヒューズカラー情報
 };
 
 /// <summary>
@@ -32,5 +33,5 @@ struct Material{
 struct Mesh{
 	vector<Vertex> vertices;	//頂点情報の配列
 	vector<uint32_t> indices;	//インデックス情報の配列
-	vector<Material> materials;
+	Material material;
 };

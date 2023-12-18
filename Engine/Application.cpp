@@ -2,6 +2,7 @@
 #include "Windows/EditorWindow.h"
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
+#include "../Model.h"
 
 Application::Application()
 {
@@ -34,7 +35,10 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // ImGuiの初期化
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
-    
+
+    pModel_ = new Model;
+    pModel_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX");
+
     //すべての初期化終了時にウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
     return true;
@@ -69,6 +73,33 @@ void Application::Excute()
             Direct3D& d3D = Direct3D::GetInstance();
             d3D.BeginDraw(); 
 
+            static Transform transform;
+            transform.SetRotateAxis(XMVectorSet(1, 1, 0, 0));
+#ifdef _DEBUG
+            ImGui::Begin("transform"); {
+                if (ImGui::CollapsingHeader("position_")) {
+                    ImGui::SliderFloat("position_x", &transform.position_.x, -100.0f, 100.0f);
+                    ImGui::SliderFloat("position_y", &transform.position_.y, -100.0f, 100.0f);
+                    ImGui::SliderFloat("position_z", &transform.position_.z, -100.0f, 100.0f);
+                }
+
+                if (ImGui::CollapsingHeader("rotate_")) {
+                    ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
+                    ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
+                    ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
+                    ImGui::SliderFloat("rotate_q", &transform.rotate_.w, -5.0f, 5.0f);
+                }
+
+                if (ImGui::CollapsingHeader("scale_")) {
+                    ImGui::SliderFloat("scale_x", &transform.scale_.x, -5.0f, 5.0f);
+                    ImGui::SliderFloat("scale_y", &transform.scale_.y, -5.0f, 5.0f);
+                    ImGui::SliderFloat("scale_z", &transform.scale_.z, -5.0f, 5.0f);
+                }
+            }
+            ImGui::End();
+#endif // _DEBUG
+            pModel_->Draw(transform);
+
 #ifdef _DEBUG
             // ImGuiの終了
             ImGuiManager::EndFlame();
@@ -82,6 +113,8 @@ void Application::Excute()
 
 void Application::Release()
 {
+    pModel_->Release();
+
 #ifdef _DEBUG
     // ImGuiの開放
     ImGuiManager::ShutDown();

@@ -1,8 +1,11 @@
 #pragma once
 #include "Windows/WindowManager.h"
 
+class Model;
+
 class Application
 {
+	Model* pModel_;
 public:
 	Application();
 	~Application();
