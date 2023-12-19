@@ -157,6 +157,7 @@
     <ClInclude Include="Engine\Windows\WindowManager.h" />
     <ClInclude Include="Engine\Global.h" />
     <ClInclude Include="Engine\Components\Transform.h" />
+    <ClInclude Include="Structs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssimpLoader.cpp" />
