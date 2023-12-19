@@ -110,7 +110,7 @@ bool AssimpLoader::LoadMaterial(string _filePath, Material& _dst, const aiMateri
 {
     if (_src == nullptr)return false;
 
-    //ディヒューズカラーを取得
+    // ディヒューズカラーを取得
     aiColor3D diffuseColor(0.f, 0.f, 0.f);
     if (AI_SUCCESS == _src->Get(AI_MATKEY_COLOR_DIFFUSE, diffuseColor)) {
         _dst.diffuse = XMFLOAT4(diffuseColor.r, diffuseColor.g, diffuseColor.b, 0.f);
