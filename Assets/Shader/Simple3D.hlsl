@@ -13,6 +13,7 @@ cbuffer global
 	float4x4	matWVP;			// ワールド・ビュー・プロジェクションの合成行列
     float4x4 matNormal;			// 法線行列
 								// ※頂点の法線ベクトルを変換するために使用され、光の反射や陰影などの正しい描画を行うため
+	float4		diffuseColor;
 };
 
 //───────────────────────────────────────
@@ -49,5 +50,6 @@ VS_OUT VS(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOORD,
 //───────────────────────────────────────
 float4 PS(VS_OUT inData) : SV_Target
 {
+	return diffuseColor;
     return g_texture.Sample(g_sampler, inData.uv);
 }

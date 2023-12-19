@@ -43,7 +43,7 @@ bool AssimpLoader::Load(string _filePath, vector<Mesh>& _meshes, bool _inverseU,
         }
 
         if (scene->HasMaterials()) {
-            if (LoadMaterial(_filePath, _meshes[i].material, scene->mMaterials[i]))return false;
+            if (LoadMaterial(_filePath, _meshes[i].material, scene->mMaterials[i]) == false)return false;
         }
     }
 

@@ -32,3 +32,9 @@ struct Mesh {
 	vector<uint32_t> indices;	//インデックス情報の配列
 	Material material;
 };
+
+struct CONSTANT_BUFFER {
+	XMMATRIX	matWVP;
+	XMMATRIX	matNormal;
+	XMFLOAT4	diffuseColor;
+};
