@@ -3,6 +3,8 @@
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
 
+#include "../AssimpLoader.h"
+
 Application::Application()
 {
 }
@@ -26,6 +28,8 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
         if (wm.InitWindows(_hInstance, _nCmdShow,WndProc) == false)return false;
     }
 
+
+
     //Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
@@ -34,6 +38,10 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // ImGuiの初期化
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
+
+    AssimpLoader al;
+    vector<Mesh> meshes;
+    al.Load("Assets/blueBox.fbx",meshes);
 
     //すべての初期化終了時にウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
