@@ -2,7 +2,6 @@
 #include "Windows/EditorWindow.h"
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
-#include "Components/Transform.h"
 
 Application::Application()
 {
