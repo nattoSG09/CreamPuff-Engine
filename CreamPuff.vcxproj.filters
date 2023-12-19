@@ -58,10 +58,10 @@
     <ClInclude Include="Structs.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="AssimpLoader.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="AssimpLoader.h">
+    <ClInclude Include="Texture.h">
       <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,10 +114,10 @@
     <ClCompile Include="Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="AssimpLoader.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="AssimpLoader.cpp">
+    <ClCompile Include="Texture.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
