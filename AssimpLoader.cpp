@@ -116,5 +116,6 @@ bool AssimpLoader::LoadMaterial(string _filePath, Material& _dst, const aiMateri
         _dst.diffuse = XMFLOAT4(diffuseColor.r, diffuseColor.g, diffuseColor.b, 0.f);
     }
 
+
     return true;
 }
