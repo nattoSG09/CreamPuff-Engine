@@ -34,7 +34,7 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
 
 #ifdef _DEBUG
-    // ImGui‚Ì‰Šú‰»
+     //ImGui‚Ì‰Šú‰»    
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
 

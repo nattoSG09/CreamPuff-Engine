@@ -1,14 +1,14 @@
 #include "Texture.h"
 
 #include <filesystem>
-#include <locale>
-#include <codecvt>
 namespace fs = std::filesystem;
 
 namespace {
-	std::wstring StringToWString(const std::string& str) {
-		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-		return converter.from_bytes(str);
+	std::wstring StringToWString(const std::string& utf8Str) {
+		int size_needed = MultiByteToWideChar(CP_UTF8, 0, &utf8Str[0], static_cast<int>(utf8Str.size()), nullptr, 0);
+		std::wstring wideString(size_needed, 0);
+		MultiByteToWideChar(CP_UTF8, 0, &utf8Str[0], static_cast<int>(utf8Str.size()), &wideString[0], size_needed);
+		return wideString;
 	}
 }
 
