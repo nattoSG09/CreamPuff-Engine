@@ -38,8 +38,9 @@ bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchIma
 	fs::path filePath = _filePath;
 	std::string ext = filePath.extension().string();
 
-	/*if (ext == "png" || ext == "jpg") {
-		if(FAILED(LoadFromWICFile(StringToWString(_filePath).c_str(),WIC_FLAGGS_NONE,_metaData,_scImage)))
-	}*/
+	if (ext == "png" || ext == "jpg") {
+		LoadFromWICFile(StringToWString(_filePath).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage);
+	}
 	return false;
+
 }
