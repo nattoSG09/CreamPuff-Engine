@@ -1,6 +1,7 @@
 #include "Texture.h"
 
 #include <filesystem>
+#include <unordered_set>
 namespace fs = std::filesystem;
 
 namespace {
@@ -9,6 +10,21 @@ namespace {
 		std::wstring wideString(size_needed, 0);
 		MultiByteToWideChar(CP_UTF8, 0, &utf8Str[0], static_cast<int>(utf8Str.size()), &wideString[0], size_needed);
 		return wideString;
+	}
+
+	bool ShouldLoadWithWIC(string _ext){
+		std::unordered_set<std::string> supportedExtensions = {
+			"png", "jpg", "jpeg", "bmp", "gif", "tiff"
+		};
+
+		return supportedExtensions.find(_ext) != supportedExtensions.end();
+	}
+
+	bool ShouldLoadWithTGA(string _ext) {
+		std::unordered_set<std::string> supportedExtensions = {
+			"tga", "TGA", "tpic",
+		};
+		return supportedExtensions.find(_ext) != supportedExtensions.end();
 	}
 }
 
@@ -32,28 +48,20 @@ bool Texture::Load(string _filePath)
 	return true;
 }
 
-bool Texture::LoadFromWICFile(string _ext)
-{
-	return _ext == "png";
-}
-
 bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchImage& _scImage)
 {
 	//拡張子を取得する
 	fs::path filePath = _filePath;
 	std::string ext = filePath.extension().string();
-	HRESULT hr{};
-	if (ext == "png") {
-		hr = LoadFromWICFile(StringToWString(_filePath).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage);
-		if (FAILED(hr)) {
+	if (ShouldLoadWithWIC(ext)) {
+		if (FAILED(LoadFromWICFile(StringToWString(_filePath).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage))) {
 #ifdef _DEBUG
 			MessageBox(NULL, "画像ファイル(.png)の読み込み失敗しました", "エラー", MB_OK);
 #endif // _DEBUG
 			return false;
 		}
 	}
-	else if (ext == "tga") {
-
+	else if (ShouldLoadWithTGA(ext)) {
 		if (FAILED(LoadFromTGAFile(StringToWString(_filePath).c_str(), &_metaData, _scImage))) {
 #ifdef _DEBUG
 			MessageBox(NULL, "画像(.tga)ファイルの読み込み失敗しました", "エラー", MB_OK);
