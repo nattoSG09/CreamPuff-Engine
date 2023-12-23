@@ -1,10 +1,10 @@
 #include "Model.h"
 #include "AssimpLoader.h" 
 
-bool Model::Load(string _filePath)
+bool Model::Load(string _filePath, bool _inverseU, bool _inverseV)
 {
 	AssimpLoader al{};
-	al.Load(_filePath, meshes_);
+	al.Load(_filePath, meshes_, _inverseU, _inverseV);
 
 	for (const Mesh& mesh : meshes_) {
         // 頂点バッファを生成
@@ -20,14 +20,22 @@ bool Model::Load(string _filePath)
 	return true;
 }
 
+bool Model::Load(string _filePath)
+{
+    return Load(_filePath,false,false);
+}
+
 void Model::Draw(Transform _transform)
 {
     Direct3D& d3d = Direct3D::GetInstance();
     for (int i = 0; i < meshes_.size(); ++i) {
 
         // 各メッシュごとに異なるビュー行列や射影行列などの情報を設定する
-        XMVECTOR position = { 0, 3, 7, 0 };
-        XMVECTOR target = { 0, 2, 0, 0 };
+        XMVECTOR position = { 0, 140, 100, 0 };
+        XMVECTOR target = { 0, 120, 0, 0 };
+        /*XMVECTOR position = { 0, 3, 7, 0 };
+        XMVECTOR target = { 0, 0, 0, 0 };*/
+
         XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0)); // メッシュごとのビュー行列
         XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 1000.0f); // メッシュごとの射影行列
 

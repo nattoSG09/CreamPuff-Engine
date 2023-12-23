@@ -43,6 +43,8 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 
     pModel_ = new Model;
     pModel_->Load("Assets/blueBox.fbx");
+    pModel2_ = new Model;
+    pModel2_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX", false, true);
 
     
     return true;
@@ -104,6 +106,8 @@ void Application::Excute()
 #endif //_DEBUG
 
             pModel_->Draw(transform);
+            Transform t;
+            pModel2_->Draw(t);
 #ifdef _DEBUG
             // ImGui‚ÌI—¹
             ImGuiManager::EndFlame();

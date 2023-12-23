@@ -16,7 +16,9 @@ private:
 	vector<Mesh> meshes_;
 public:
 	bool Load(string _filePath);
+	bool Load(string _filePath,bool _inverseU,bool _inverseV);
 	void Draw(Transform _transform);
+private:
 	bool InitVertex(const Mesh& _mesh);
 	bool InitIndex(const Mesh& _mesh);
 	bool InitConstantBuffer();

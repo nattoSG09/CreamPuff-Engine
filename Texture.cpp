@@ -6,7 +6,7 @@ namespace fs = std::filesystem;
 #include "Engine/Direct3D.h"
 
 namespace {
-	std::wstring StringToWString(const std::string& utf8Str) {
+	std::wstring StringToWString(const string& utf8Str) {
 		int size_needed = MultiByteToWideChar(CP_UTF8, 0, &utf8Str[0], static_cast<int>(utf8Str.size()), nullptr, 0);
 		std::wstring wideString(size_needed, 0);
 		MultiByteToWideChar(CP_UTF8, 0, &utf8Str[0], static_cast<int>(utf8Str.size()), &wideString[0], size_needed);
@@ -23,9 +23,14 @@ namespace {
 
 	bool ShouldLoadWithTGA(string _ext) {
 		std::unordered_set<std::string> supportedExtensions = {
-			".tga", ".TGA", ".tpic",
+			".tga", ".TGA", ".tpic",".psd"
 		};
 		return supportedExtensions.find(_ext) != supportedExtensions.end();
+	}
+
+	string ChangeExtension(const string& filePath, const string& newExtension) {
+		size_t dotPos = filePath.find_last_of('.');
+		return (dotPos != std::string::npos) ? (filePath.substr(0, dotPos + 1) + newExtension) : (filePath + "." + newExtension);
 	}
 }
 
@@ -60,6 +65,7 @@ bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchIma
 	//拡張子を取得する
 	fs::path filePath = _filePath;
 	string ext = filePath.extension().string();
+
 	if (ShouldLoadWithWIC(ext)) {
 		if (FAILED(LoadFromWICFile(StringToWString(_filePath).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage))) {
 #ifdef _DEBUG
@@ -70,9 +76,12 @@ bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchIma
 		}
 	}
 	else if (ShouldLoadWithTGA(ext)) {
+		if (ext == ".psd") _filePath = ChangeExtension(_filePath, "tga");
+
 		if (FAILED(LoadFromTGAFile(StringToWString(_filePath).c_str(), &_metaData, _scImage))) {
 #ifdef _DEBUG
-			MessageBox(NULL, "画像(.tga)ファイルの読み込み失敗しました", "エラー", MB_OK);
+			string ret = "画像ファイル(" + ext + ")の読み込み失敗しました";
+			MessageBox(NULL, ret.c_str(), "エラー", MB_OK);
 #endif // _DEBUG
 			return false;
 		}

@@ -6,6 +6,7 @@ class Model;
 class Application
 {
 	Model* pModel_;
+	Model* pModel2_;
 public:
 	Application();
 	~Application();
