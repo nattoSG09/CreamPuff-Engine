@@ -1,9 +1,9 @@
 #include "Texture.h"
 
 #include <filesystem>
+namespace fs = std::filesystem;
 #include <unordered_set>
 #include "Engine/Direct3D.h"
-namespace fs = std::filesystem;
 
 namespace {
 	std::wstring StringToWString(const std::string& utf8Str) {
@@ -15,7 +15,7 @@ namespace {
 
 	bool ShouldLoadWithWIC(string _ext){
 		std::unordered_set<std::string> supportedExtensions = {
-			"png", "jpg", "jpeg", "bmp", "gif", "tiff"
+			".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff"
 		};
 
 		return supportedExtensions.find(_ext) != supportedExtensions.end();
@@ -23,7 +23,7 @@ namespace {
 
 	bool ShouldLoadWithTGA(string _ext) {
 		std::unordered_set<std::string> supportedExtensions = {
-			"tga", "TGA", "tpic",
+			".tga", ".TGA", ".tpic",
 		};
 		return supportedExtensions.find(_ext) != supportedExtensions.end();
 	}
@@ -39,7 +39,7 @@ Texture::~Texture()
 
 bool Texture::Load(string _filePath)
 {
-	SetFilePath(_filePath);
+	filePath_ = _filePath;
 	TexMetadata metaData;
 	ScratchImage scImage;
 
@@ -59,11 +59,12 @@ bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchIma
 {
 	//拡張子を取得する
 	fs::path filePath = _filePath;
-	std::string ext = filePath.extension().string();
+	string ext = filePath.extension().string();
 	if (ShouldLoadWithWIC(ext)) {
 		if (FAILED(LoadFromWICFile(StringToWString(_filePath).c_str(), WIC_FLAGS_NONE, &_metaData, _scImage))) {
 #ifdef _DEBUG
-			MessageBox(NULL, "画像ファイル(.png)の読み込み失敗しました", "エラー", MB_OK);
+			string ret = "画像ファイル(" + ext + ")の読み込み失敗しました";
+			MessageBox(NULL, ret.c_str(), "エラー", MB_OK);
 #endif // _DEBUG
 			return false;
 		}

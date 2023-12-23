@@ -1,7 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include <vector>
-
+#include "Texture.h"
 using namespace DirectX;
 using std::vector;
 
@@ -20,7 +20,8 @@ struct Vertex {
 /// マテリアル情報-構造体
 /// </summary>
 struct Material {
-	// vector<Texture*> diffuseTextures;	//ディヒューズテクスチャ情報
+	bool hasTexture;
+	vector<Texture*> diffuseTextures;	//ディヒューズテクスチャ情報
 	XMFLOAT4 diffuse;					//ディヒューズカラー情報
 };
 
@@ -34,7 +35,8 @@ struct Mesh {
 };
 
 struct CONSTANT_BUFFER {
-	XMMATRIX	matWVP;
-	XMMATRIX	matNormal;
-	XMFLOAT4	diffuseColor;
+	XMMATRIX	matWVP;			//ワールド・ビュー・プロジェクション行列
+	XMMATRIX	matNormal;		//法線行列
+	XMFLOAT4	diffuseColor;	//ディヒューズカラー
+	bool hasTexture;			//テクスチャの有無
 };

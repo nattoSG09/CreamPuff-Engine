@@ -6,6 +6,19 @@
 #include <assimp/postprocess.h>
 #include <Windows.h>
 
+namespace {
+    string Directory(string _path) {
+        //現在のカレントディレクトリを取得
+        char defaultCurrentDir[MAX_PATH];
+        GetCurrentDirectory(MAX_PATH, defaultCurrentDir);
+
+        //引数のfileNameからディレクトリ部分を取得
+        char dir[MAX_PATH];
+        _splitpath_s(_path.c_str(), nullptr, 0, dir, MAX_PATH, nullptr, 0, nullptr, 0);
+        return dir;
+    }
+}
+
 AssimpLoader::AssimpLoader()
 {
 }
@@ -116,11 +129,28 @@ bool AssimpLoader::LoadMaterial(string _filePath, Material& _dst, const aiMateri
         _dst.diffuse = XMFLOAT4(diffuseColor.r, diffuseColor.g, diffuseColor.b, 0.f);
     }
 
-    LoadTexture(_filePath, _dst, _src);
+    //テクスチャ情報を取得
+    if (LoadTexture(_filePath,_dst, _src)) _dst.hasTexture = true;
+    else _dst.hasTexture = false;
+
     return true;
 }
 
 bool AssimpLoader::LoadTexture(string _filePath,Material& _dst, const aiMaterial* _src)
 {
-    return false;
+    bool ret = false;
+
+    // 拡散反射テクスチャを取得しロード
+    _dst.diffuseTextures.resize(_src->GetTextureCount(aiTextureType_DIFFUSE));
+    for (int i = 0; i < _src->GetTextureCount(aiTextureType_DIFFUSE); ++i) {
+        aiString path;
+        if (_src->GetTexture(aiTextureType_DIFFUSE, i, &path) == AI_SUCCESS) {
+            
+            _dst.diffuseTextures[i] = new Texture;
+            _dst.diffuseTextures[i]->Load(Directory(_filePath) + path.C_Str());
+            ret = true;
+        }
+    }
+
+    return ret;
 }

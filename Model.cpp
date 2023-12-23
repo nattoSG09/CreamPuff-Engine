@@ -35,6 +35,7 @@ void Model::Draw(Transform _transform)
         cb.matWVP = XMMatrixTranspose(_transform.WoaldMatrix() * view * proj);
         cb.matNormal = XMMatrixTranspose(_transform.NormalMatrix());
         cb.diffuseColor = meshes_[i].material.diffuse;
+        cb.hasTexture = meshes_[i].material.hasTexture;
 
         D3D11_MAPPED_SUBRESOURCE pdata;
         d3d.Context()->Map(meshConstantBuffers_[i], 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata); // GPUからのデータアクセスを止める
@@ -55,6 +56,18 @@ void Model::Draw(Transform _transform)
         d3d.Context()->VSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // 頂点シェーダー用    
         d3d.Context()->PSSetConstantBuffers(0, 1, &meshConstantBuffers_[i]); // ピクセルシェーダー用
 
+        if (meshes_[i].material.hasTexture) {
+            for (auto diffuseTexture : meshes_[i].material.diffuseTextures) {
+                //サンプラーをセット
+                ID3D11SamplerState* pSampler = diffuseTexture->GetSampler();
+                d3d.Context()->PSSetSamplers(0, 1, &pSampler);
+
+                //シェーダーリソースビューをセット
+                ID3D11ShaderResourceView* pSRV = diffuseTexture->GetSRV();
+                d3d.Context()->PSSetShaderResources(0, 1, &pSRV);
+            }
+        }
+        
         d3d.Context()->DrawIndexed(meshes_[i].indices.size(), 0, 0); // メッシュごとの描画
     }
 }

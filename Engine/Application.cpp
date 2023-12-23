@@ -27,8 +27,7 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
         if (wm.InitWindows(_hInstance, _nCmdShow,WndProc) == false)return false;
     }
 
-
-
+    
     //Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
@@ -38,11 +37,14 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
 
+    //ウィンドウを可視化
+    wm.GetWindow("Editor")->Show(_nCmdShow);
+
+
     pModel_ = new Model;
     pModel_->Load("Assets/blueBox.fbx");
 
-    //すべての初期化終了時にウィンドウを可視化
-    wm.GetWindow("Editor")->Show(_nCmdShow);
+    
     return true;
 }
 
