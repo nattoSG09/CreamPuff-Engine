@@ -17,6 +17,7 @@ public:
 
 	bool Load(string _filePath);
 	void SetFilePath(string _filePath) { filePath_ = _filePath; }
+	bool LoadFromWICFile(string _ext);
 	bool LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchImage& _scImage);
 };
 
