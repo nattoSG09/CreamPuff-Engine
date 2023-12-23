@@ -52,8 +52,5 @@ VS_OUT VS(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOORD,
 float4 PS(VS_OUT inData) : SV_Target
 {
    
-    if (hasTexture)
-        return g_texture.Sample(g_sampler, inData.uv);
-	else
-		return diffuseColor;
+    return hasTexture ? g_texture.Sample(g_sampler, inData.uv) : diffuseColor;
 }
