@@ -116,6 +116,11 @@ bool AssimpLoader::LoadMaterial(string _filePath, Material& _dst, const aiMateri
         _dst.diffuse = XMFLOAT4(diffuseColor.r, diffuseColor.g, diffuseColor.b, 0.f);
     }
 
-
+    LoadTexture(_filePath, _dst, _src);
     return true;
+}
+
+bool AssimpLoader::LoadTexture(string _filePath,Material& _dst, const aiMaterial* _src)
+{
+    return false;
 }

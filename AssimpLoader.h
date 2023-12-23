@@ -19,5 +19,6 @@ private:
 	void InitFlags(int& _flags);
 	bool LoadMesh(Mesh& _dst, const aiMesh* _src, bool _inverseU, bool _inverseV);
 	bool LoadMaterial(string _filePath, Material& _dst, const aiMaterial* _src);
+	bool LoadTexture(string _filePath,Material& _dst, const aiMaterial* _src);
 };
 
