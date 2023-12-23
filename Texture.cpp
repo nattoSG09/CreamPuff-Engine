@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <unordered_set>
+#include "Engine/Direct3D.h"
 namespace fs = std::filesystem;
 
 namespace {
@@ -45,6 +46,12 @@ bool Texture::Load(string _filePath)
 	//画像ファイルを読み込む
 	if (LoadImageFile(_filePath, metaData, scImage) == false)return false;
 
+	// サンプラーを作成
+	if (CreateSampler() == false)return false;
+
+	//シェーダーリソースビューの作成
+	if (CreateSRV(scImage, metaData) == false) return false;
+
 	return true;
 }
 
@@ -76,5 +83,43 @@ bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchIma
 		return false;
 	}
 
+	return true;
+}
+
+void Texture::InitSamplerDesc(D3D11_SAMPLER_DESC& _samplerDesc)
+{
+	ZeroMemory(&_samplerDesc, sizeof(D3D11_SAMPLER_DESC));
+	_samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	_samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	_samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	_samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+}
+
+bool Texture::CreateSampler()
+{
+	//テクスチャサンプラーの設定
+	D3D11_SAMPLER_DESC samplerDesc;
+	InitSamplerDesc(samplerDesc);
+
+	// サンプラーを作成
+	Direct3D& d3D = Direct3D::GetInstance();
+	if (FAILED(d3D.Device()->CreateSamplerState(&samplerDesc, &pSampler_))) {
+#ifdef _DEBUG
+		MessageBox(NULL, "サンプラーの作成に失敗しました", "エラー", MB_OK);
+#endif // _DEBUG
+		return false;
+	}
+	return true;
+}
+
+bool Texture::CreateSRV(ScratchImage& _scImage, TexMetadata& _metaData)
+{
+	Direct3D& d3D = Direct3D::GetInstance();
+	if (FAILED(CreateShaderResourceView(d3D.Device(), _scImage.GetImages(),_scImage.GetImageCount(), _metaData, &pSRV_))) {
+#ifdef _DEBUG
+		MessageBox(NULL, "シェーダーリソースビューの作成に失敗しました", "エラー", MB_OK);
+#endif // _DEBUG
+		return false;
+	}
 	return true;
 }
