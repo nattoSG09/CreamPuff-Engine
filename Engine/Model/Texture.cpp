@@ -3,7 +3,7 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 #include <unordered_set>
-#include "Engine/Direct3D.h"
+#include "../Direct3D.h"
 
 namespace {
 	std::wstring StringToWString(const string& utf8Str) {

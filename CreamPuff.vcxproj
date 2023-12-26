@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AssimpLoader.h" />
+    <ClInclude Include="Engine\Model\AssimpLoader.h" />
     <ClInclude Include="Engine\Components\Component.h" />
     <ClInclude Include="Engine\Direct3D.h" />
     <ClInclude Include="Engine\Application.h" />
@@ -157,12 +157,12 @@
     <ClInclude Include="Engine\Windows\WindowManager.h" />
     <ClInclude Include="Engine\Global.h" />
     <ClInclude Include="Engine\Components\Transform.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="Structs.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Engine\Model\Model.h" />
+    <ClInclude Include="Engine\Model\Structs.h" />
+    <ClInclude Include="Engine\Model\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssimpLoader.cpp" />
+    <ClCompile Include="Engine\Model\AssimpLoader.cpp" />
     <ClCompile Include="Engine\Components\Component.cpp" />
     <ClCompile Include="Engine\Direct3D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
@@ -178,8 +178,8 @@
     <ClCompile Include="Engine\Windows\WindowManager.cpp" />
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Components\Transform.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Engine\Model\Model.cpp" />
+    <ClCompile Include="Engine\Model\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">

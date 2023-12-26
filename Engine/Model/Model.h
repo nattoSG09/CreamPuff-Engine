@@ -1,7 +1,7 @@
 #pragma once
-#include "Engine/Direct3D.h"
+#include "../Direct3D.h"
 #include "Structs.h"
-#include "Engine/Components/Transform.h"
+#include "../Components/Transform.h"
 
 #include <string>
 using std::string;

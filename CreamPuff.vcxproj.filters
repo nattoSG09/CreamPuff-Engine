@@ -52,16 +52,16 @@
     <ClInclude Include="Engine\Components\Transform.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
+    <ClInclude Include="Engine\Model\Model.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Structs.h">
+    <ClInclude Include="Engine\Model\Structs.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="AssimpLoader.h">
+    <ClInclude Include="Engine\Model\AssimpLoader.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Engine\Model\Texture.h">
       <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
@@ -111,13 +111,13 @@
     <ClCompile Include="Engine\Components\Transform.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
+    <ClCompile Include="Engine\Model\Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="AssimpLoader.cpp">
+    <ClCompile Include="Engine\Model\AssimpLoader.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="Engine\Model\Texture.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
