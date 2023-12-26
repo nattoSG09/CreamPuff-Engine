@@ -10,9 +10,9 @@ using namespace DirectX;
 class Texture
 {
 private:
-	string filePath_;
 	ID3D11SamplerState* pSampler_;
 	ID3D11ShaderResourceView* pSRV_;
+	string filePath_;
 public:
 	Texture();
 	~Texture();
