@@ -1,8 +1,7 @@
 #pragma once
 #include "../Components/Transform.h"
-#include <windef.h>
-
-class Texture;
+#include "../Direct3D.h"
+#include "Texture.h"
 #include <string>
 using std::string;
 

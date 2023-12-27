@@ -1,7 +1,5 @@
 #include "Sprite.h"
-#include "../Direct3D.h"
-#include <vector>
-#include "Texture.h"
+
 using std::vector;
 
 Sprite::Sprite()
