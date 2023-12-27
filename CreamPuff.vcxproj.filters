@@ -53,16 +53,16 @@
       <Filter>Engine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\Model.h">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\Structs.h">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\AssimpLoader.h">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model\Texture.h">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,13 +112,13 @@
       <Filter>Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Model\Model.cpp">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Model\AssimpLoader.cpp">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Model\Texture.cpp">
-      <Filter>Model</Filter>
+      <Filter>Engine\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{40bf80ef-a6b4-4f36-9da1-1043a26bf575}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Model">
+    <Filter Include="Engine\Model">
       <UniqueIdentifier>{fdd127be-f9d2-400c-8226-069e1abb6e4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
