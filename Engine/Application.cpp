@@ -71,10 +71,14 @@ void Application::LoadModels()
 
 void Application::LoadingDisplay()
 {
+    // ‰æ‘œ‚Ì‰Šú‰»
+
     while (g_ModelLoaded)
     {
         // ‰æ‘œ‚ğ•`‰æ‚·‚éˆ—
     }
+
+    // ‰æ‘œ‚ÌŠJ•ú
 }
 
 void Application::Update()
