@@ -160,7 +160,6 @@
     <ClInclude Include="Engine\Mesh\Model.h" />
     <ClInclude Include="Engine\Mesh\Structs.h" />
     <ClInclude Include="Engine\Mesh\Texture.h" />
-    <ClInclude Include="Engine\Mesh\Sprite.h" />
     <ClInclude Include="Engine\Direct3D\Shaders\Shader.h" />
     <ClInclude Include="Engine\Direct3D\Shaders\Shader3D.h" />
     <ClInclude Include="Engine\Direct3D\Shaders\ShaderDebug.h" />
@@ -184,7 +183,6 @@
     <ClCompile Include="Engine\Components\Transform.cpp" />
     <ClCompile Include="Engine\Mesh\Model.cpp" />
     <ClCompile Include="Engine\Mesh\Texture.cpp" />
-    <ClCompile Include="Engine\Mesh\Sprite.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\Shader.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\Shader3D.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\ShaderDebug.cpp" />
