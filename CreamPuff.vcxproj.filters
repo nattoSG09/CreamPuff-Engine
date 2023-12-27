@@ -64,6 +64,9 @@
     <ClInclude Include="Engine\Mesh\Texture.h">
       <Filter>Engine\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Mesh\Sprite.h">
+      <Filter>Engine\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -118,6 +121,9 @@
       <Filter>Engine\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\Texture.cpp">
+      <Filter>Engine\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\Sprite.cpp">
       <Filter>Engine\Mesh</Filter>
     </ClCompile>
   </ItemGroup>

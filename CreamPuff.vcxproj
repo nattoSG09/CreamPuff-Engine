@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -160,6 +160,7 @@
     <ClInclude Include="Engine\Mesh\Model.h" />
     <ClInclude Include="Engine\Mesh\Structs.h" />
     <ClInclude Include="Engine\Mesh\Texture.h" />
+    <ClInclude Include="Engine\Mesh\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Mesh\AssimpLoader.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="Engine\Components\Transform.cpp" />
     <ClCompile Include="Engine\Mesh\Model.cpp" />
     <ClCompile Include="Engine\Mesh\Texture.cpp" />
+    <ClCompile Include="Engine\Mesh\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">

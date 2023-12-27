@@ -38,7 +38,7 @@ void Model::Draw(Transform _transform)
         XMMATRIX view = XMMatrixLookAtLH(position, target, XMVectorSet(0, 1, 0, 0)); // メッシュごとのビュー行列
         XMMATRIX proj = XMMatrixPerspectiveFovLH(XM_PIDIV4, 1280.0f / 720.0f, 0.1f, 1000.0f); // メッシュごとの射影行列
 
-        CONSTANT_BUFFER cb = {};
+        Constant_Buffer cb = {};
         cb.matWVP = XMMatrixTranspose(_transform.WoaldMatrix() * view * proj);
         cb.matNormal = XMMatrixTranspose(_transform.NormalMatrix());
         cb.diffuseColor = meshes_[i].material.diffuse;
@@ -141,7 +141,7 @@ bool Model::InitConstantBuffer()
     // コンスタントバッファの作成
     ID3D11Buffer* meshConstantBuffer;
     D3D11_BUFFER_DESC cb = {};
-    cb.ByteWidth = sizeof(CONSTANT_BUFFER);
+    cb.ByteWidth = sizeof(Constant_Buffer);
     cb.Usage = D3D11_USAGE_DYNAMIC;
     cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;

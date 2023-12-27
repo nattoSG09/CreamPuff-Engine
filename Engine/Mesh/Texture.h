@@ -16,6 +16,7 @@ private:
 	ID3D11SamplerState* pSampler_;///< サンプラーステート
 	ID3D11ShaderResourceView* pSRV_;///< シェーダーリソースビュー
 	string filePath_;///< ファイルのパス
+	XMFLOAT2 size_;	///< ファイルのサイズ
 public:
 	/// <summary>
 	/// コンストラクタ
@@ -45,12 +46,20 @@ public:
 	/// </summary>
 	/// <returns>シェーダーリソースビュー</returns>
 	ID3D11ShaderResourceView* GetSRV() { return pSRV_; }
+
+	XMFLOAT2 GetSize() const { return size_; }
 private:
 	/// <summary>
 	/// ファイルパスを設定します。
 	/// </summary>
 	/// <param name="_filePath">ファイルのパス</param>
 	void SetFilePath(string _filePath) { filePath_ = _filePath; }
+
+	/// <summary>
+	/// テクスチャのメタデータから画像サイズを取得する
+	/// </summary>
+	/// <param name="_metaData">テクスチャのメタデータ</param>
+	void SetImageSize(TexMetadata& _metaData);
 
 	/// <summary>
 	/// 画像ファイルをロードします。

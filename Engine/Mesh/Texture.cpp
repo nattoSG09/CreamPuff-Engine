@@ -76,6 +76,7 @@ bool Texture::Load(string _filePath)
 
 	//画像ファイルを読み込む
 	if (LoadImageFile(_filePath, metaData, scImage) == false)return false;
+	SetImageSize(metaData);
 
 	// サンプラーを作成
 	if (CreateSampler() == false)return false;
@@ -84,6 +85,11 @@ bool Texture::Load(string _filePath)
 	if (CreateSRV(scImage, metaData) == false) return false;
 
 	return true;
+}
+
+void Texture::SetImageSize(TexMetadata& _metaData)
+{
+	size_ = XMFLOAT2(_metaData.width, _metaData.height);
 }
 
 bool Texture::LoadImageFile(string _filePath, TexMetadata& _metaData, ScratchImage& _scImage)

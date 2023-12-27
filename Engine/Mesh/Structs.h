@@ -37,7 +37,7 @@ struct Mesh {
 /// <summary>
 /// コンスタントバッファ-構造体
 /// </summary>
-struct CONSTANT_BUFFER {
+struct Constant_Buffer {
 	XMMATRIX	matWVP;			//ワールド・ビュー・プロジェクション行列
 	XMMATRIX	matNormal;		//法線行列
 	XMFLOAT4	diffuseColor;	//ディヒューズカラー
