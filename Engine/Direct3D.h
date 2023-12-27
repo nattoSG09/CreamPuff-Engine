@@ -1,13 +1,17 @@
 #pragma once
 #include <d3d11.h>
 #include <DirectXMath.h>
+#include <map>
 
 //リンカ
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+using std::map;
+
 //前方宣言
 class Window;
+class Shader;
 
 /// <summary>
 /// Direct3Dを管理するクラス
@@ -21,11 +25,12 @@ private:
 	ID3D11RenderTargetView* pRenderTargetView_;	/*レンダーターゲットビュー*/
 	ID3D11Texture2D* pDepthStencil_;			/*デプスステンシル*/
 	ID3D11DepthStencilView* pDepthStencilView_;	/*デプスステンシルビュー*/
-
-	ID3D11VertexShader* pVertexShader_;			/*頂点シェーダー*/
-	ID3D11PixelShader* pPixelShader_;			/*ピクセルシェーダー*/
-	ID3D11InputLayout* pVertexLayout_;			/*頂点入力レイアウト*/
-	ID3D11RasterizerState* pRasterizerState_;	/*ラスタライザ状態*/
+	
+	//test
+	enum SHADER_HANDLE {
+		SIMPLE_3D,
+	};
+	map<SHADER_HANDLE, Shader*> shaders_;
 
 public:
 	/// <summary>
@@ -64,10 +69,6 @@ public:
 	ID3D11Texture2D* DepthStencil() { return pDepthStencil_; }
 	ID3D11DepthStencilView* DepthStencilView() { return pDepthStencilView_; }
 
-	ID3D11VertexShader* VertexShader() { return pVertexShader_; }
-	ID3D11PixelShader* PixelShader() { return pPixelShader_; }
-	ID3D11InputLayout* VertexLayout() { return pVertexLayout_; }
-	ID3D11RasterizerState* RasterizerState() { return pRasterizerState_; }	
 private:
 	/// <summary>
 	/// コンストラクタ
@@ -128,25 +129,7 @@ private:
 	bool InitShader();
 
 	/// <summary>
-	/// 頂点シェーダーのコンパイルを行う
-	/// </summary>
-	/// <returns>コンパイルに成功したら true を返す</returns>
-	bool CompileVertexShader();
-
-	/// <summary>
-	/// ピクセルシェーダーのコンパイルを行う
-	/// </summary>
-	/// <returns>コンパイルに成功したら true を返す</returns>
-	bool CompilePixelShader();
-
-	/// <summary>
-	/// ラスタライザを作成する
-	/// </summary>
-	/// <returns>作成に成功したら true を返す</returns>
-	bool CreateRasterizer();
-
-	/// <summary>
 	/// シェーダーを設定する
 	/// </summary>
-	void SetShader();
+	void SetShader(SHADER_HANDLE _handle);
 };

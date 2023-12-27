@@ -67,6 +67,8 @@
     <ClInclude Include="Engine\Mesh\Sprite.h">
       <Filter>Engine\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shader3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -126,6 +128,8 @@
     <ClCompile Include="Engine\Mesh\Sprite.cpp">
       <Filter>Engine\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Shader3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

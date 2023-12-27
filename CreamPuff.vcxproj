@@ -162,6 +162,7 @@
     <ClInclude Include="Engine\Mesh\Texture.h" />
     <ClInclude Include="Engine\Mesh\Sprite.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shader3D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Mesh\AssimpLoader.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Engine\Mesh\Texture.cpp" />
     <ClCompile Include="Engine\Mesh\Sprite.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Shader3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">

@@ -3,9 +3,12 @@
 #include "Global.h"
 #include "GUI/ImGuiManager.h"
 #include "Windows/Window.h"
+#include "../Shader3D.h"
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include <vector>
+
+
 
 using std::vector;
 using DirectX::XMVECTOR;
@@ -74,11 +77,7 @@ void Direct3D::EndDraw()
 
 void Direct3D::Release()
 {
-	SAFE_RELEASE(pRasterizerState_);
-	SAFE_RELEASE(pVertexLayout_);
-	SAFE_RELEASE(pPixelShader_);
-	SAFE_RELEASE(pVertexShader_);
-
+	
 	SAFE_RELEASE(pRenderTargetView_);
 	SAFE_RELEASE(pSwapChain_);
 	SAFE_RELEASE(pContext_);
@@ -89,8 +88,7 @@ void Direct3D::Release()
 
 Direct3D::Direct3D()
 	:pDevice_(nullptr), pContext_(nullptr), pSwapChain_(nullptr), pRenderTargetView_(nullptr)
-	, pDepthStencil_(nullptr), pDepthStencilView_(nullptr), pVertexShader_(nullptr), pPixelShader_(nullptr)
-	, pVertexLayout_(nullptr), pRasterizerState_(nullptr)
+	, pDepthStencil_(nullptr), pDepthStencilView_(nullptr)
 {
 }
 
@@ -211,89 +209,22 @@ bool Direct3D::InitGraphics(D3D11_VIEWPORT& _vp)
 
 bool Direct3D::InitShader()
 {
-	// 頂点シェーダーをコンパイルする
-	if (CompileVertexShader() == false)return false;
-
-	// ピクセルシェーダーをコンパイルする
-	if (CompilePixelShader() == false)return false;
-
-	// ラスタライザを作成する
-	if (CreateRasterizer() == false)return false;
+	shaders_[SIMPLE_3D] = new Shader3D;
+	for (auto it = shaders_.begin(); it != shaders_.end(); ++it) {
+		if ((*it).second->Initialize() == false)return false;
+	}
 
 	//シェーダーをセット
-	SetShader();
+	SetShader(SIMPLE_3D);
 
 	return true;
 }
 
-bool Direct3D::CompileVertexShader()
-{
-	ID3DBlob* pCompileVS = nullptr;
-	D3DCompileFromFile(L"Assets/Shader/Simple3D.hlsl", nullptr, nullptr, "VS", "vs_5_0", NULL, 0, &pCompileVS, NULL);
-	if (FAILED(pDevice_->CreateVertexShader(pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), NULL, &pVertexShader_))) {
-#ifdef _DEBUG
-		MessageBox(NULL, "頂点シェーダーの作成に失敗しました", "エラー", MB_OK);
-#endif 
-		SAFE_RELEASE(pCompileVS);
-		return false;
-	}
-
-	//頂点インプットレイアウト
-	std::vector<D3D11_INPUT_ELEMENT_DESC> layout = {
-		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	};
-
-	if (FAILED(pDevice_->CreateInputLayout(layout.data(), layout.size(), pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), &pVertexLayout_))) {
-#ifdef _DEBUG
-		MessageBox(NULL, "頂点インプットレイアウトの作成に失敗しました", "エラー", MB_OK);
-#endif 
-		SAFE_RELEASE(pCompileVS);
-		return false;
-	}
-
-	SAFE_RELEASE(pCompileVS);
-	return true;
-}
-
-bool Direct3D::CompilePixelShader()
-{
-	ID3DBlob* pCompilePS = nullptr;
-	D3DCompileFromFile(L"Assets/Shader/Simple3D.hlsl", nullptr, nullptr, "PS", "ps_5_0", NULL, 0, &pCompilePS, NULL);
-	if (FAILED(pDevice_->CreatePixelShader(pCompilePS->GetBufferPointer(), pCompilePS->GetBufferSize(), NULL, &pPixelShader_))) {
-		SAFE_RELEASE(pCompilePS);
-#ifdef _DEBUG
-		MessageBox(NULL, "ピクセルシェーダの作成に失敗しました", "エラー", MB_OK);
-#endif 
-		return false;
-	}
-	SAFE_RELEASE(pCompilePS);
-	return true;
-}
-
-bool Direct3D::CreateRasterizer()
-{
-	D3D11_RASTERIZER_DESC rdc = {};
-	rdc.CullMode = D3D11_CULL_NONE;
-	rdc.FillMode = D3D11_FILL_SOLID;
-	rdc.FrontCounterClockwise = FALSE;
-	if (FAILED(pDevice_->CreateRasterizerState(&rdc, &pRasterizerState_))) {
-#ifdef _DEBUG
-		MessageBox(NULL, "ラスタライザの作成に失敗しました", "エラー", MB_OK);
-#endif 
-		return false;
-	}
-	return true;
-}
-
-void Direct3D::SetShader()
+void Direct3D::SetShader(SHADER_HANDLE _handle)
 {
 	//それぞれをデバイスコンテキストにセット
-	pContext_->VSSetShader(pVertexShader_, NULL, 0);	//頂点シェーダー
-	pContext_->PSSetShader(pPixelShader_, NULL, 0);	//ピクセルシェーダー
-	pContext_->IASetInputLayout(pVertexLayout_);	//頂点インプットレイアウト
-	pContext_->RSSetState(pRasterizerState_);		//ラスタライザー
+	pContext_->VSSetShader(shaders_[_handle]->VertexShader(), NULL, 0);	//頂点シェーダー
+	pContext_->PSSetShader(shaders_[_handle]->PixelShader(), NULL, 0);	//ピクセルシェーダー
+	pContext_->IASetInputLayout(shaders_[_handle]->InputLayout());	//頂点インプットレイアウト
+	pContext_->RSSetState(shaders_[_handle]->RasterizerState());		//ラスタライザー
 }
