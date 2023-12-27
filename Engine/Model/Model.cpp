@@ -15,7 +15,6 @@ bool Model::Load(string _filePath, bool _inverseU, bool _inverseV)
 
         // コンスタントバッファを生成
         if (InitConstantBuffer() == false)return false;
-
 	}
 	return true;
 }

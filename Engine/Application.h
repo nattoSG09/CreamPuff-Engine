@@ -10,7 +10,7 @@ class Model;
 class Application
 {
 	Model* pModel_;
-
+	
 public:
 	/// <summary>
 	/// コンストラクタ
@@ -30,6 +30,17 @@ public:
 	/// <returns>正常に初期化が完了したら true を返す</returns>
 	bool Initialize(HINSTANCE _hInstance, int _nCmdShow);
 
+	/// <summary>
+	/// モデルのロード処理を行う
+	/// </summary>
+	/// <param name="_hInstance"></param>
+	/// <param name="_nCmdShow"></param>
+	void LoadModels();
+
+	/// <summary>
+	/// ロード中にロード画面の表示を行う
+	/// </summary>
+	void LoadingDisplay();
 	/// <summary>
 	/// アプリケーションの更新処理を行う
 	/// </summary>

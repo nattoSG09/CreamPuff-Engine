@@ -3,6 +3,11 @@
 #include "GUI/ImGuiManager.h"
 #include "Model/Model.h"
 #include "Windows/EditorWindow.h"
+#include <thread>
+
+namespace {
+    bool g_ModelLoaded = false;
+}
 
 Application::Application()
 {
@@ -15,7 +20,7 @@ Application::~Application()
 bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 {
     // Windowの初期化
-    WindowManager& wm = WindowManager::GetInstance();{
+    WindowManager& wm = WindowManager::GetInstance(); {
 
         // 使用するウィンドウを追加
         wm.AddWindow("Editor", new EditorWindow("CreamPuff", 80 * 9, 80 * 16));
@@ -24,26 +29,52 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
         if (wm.GetWindows().empty())return false;
 
         // ウィンドウを初期化
-        if (wm.InitWindows(_hInstance, _nCmdShow,WndProc) == false)return false;
+        if (wm.InitWindows(_hInstance, _nCmdShow, WndProc) == false)return false;
     }
-    
+
     // Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
 
 #ifdef _DEBUG
-     // ImGuiの初期化    
+    // ImGuiの初期化    
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
 
     // ウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
+
+    // モデルの初期化
+    std::thread loadModelsThread(std::bind(&Application::LoadModels, this));
+    
+    // ローディング画面を表示
+    std::thread loadingDisplayThread(std::bind(&Application::LoadingDisplay,this));
+    
+    loadModelsThread.join();
+    loadingDisplayThread.join();
+
+    return true;
+}
+
+void Application::LoadModels()
+{
+    g_ModelLoaded = true;
+
     // 3Dモデルを初期化しロード
     pModel_ = new Model;
-    pModel_->Load("Assets/blueBox.fbx");
-    
-    return true;
+    pModel_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX",false,true);
+
+    g_ModelLoaded = false;
+    return;
+}
+
+void Application::LoadingDisplay()
+{
+    while (g_ModelLoaded)
+    {
+        // 画像を描画する処理
+    }
 }
 
 void Application::Update()
