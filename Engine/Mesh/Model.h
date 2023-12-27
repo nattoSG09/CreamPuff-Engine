@@ -1,6 +1,6 @@
 #pragma once
 #include "../Components/Transform.h"
-#include "../Direct3D.h"
+#include "../Direct3D/Direct3D.h"
 #include "Structs.h"
 
 #include <string>

@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-#include "../Direct3D.h"
+#include "../Direct3D/Direct3D.h"
 #include <filesystem>
 #include <unordered_set>
 namespace fs = std::filesystem;

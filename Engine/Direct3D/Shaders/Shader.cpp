@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include <Windows.h>
 #include <d3dcompiler.h>
-#include "Engine/Global.h"
+#include "../../Global.h"
 
 namespace {
 	std::wstring StringToWString(const string& utf8Str) {

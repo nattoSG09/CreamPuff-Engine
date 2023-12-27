@@ -13,9 +13,6 @@
     <ClInclude Include="Engine\Application.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Direct3D.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Global.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -67,9 +64,18 @@
     <ClInclude Include="Engine\Mesh\Sprite.h">
       <Filter>Engine\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Shader3D.h" />
-    <ClInclude Include="ShaderDebug.h" />
+    <ClInclude Include="Engine\Direct3D\Direct3D.h">
+      <Filter>Engine\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D\Shaders\Shader.h">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D\Shaders\Shader3D.h">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D\Shaders\ShaderDebug.h">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -82,9 +88,6 @@
       <Filter>Engine\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Application.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Direct3D.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Main.cpp">
@@ -129,9 +132,18 @@
     <ClCompile Include="Engine\Mesh\Sprite.cpp">
       <Filter>Engine\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Shader3D.cpp" />
-    <ClCompile Include="ShaderDebug.cpp" />
+    <ClCompile Include="Engine\Direct3D\Direct3D.cpp">
+      <Filter>Engine\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D\Shaders\Shader.cpp">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D\Shaders\Shader3D.cpp">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D\Shaders\ShaderDebug.cpp">
+      <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -154,6 +166,12 @@
     </Filter>
     <Filter Include="Engine\Mesh">
       <UniqueIdentifier>{fdd127be-f9d2-400c-8226-069e1abb6e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Direct3D">
+      <UniqueIdentifier>{a54c339a-4172-406c-9429-5a09eca13362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Direct3D\Shaders">
+      <UniqueIdentifier>{a0872bc4-d4e4-41a2-9ee9-8481f442dc94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

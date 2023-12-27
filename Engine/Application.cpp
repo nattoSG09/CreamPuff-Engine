@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Direct3D.h"
+#include "Direct3D/Direct3D.h"
 #include "GUI/ImGuiManager.h"
 #include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
@@ -66,7 +66,6 @@ void Application::LoadModels()
     pModel_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX",false,true);
 
     g_ModelLoaded = false;
-    return;
 }
 
 void Application::LoadingDisplay()

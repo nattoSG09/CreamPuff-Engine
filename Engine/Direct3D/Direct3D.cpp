@@ -1,11 +1,11 @@
 #include "Direct3D.h"
 
-#include "Global.h"
-#include "GUI/ImGuiManager.h"
-#include "Windows/Window.h"
+#include "../Global.h"
+#include "../GUI/ImGuiManager.h"
+#include "../Windows/Window.h"
 
-#include "../Shader3D.h"
-#include "../ShaderDebug.h"
+#include "Shaders/Shader3D.h"
+#include "Shaders/ShaderDebug.h"
 
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
