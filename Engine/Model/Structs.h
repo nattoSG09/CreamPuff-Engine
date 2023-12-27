@@ -1,7 +1,7 @@
 #pragma once
+#include "Texture.h"
 #include <DirectXMath.h>
 #include <vector>
-#include "Texture.h"
 using namespace DirectX;
 using std::vector;
 
@@ -34,6 +34,9 @@ struct Mesh {
 	Material material;
 };
 
+/// <summary>
+/// コンスタントバッファ-構造体
+/// </summary>
 struct CONSTANT_BUFFER {
 	XMMATRIX	matWVP;			//ワールド・ビュー・プロジェクション行列
 	XMMATRIX	matNormal;		//法線行列

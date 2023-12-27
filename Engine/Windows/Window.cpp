@@ -1,5 +1,8 @@
 #include "Window.h"
 
+/// <summary>
+/// デフォルト情報
+/// </summary>
 namespace DEFAULT{
 	const string WIN_NAME = "window";
 	const int WIN_HEIGHT = 600;

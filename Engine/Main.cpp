@@ -1,14 +1,16 @@
 #include "Application.h"
+#include "Global.h"
 
+// エントリーポイント
 int APIENTRY WinMain(HINSTANCE _hInstance,HINSTANCE _hPrevInst,LPSTR _lpCmdLine,int _nCmdShow)
 {
 	Application* application = new Application;
 	if (application->Initialize(_hInstance, _nCmdShow))
 	{
-		application->Excute();
+		application->Update();
 	}
 	application->Release();
+	SAFE_DELETE(application);
 
-	delete application;
 	return 0;
 }

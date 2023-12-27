@@ -1,8 +1,8 @@
 #include "Application.h"
-#include "Windows/EditorWindow.h"
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
-#include "../Model.h"
+#include "Model/Model.h"
+#include "Windows/EditorWindow.h"
 
 Application::Application()
 {
@@ -17,55 +17,51 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // Windowの初期化
     WindowManager& wm = WindowManager::GetInstance();{
 
-        //使用するウィンドウを追加
+        // 使用するウィンドウを追加
         wm.AddWindow("Editor", new EditorWindow("CreamPuff", 80 * 9, 80 * 16));
 
-        //用意したはずのウィンドウが空だったら false を返す
+        // 用意したはずのウィンドウが空だったら false を返す
         if (wm.GetWindows().empty())return false;
 
-        //ウィンドウを初期化
+        // ウィンドウを初期化
         if (wm.InitWindows(_hInstance, _nCmdShow,WndProc) == false)return false;
     }
-
     
-    //Direct3Dを初期化
+    // Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
 
 #ifdef _DEBUG
-     //ImGuiの初期化    
+     // ImGuiの初期化    
     ImGuiManager::Initialize(wm.GetWindow("Editor")->WindowHandle(), d3D.Device(), d3D.Context());
 #endif // DEBUG
 
-
-    //ウィンドウを可視化
+    // ウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
+    // 3Dモデルを初期化しロード
     pModel_ = new Model;
     pModel_->Load("Assets/blueBox.fbx");
-    /*pModel2_ = new Model;
-    pModel2_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX", false, true);*/
-
     
     return true;
 }
 
-void Application::Excute()
+void Application::Update()
 {
-    //メッセージループ（何か起きるのを待つ）
+    // メッセージループ（何か起きるのを待つ）
     MSG msg;
     ZeroMemory(&msg, sizeof(msg));
 
     while (msg.message != WM_QUIT)
     {
-        //メッセージあり
+        // メッセージあり
         if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
 
-        //メッセージなし
+        // メッセージなし
         else
         {
 #ifdef _DEBUG
@@ -81,6 +77,7 @@ void Application::Excute()
 
             static Transform transform;
             transform.SetRotateAxis(XMVectorSet(1, 1, 0, 0));
+
 #ifdef _DEBUG
             ImGui::Begin("transform"); {
                 if (ImGui::CollapsingHeader("position_")) {
@@ -105,15 +102,16 @@ void Application::Excute()
             ImGui::End();
 #endif //_DEBUG
 
+            // モデルの描画
             pModel_->Draw(transform);
-            //Transform t;
-            //pModel2_->Draw(t);
+            
 #ifdef _DEBUG
             // ImGuiの終了
             ImGuiManager::EndFlame();
 
 #endif //DEBUG
 
+            // Direct3Dの描画をリセットする処理
             d3D.EndDraw();
         }
     }
@@ -130,10 +128,11 @@ void Application::Release()
     // Direct3Dの解放
     Direct3D::GetInstance().Release();
 
-    //Windowの解放
+    // Windowの解放
     WindowManager::GetInstance().ReleaseWindows();
 }
 
+// ImGuiライブラリにおけるWindowsプラットフォーム向けのウィンドウプロシージャ―
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
 
 LRESULT Application::WndProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)

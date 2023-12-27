@@ -6,7 +6,14 @@
 class Component
 {
 protected:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
 	Component();
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	virtual ~Component();
 };
 

@@ -29,14 +29,18 @@ AssimpLoader::~AssimpLoader()
 
 bool AssimpLoader::Load(string _filePath, vector<Mesh>& _meshes)
 {
+    // ここで出来れば、UVの反転の可否を求めたい...
+
     return Load(_filePath, _meshes,false,false);
 }
 
 bool AssimpLoader::Load(string _filePath, vector<Mesh>& _meshes, bool _inverseU, bool _inverseV)
 {
+    // フラグを初期化
     int flags = 0;
     InitFlags(flags);
 
+    // ファイルをロード
     Assimp::Importer importer{};
     const aiScene* scene = importer.ReadFile(_filePath, flags);
 
@@ -51,11 +55,14 @@ bool AssimpLoader::Load(string _filePath, vector<Mesh>& _meshes, bool _inverseU,
     _meshes.resize(scene->mNumMeshes);
 
     for (int i = 0; i < scene->mNumMeshes; ++i) {
+        // メッシュがあれば...
         if (scene->HasMeshes()) {
+            // メッシュをロードする
             if (LoadMesh(_meshes[i], scene->mMeshes[i], _inverseU, _inverseV) == false)return false;
         }
-
+        // マテリアルがあれば...
         if (scene->HasMaterials()) {
+            // マテリアルをロードする
             if (LoadMaterial(_filePath, _meshes[i].material, scene->mMaterials[i]) == false)return false;
         }
     }
@@ -105,6 +112,7 @@ bool AssimpLoader::LoadMesh(Mesh& _dst, const aiMesh* _src, bool _inverseU, bool
         vertex.color = DirectX::XMFLOAT4(col->r, col->g, col->b, col->a);
         _dst.vertices[i] = vertex;
 
+        // インデックス情報を取得
         _dst.indices.resize(_src->mNumFaces * 3);
         for (auto i = 0u; i < _src->mNumFaces; ++i) {
             const auto& face = _src->mFaces[i];
@@ -140,7 +148,7 @@ bool AssimpLoader::LoadTexture(string _filePath,Material& _dst, const aiMaterial
 {
     bool ret = false;
 
-    // 拡散反射テクスチャを取得しロード
+    // ディヒューズテクスチャを取得しロード
     _dst.diffuseTextures.resize(_src->GetTextureCount(aiTextureType_DIFFUSE));
     for (int i = 0; i < _src->GetTextureCount(aiTextureType_DIFFUSE); ++i) {
         aiString path;

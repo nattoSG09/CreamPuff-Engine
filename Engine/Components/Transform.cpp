@@ -1,6 +1,7 @@
 #include "Transform.h"
 
 Transform::Transform()
+	:pParent_(nullptr)
 {
 	//変数の初期化
 	position_ = XMFLOAT3(0, 0, 0);
@@ -42,5 +43,6 @@ XMMATRIX Transform::WoaldMatrix()
 
 XMMATRIX Transform::NormalMatrix()
 {
+	// モデルの拡大縮小行列を考慮した逆行列を計算
 	return matRotate_ * XMMatrixInverse(nullptr, matScale_);
 }

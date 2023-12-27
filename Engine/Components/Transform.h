@@ -4,6 +4,10 @@
 #include <DirectXMath.h>
 using namespace DirectX;
 
+
+/// <summary>
+/// Transform(変換行列)コンポーネント
+/// </summary>
 class Transform : public Component
 {
 public:
@@ -16,11 +20,18 @@ private:
 	XMMATRIX matRotate_;	/*回転行列*/
 	XMMATRIX matScale_;		/*拡大行列*/
 
-	XMVECTOR rotationAxis_;
+	XMVECTOR rotationAxis_;	/*任意の回転に必要な軸*/
 
 	Transform* pParent_;	/*親オブジェクトの変換行列*/
 public:
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
 	Transform();
+
+	/// <summary>
+	/// 生成した変換行列を計算
+	/// </summary>
 	void Calclation();
 
 // アクセス関数 //
@@ -38,7 +49,16 @@ public:
 	void SetScale(const XMFLOAT3 _scale) { scale_ = _scale; }
 	void SetScale(float _x, float _y, float _z) { SetScale(XMFLOAT3(_x, _y, _z)); }
 
+	/// <summary>
+	/// ワールド行列を生成・取得を行う
+	/// </summary>
+	/// <returns>ワールド行列</returns>
 	XMMATRIX WoaldMatrix();
+
+	/// <summary>
+	/// 法線行列を生成・取得を行う
+	/// </summary>
+	/// <returns>法線行列</returns>
 	XMMATRIX NormalMatrix();
 };
 

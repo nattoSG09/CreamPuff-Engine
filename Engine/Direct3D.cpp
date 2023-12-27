@@ -1,11 +1,11 @@
 #include "Direct3D.h"
 
-#include <vector>
-#include <d3dcompiler.h>
-#include <DirectXMath.h>
-#include "Windows/Window.h"
 #include "Global.h"
 #include "GUI/ImGuiManager.h"
+#include "Windows/Window.h"
+#include <d3dcompiler.h>
+#include <DirectXMath.h>
+#include <vector>
 
 using std::vector;
 using DirectX::XMVECTOR;
@@ -13,23 +13,36 @@ using DirectX::XMVECTOR;
 #pragma warning(disable: 6387)
 #pragma warning(disable: 4267)
 
+Direct3D& Direct3D::GetInstance()
+{
+	static Direct3D instance;
+	return instance;
+}
+
 bool Direct3D::Initialize(Window* _window)
 {
+	// スワップチェーンの設定を行う
 	DXGI_SWAP_CHAIN_DESC scDesc;
 	InitScDesc(scDesc, _window);
 
+	// デバイス＆スワップチェーンを作成する
 	if (CreateDeviceAndSwapChain(scDesc) == false)return false;
 
+	// レンダーターゲットビューを作成する
 	if (CreateRenderTargetView() == false)return false;
 
+	// ビューポートの設定を行う
 	D3D11_VIEWPORT vp;
 	InitViewPort(vp, _window);
 
+	// デプスステンシルビューを作成する
 	D3D11_TEXTURE2D_DESC descDepth;
 	InitDepthStencilView(descDepth, _window);
 
+	// グラフィックスの初期化を行う
 	if (InitGraphics(vp) == false)return false;
 
+	// シェーダーの初期化を行う
 	if (InitShader() == false)return false;
 
 	return true;
@@ -107,6 +120,7 @@ void Direct3D::InitScDesc(DXGI_SWAP_CHAIN_DESC& _scDesc, Window* _window)
 bool Direct3D::CreateDeviceAndSwapChain(DXGI_SWAP_CHAIN_DESC _scDesc)
 {
 	D3D_FEATURE_LEVEL level;
+	// DirectX11デバイスとスワップチェーンを作成する
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(
 		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -155,9 +169,9 @@ bool Direct3D::CreateRenderTargetView()
 
 void Direct3D::InitViewPort(D3D11_VIEWPORT& _vp, Window* _window)
 {
-	float scale = 1.0f;
+	float scale = 1.0f;/*Release時*/
 #ifdef _DEBUG
-	scale = 0.7f;
+	scale = 0.7f;/*Debug時*/
 #endif 
 	_vp.Width = (float)_window->Width() * scale;
 	_vp.Height = (float)_window->Height() * scale;
@@ -197,10 +211,13 @@ bool Direct3D::InitGraphics(D3D11_VIEWPORT& _vp)
 
 bool Direct3D::InitShader()
 {
+	// 頂点シェーダーをコンパイルする
 	if (CompileVertexShader() == false)return false;
 
+	// ピクセルシェーダーをコンパイルする
 	if (CompilePixelShader() == false)return false;
 
+	// ラスタライザを作成する
 	if (CreateRasterizer() == false)return false;
 
 	//シェーダーをセット
