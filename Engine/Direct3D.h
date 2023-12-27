@@ -29,6 +29,7 @@ private:
 	//test
 	enum SHADER_HANDLE {
 		SIMPLE_3D,
+		DEBUG_3D
 	};
 	map<SHADER_HANDLE, Shader*> shaders_;
 

@@ -163,6 +163,7 @@
     <ClInclude Include="Engine\Mesh\Sprite.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shader3D.h" />
+    <ClInclude Include="ShaderDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Mesh\AssimpLoader.cpp" />
@@ -186,8 +187,12 @@
     <ClCompile Include="Engine\Mesh\Sprite.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shader3D.cpp" />
+    <ClCompile Include="ShaderDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Assets\Shader\Debug3D.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+    </FxCompile>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>

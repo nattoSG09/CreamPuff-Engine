@@ -69,6 +69,7 @@
     </ClInclude>
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shader3D.h" />
+    <ClInclude Include="ShaderDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -130,6 +131,7 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shader3D.cpp" />
+    <ClCompile Include="ShaderDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -156,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shader\Debug3D.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
