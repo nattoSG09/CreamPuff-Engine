@@ -13,6 +13,11 @@ using std::map;
 class Window;
 class Shader;
 
+enum SHADER_HANDLE {
+	SIMPLE_3D,
+	DEBUG_3D
+};
+
 /// <summary>
 /// Direct3Dを管理するクラス
 /// </summary>
@@ -27,10 +32,7 @@ private:
 	ID3D11DepthStencilView* pDepthStencilView_;	/*デプスステンシルビュー*/
 	
 	//test
-	enum SHADER_HANDLE {
-		SIMPLE_3D,
-		DEBUG_3D
-	};
+	
 	map<SHADER_HANDLE, Shader*> shaders_;
 
 public:
@@ -62,6 +64,11 @@ public:
 	/// </summary>
 	void Release();
 
+	/// <summary>
+	/// シェーダーを設定する
+	/// </summary>
+	void SetShader(SHADER_HANDLE _handle);
+
 // ゲッター・セッター　//
 	ID3D11Device* Device() { return pDevice_; }									
 	ID3D11DeviceContext* Context() { return pContext_; }
@@ -80,6 +87,7 @@ private:
 	/// デストラクタ
 	/// </summary>
 	~Direct3D();
+
 
 private:
 	/// <summary>
@@ -129,8 +137,4 @@ private:
 	/// <returns>正常に初期化が完了したら true を返す</returns>
 	bool InitShader();
 
-	/// <summary>
-	/// シェーダーを設定する
-	/// </summary>
-	void SetShader(SHADER_HANDLE _handle);
 };

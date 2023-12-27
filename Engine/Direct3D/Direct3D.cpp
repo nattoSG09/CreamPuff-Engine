@@ -222,7 +222,7 @@ bool Direct3D::InitShader()
 	}
 
 	//シェーダーをセット
-	SetShader(DEBUG_3D);
+	SetShader(SIMPLE_3D);
 
 	return true;
 }

@@ -5,6 +5,7 @@
 #include "Windows/EditorWindow.h"
 #include <thread>
 
+
 namespace {
     bool g_ModelLoaded = false;
 }
@@ -60,6 +61,8 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
 void Application::LoadModels()
 {
     g_ModelLoaded = true;
+    Direct3D& d3D = Direct3D::GetInstance();
+    d3D.SetShader(SHADER_HANDLE::DEBUG_3D);
 
     // 3Dƒ‚ƒfƒ‹‚ğ‰Šú‰»‚µƒ[ƒh
     pModel_ = new Model;
