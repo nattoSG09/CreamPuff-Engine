@@ -52,17 +52,17 @@
     <ClInclude Include="Engine\Components\Transform.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model\Model.h">
-      <Filter>Engine\Model</Filter>
+    <ClInclude Include="Engine\Mesh\Model.h">
+      <Filter>Engine\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model\Structs.h">
-      <Filter>Engine\Model</Filter>
+    <ClInclude Include="Engine\Mesh\Structs.h">
+      <Filter>Engine\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model\AssimpLoader.h">
-      <Filter>Engine\Model</Filter>
+    <ClInclude Include="Engine\Mesh\AssimpLoader.h">
+      <Filter>Engine\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Model\Texture.h">
-      <Filter>Engine\Model</Filter>
+    <ClInclude Include="Engine\Mesh\Texture.h">
+      <Filter>Engine\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -111,14 +111,14 @@
     <ClCompile Include="Engine\Components\Transform.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Model\Model.cpp">
-      <Filter>Engine\Model</Filter>
+    <ClCompile Include="Engine\Mesh\Model.cpp">
+      <Filter>Engine\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Model\AssimpLoader.cpp">
-      <Filter>Engine\Model</Filter>
+    <ClCompile Include="Engine\Mesh\AssimpLoader.cpp">
+      <Filter>Engine\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Model\Texture.cpp">
-      <Filter>Engine\Model</Filter>
+    <ClCompile Include="Engine\Mesh\Texture.cpp">
+      <Filter>Engine\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{40bf80ef-a6b4-4f36-9da1-1043a26bf575}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Model">
+    <Filter Include="Engine\Mesh">
       <UniqueIdentifier>{fdd127be-f9d2-400c-8226-069e1abb6e4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "Direct3D.h"
 #include "GUI/ImGuiManager.h"
-#include "Model/Model.h"
+#include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
 #include <thread>
 
