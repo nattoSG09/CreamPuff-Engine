@@ -45,42 +45,11 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // ウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
-
-    // モデルの初期化
-    std::thread loadModelsThread(std::bind(&Application::LoadModels, this));
-    
-    // ローディング画面を表示
-    std::thread loadingDisplayThread(std::bind(&Application::LoadingDisplay,this));
-    
-    loadModelsThread.join();
-    loadingDisplayThread.join();
-
-    return true;
-}
-
-void Application::LoadModels()
-{
-    g_ModelLoaded = true;
-    Direct3D& d3D = Direct3D::GetInstance();
-    d3D.SetShader(SHADER_HANDLE::DEBUG_3D);
-
     // 3Dモデルを初期化しロード
     pModel_ = new Model;
-    pModel_->Load("Assets/Alicia/FBX/Alicia_solid_Unity.FBX",false,true);
+    pModel_->Load("Assets/blueBox.fbx", false, false);
 
-    g_ModelLoaded = false;
-}
-
-void Application::LoadingDisplay()
-{
-    // 画像の初期化
-
-    while (g_ModelLoaded)
-    {
-        // 画像を描画する処理
-    }
-
-    // 画像の開放
+    return true;
 }
 
 void Application::Update()
