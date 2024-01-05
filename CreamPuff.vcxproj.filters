@@ -73,6 +73,9 @@
     <ClInclude Include="Engine\Direct3D\Shaders\ShaderDebug.h">
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\GUI\Input.h">
+      <Filter>Engine\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Direct3D\Shaders\ShaderDebug.cpp">
       <Filter>Engine\Direct3D\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GUI\Input.cpp">
+      <Filter>Engine\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

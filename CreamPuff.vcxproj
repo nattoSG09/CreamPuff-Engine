@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\GUI\Input.h" />
     <ClInclude Include="Engine\Mesh\AssimpLoader.h" />
     <ClInclude Include="Engine\Components\Component.h" />
     <ClInclude Include="Engine\Direct3D\Direct3D.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Engine\Direct3D\Shaders\ShaderDebug.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\GUI\Input.cpp" />
     <ClCompile Include="Engine\Mesh\AssimpLoader.cpp" />
     <ClCompile Include="Engine\Components\Component.cpp" />
     <ClCompile Include="Engine\Direct3D\Direct3D.cpp" />
@@ -190,6 +192,7 @@
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Debug3D.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
     </FxCompile>
     <FxCompile Include="Assets\Shader\Simple3D.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

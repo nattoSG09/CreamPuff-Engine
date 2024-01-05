@@ -3,7 +3,7 @@
 #include "GUI/ImGuiManager.h"
 #include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
-
+#include "GUI/Input.h"
 
 namespace {
     bool g_ModelLoaded = false;
@@ -35,6 +35,9 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
+
+    // 入力デバイスを初期化
+    Input::Initialize(wm.GetWindow("Editor")->WindowHandle());
 
 #ifdef _DEBUG
     // ImGuiの初期化    
@@ -69,6 +72,9 @@ void Application::Update()
         // メッセージなし
         else
         {
+            // 入力デバイスの更新
+            Input::Update();
+
 #ifdef _DEBUG
             // ImGuiの開始 & 描画
             ImGuiManager::BeginFlame();
@@ -80,33 +86,42 @@ void Application::Update()
             Direct3D& d3D = Direct3D::GetInstance();
             d3D.BeginDraw(); 
 
-            static Transform transform;
-            transform.SetRotateAxis(XMVectorSet(1, 1, 0, 0));
+            // transformの移動処理
+            static Transform transform; 
+            {
+                transform.SetRotateAxis(XMVectorSet(1, 1, 0, 0));
+
+                if (Input::IsKey(DIK_W))transform.position_.z -= 0.001f;
+                if (Input::IsKey(DIK_A))transform.position_.x += 0.001f;
+                if (Input::IsKey(DIK_S))transform.position_.z += 0.001f;
+                if (Input::IsKey(DIK_D))transform.position_.x -= 0.001f;
 
 #ifdef _DEBUG
-            ImGui::Begin("transform"); {
-                if (ImGui::CollapsingHeader("position_")) {
-                    ImGui::SliderFloat("position_x", &transform.position_.x, -100.0f, 100.0f);
-                    ImGui::SliderFloat("position_y", &transform.position_.y, -100.0f, 100.0f);
-                    ImGui::SliderFloat("position_z", &transform.position_.z, -100.0f, 100.0f);
-                }
+                ImGui::Begin("transform"); {
+                    if (ImGui::CollapsingHeader("position_")) {
+                        ImGui::SliderFloat("position_x", &transform.position_.x, -100.0f, 100.0f);
+                        ImGui::SliderFloat("position_y", &transform.position_.y, -100.0f, 100.0f);
+                        ImGui::SliderFloat("position_z", &transform.position_.z, -100.0f, 100.0f);
+                    }
 
-                if (ImGui::CollapsingHeader("rotate_")) {
-                    ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
-                    ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
-                    ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
-                    ImGui::SliderFloat("rotate_q", &transform.rotate_.w, -5.0f, 5.0f);
-                }
+                    if (ImGui::CollapsingHeader("rotate_")) {
+                        ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
+                        ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
+                        ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
+                        ImGui::SliderFloat("rotate_q", &transform.rotate_.w, -5.0f, 5.0f);
+    }
 
-                if (ImGui::CollapsingHeader("scale_")) {
-                    ImGui::SliderFloat("scale_x", &transform.scale_.x, -5.0f, 5.0f);
-                    ImGui::SliderFloat("scale_y", &transform.scale_.y, -5.0f, 5.0f);
-                    ImGui::SliderFloat("scale_z", &transform.scale_.z, -5.0f, 5.0f);
-                }
-            }
-            ImGui::End();
+                    if (ImGui::CollapsingHeader("scale_")) {
+                        ImGui::SliderFloat("scale_x", &transform.scale_.x, -5.0f, 5.0f);
+                        ImGui::SliderFloat("scale_y", &transform.scale_.y, -5.0f, 5.0f);
+                        ImGui::SliderFloat("scale_z", &transform.scale_.z, -5.0f, 5.0f);
+                    }
+}
+                ImGui::End();
 #endif //_DEBUG
 
+            }
+           
             // モデルの描画
             pModel_->Draw(transform);
             
@@ -129,6 +144,9 @@ void Application::Release()
     ImGuiManager::ShutDown();
 
 #endif //DEBUG
+
+    // 入力デバイスの開放
+    Input::Release();
 
     // Direct3Dの解放
     Direct3D::GetInstance().Release();
