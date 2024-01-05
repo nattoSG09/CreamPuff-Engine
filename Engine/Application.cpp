@@ -3,7 +3,6 @@
 #include "GUI/ImGuiManager.h"
 #include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
-#include <thread>
 
 
 namespace {
