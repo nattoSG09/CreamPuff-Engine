@@ -40,7 +40,7 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // カメラの初期化
     CameraManager& cm = CameraManager::GetInstance();
     if (cm.HasCamera() == false)cm.AddDefaultCamera();
-    cm.AddCamera(new Camera("camera1", 0, 140, 100, 0, 120, 0));
+    cm.AddCamera(new Camera("camera1", 0, 3, -7, 0, 0, 0));
 
     // 入力デバイスを初期化
     Input::Initialize(wm.GetWindow("Editor")->WindowHandle());
