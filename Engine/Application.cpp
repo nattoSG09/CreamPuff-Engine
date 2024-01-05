@@ -4,6 +4,7 @@
 #include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
 #include "GUI/Input.h"
+#include "Direct3D/CameraManager.h"
 
 namespace {
     bool g_ModelLoaded = false;
@@ -35,6 +36,11 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // Direct3Dを初期化
     Direct3D& d3D = Direct3D::GetInstance();
     if (d3D.Initialize(wm.GetWindow("Editor")) == false)return false;
+
+    // カメラの初期化
+    CameraManager& cm = CameraManager::GetInstance();
+    if (cm.HasCamera() == false)cm.AddDefaultCamera();
+    cm.AddCamera(new Camera("camera1", 0, 140, 100, 0, 120, 0));
 
     // 入力デバイスを初期化
     Input::Initialize(wm.GetWindow("Editor")->WindowHandle());
@@ -72,6 +78,12 @@ void Application::Update()
         // メッセージなし
         else
         {
+            // カメラの更新
+            CameraManager& cm = CameraManager::GetInstance();
+            if (Input::IsKeyDown(DIK_0))cm.SetCurrentCamera("default");
+            if (Input::IsKeyDown(DIK_1))cm.SetCurrentCamera("camera1");
+            cm.UpdateCurrentCamera();
+
             // 入力デバイスの更新
             Input::Update();
 
@@ -85,7 +97,7 @@ void Application::Update()
             // Direct3Dの描画
             Direct3D& d3D = Direct3D::GetInstance();
             d3D.BeginDraw(); 
-
+            
             // transformの移動処理
             static Transform transform; 
             {
@@ -147,6 +159,9 @@ void Application::Release()
 
     // 入力デバイスの開放
     Input::Release();
+
+    // カメラの開放
+    CameraManager::GetInstance().ReleaseCameras();;
 
     // Direct3Dの解放
     Direct3D::GetInstance().Release();

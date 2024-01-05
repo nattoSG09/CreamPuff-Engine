@@ -20,6 +20,7 @@ Shader::Shader(string _filePath)
 
 Shader::~Shader()
 {
+	Release();
 }
 
 bool Shader::Initialize()

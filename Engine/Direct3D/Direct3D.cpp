@@ -80,7 +80,11 @@ void Direct3D::EndDraw()
 
 void Direct3D::Release()
 {
-	
+	for (auto const& pair : shaders_) {
+		delete pair.second;
+	}
+	shaders_.clear();
+
 	SAFE_RELEASE(pRenderTargetView_);
 	SAFE_RELEASE(pSwapChain_);
 	SAFE_RELEASE(pContext_);

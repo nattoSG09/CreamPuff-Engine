@@ -76,6 +76,12 @@
     <ClInclude Include="Engine\GUI\Input.h">
       <Filter>Engine\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Direct3D\Camera.h">
+      <Filter>Engine\Direct3D\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D\CameraManager.h">
+      <Filter>Engine\Direct3D\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -144,6 +150,12 @@
     <ClCompile Include="Engine\GUI\Input.cpp">
       <Filter>Engine\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Direct3D\Camera.cpp">
+      <Filter>Engine\Direct3D\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D\CameraManager.cpp">
+      <Filter>Engine\Direct3D\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -172,6 +184,9 @@
     </Filter>
     <Filter Include="Engine\Direct3D\Shaders">
       <UniqueIdentifier>{a0872bc4-d4e4-41a2-9ee9-8481f442dc94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Direct3D\Camera">
+      <UniqueIdentifier>{7c85f027-19ff-4256-a18a-37a78125b703}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
