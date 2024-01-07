@@ -1,10 +1,11 @@
 #include "Application.h"
 #include "Direct3D/Direct3D.h"
 #include "GUI/ImGuiManager.h"
-#include "Mesh/Model.h"
 #include "Windows/EditorWindow.h"
 #include "GUI/Input.h"
 #include "Direct3D/CameraManager.h"
+
+#include "../ModelManager.h"
 
 namespace {
     bool g_ModelLoaded = false;
@@ -53,9 +54,11 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // ウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
-    // 3Dモデルを初期化しロード
-    pModel_ = new Model;
-    pModel_->Load("Assets/blueBox.fbx", false, false);
+    //// 3Dモデルを初期化しロード
+    //pModel_ = new Model;
+    //pModel_->Load("Assets/blueBox.fbx", false, false);
+    hModel_ = ModelManager::Load("Assets/blueBox.fbx");
+    hModel2_ = ModelManager::Load("Assets/blueBox.fbx");
 
     return true;
 }
@@ -134,9 +137,14 @@ void Application::Update()
 
             }
            
+            Transform t2;
             // モデルの描画
-            pModel_->Draw(transform);
-            
+            //pModel_->Draw(transform);
+            ModelManager::SetTransform(hModel_, transform);
+            ModelManager::SetTransform(hModel2_,t2);
+            ModelManager::Draw(hModel_);
+            ModelManager::Draw(hModel2_);
+
 #ifdef _DEBUG
             // ImGuiの終了
             ImGuiManager::EndFlame();
@@ -162,6 +170,9 @@ void Application::Release()
 
     // カメラの開放
     CameraManager::GetInstance().ReleaseCameras();;
+    
+    // モデルの開放
+    ModelManager::AllRelease();
 
     // Direct3Dの解放
     Direct3D::GetInstance().Release();

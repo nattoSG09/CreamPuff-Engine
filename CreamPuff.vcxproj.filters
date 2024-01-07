@@ -82,6 +82,9 @@
     <ClInclude Include="Engine\Direct3D\CameraManager.h">
       <Filter>Engine\Direct3D\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Engine\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Direct3D\CameraManager.cpp">
       <Filter>Engine\Direct3D\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelManager.cpp">
+      <Filter>Engine\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

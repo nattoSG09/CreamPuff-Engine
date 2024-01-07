@@ -1,15 +1,14 @@
 #pragma once
 #include "Windows/WindowManager.h"
 
-class Model;
-
 
 /// <summary>
 /// アプリケーションを管理するクラス
 /// </summary>
 class Application
 {
-	Model* pModel_;
+	int hModel_;
+	int hModel2_;
 	
 public:
 	/// <summary>
