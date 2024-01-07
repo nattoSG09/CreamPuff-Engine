@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine/Mesh/Model.h"
-#include "Engine/Components/Transform.h"
+#include "Model.h"
+#include "../Components/Transform.h"
 
 #include <string>
 using std::string;

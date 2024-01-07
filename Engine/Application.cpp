@@ -4,8 +4,8 @@
 #include "Windows/EditorWindow.h"
 #include "GUI/Input.h"
 #include "Direct3D/CameraManager.h"
+#include "Mesh/ModelManager.h"
 
-#include "../ModelManager.h"
 
 namespace {
     bool g_ModelLoaded = false;

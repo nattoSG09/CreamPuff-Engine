@@ -1,5 +1,5 @@
 #include "ModelManager.h"
-#include "Engine/Global.h"
+#include "../Global.h"
 
 namespace ModelManager {
 	vector<ModelData*> modelDatas;
