@@ -55,11 +55,7 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
     //// 3Dモデルを初期化しロード
-    //pModel_ = new Model;
-    //pModel_->Load("Assets/blueBox.fbx", false, false);
     hModel_ = ModelManager::Load("Assets/blueBox.fbx");
-    hModel2_ = ModelManager::Load("Assets/blueBox.fbx");
-
     return true;
 }
 
@@ -137,13 +133,9 @@ void Application::Update()
 
             }
            
-            Transform t2;
             // モデルの描画
-            //pModel_->Draw(transform);
             ModelManager::SetTransform(hModel_, transform);
-            ModelManager::SetTransform(hModel2_,t2);
             ModelManager::Draw(hModel_);
-            ModelManager::Draw(hModel2_);
 
 #ifdef _DEBUG
             // ImGuiの終了
