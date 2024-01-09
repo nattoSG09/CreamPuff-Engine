@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
+#include "Components/Component.h"
 
 using std::string;
 using std::list;
@@ -11,7 +12,7 @@ protected:
 	string name_;					// 名前
 	GameObject* parent_;			// 親オブジェクト
 	list<GameObject*> children_;	// 子オブジェクトの配列
-
+	list<Component*> components_;	// コンポーネントの配列
 public:
 	GameObject();
 	GameObject(GameObject* _parent);
@@ -33,6 +34,13 @@ public:
 
 	void PushBackChild(GameObject* _object);
 	void PushFrontChild(GameObject* _object);
+
+	
+	// コンポーネント関連テンプレート
+	template<class T, typename... Args>void AddComponent(Args... args) {
+
+	}
+
 
 	// オブジェクトを作成するテンプレート
 	template <class T>
