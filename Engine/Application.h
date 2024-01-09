@@ -7,7 +7,6 @@
 /// </summary>
 class Application
 {
-	int hModel_;	
 public:
 	/// <summary>
 	/// コンストラクタ

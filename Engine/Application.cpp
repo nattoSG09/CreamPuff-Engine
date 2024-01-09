@@ -6,9 +6,11 @@
 #include "Direct3D/CameraManager.h"
 #include "Mesh/ModelManager.h"
 
+#include "../RootObject.h"
+#include "Global.h"
 
 namespace {
-    bool g_ModelLoaded = false;
+    RootObject* g_pRootObject = nullptr;
 }
 
 Application::Application()
@@ -41,7 +43,6 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // カメラの初期化
     CameraManager& cm = CameraManager::GetInstance();
     if (cm.HasCamera() == false)cm.AddDefaultCamera();
-    cm.AddCamera(new Camera("camera1", 0, 3, -7, 0, 0, 0));
 
     // 入力デバイスを初期化
     Input::Initialize(wm.GetWindow("Editor")->WindowHandle());
@@ -54,8 +55,10 @@ bool Application::Initialize(HINSTANCE _hInstance, int _nCmdShow)
     // ウィンドウを可視化
     wm.GetWindow("Editor")->Show(_nCmdShow);
 
-    //// 3Dモデルを初期化しロード
-    hModel_ = ModelManager::Load("Assets/blueBox.fbx");
+    // 全オブジェクトを初期化
+    g_pRootObject = new RootObject(nullptr);
+    g_pRootObject->Initialize();
+
     return true;
 }
 
@@ -79,12 +82,13 @@ void Application::Update()
         {
             // カメラの更新
             CameraManager& cm = CameraManager::GetInstance();
-            if (Input::IsKeyDown(DIK_0))cm.SetCurrentCamera("default");
-            if (Input::IsKeyDown(DIK_1))cm.SetCurrentCamera("camera1");
             cm.UpdateCurrentCamera();
 
             // 入力デバイスの更新
             Input::Update();
+
+            // 全オブジェクトの更新
+            g_pRootObject->UpdateSub();
 
 #ifdef _DEBUG
             // ImGuiの開始 & 描画
@@ -97,45 +101,8 @@ void Application::Update()
             Direct3D& d3D = Direct3D::GetInstance();
             d3D.BeginDraw(); 
             
-            // transformの移動処理
-            static Transform transform; 
-            {
-                transform.SetRotateAxis(XMVectorSet(1, 1, 0, 0));
-
-                if (Input::IsKey(DIK_W))transform.position_.z -= 0.001f;
-                if (Input::IsKey(DIK_A))transform.position_.x += 0.001f;
-                if (Input::IsKey(DIK_S))transform.position_.z += 0.001f;
-                if (Input::IsKey(DIK_D))transform.position_.x -= 0.001f;
-
-#ifdef _DEBUG
-                ImGui::Begin("transform"); {
-                    if (ImGui::CollapsingHeader("position_")) {
-                        ImGui::SliderFloat("position_x", &transform.position_.x, -100.0f, 100.0f);
-                        ImGui::SliderFloat("position_y", &transform.position_.y, -100.0f, 100.0f);
-                        ImGui::SliderFloat("position_z", &transform.position_.z, -100.0f, 100.0f);
-                    }
-
-                    if (ImGui::CollapsingHeader("rotate_")) {
-                        ImGui::SliderFloat("rotate_x", &transform.rotate_.x, -5.0f, 5.0f);
-                        ImGui::SliderFloat("rotate_y", &transform.rotate_.y, -5.0f, 5.0f);
-                        ImGui::SliderFloat("rotate_z", &transform.rotate_.z, -5.0f, 5.0f);
-                        ImGui::SliderFloat("rotate_q", &transform.rotate_.w, -5.0f, 5.0f);
-    }
-
-                    if (ImGui::CollapsingHeader("scale_")) {
-                        ImGui::SliderFloat("scale_x", &transform.scale_.x, -5.0f, 5.0f);
-                        ImGui::SliderFloat("scale_y", &transform.scale_.y, -5.0f, 5.0f);
-                        ImGui::SliderFloat("scale_z", &transform.scale_.z, -5.0f, 5.0f);
-                    }
-}
-                ImGui::End();
-#endif //_DEBUG
-
-            }
-           
-            // モデルの描画
-            ModelManager::SetTransform(hModel_, transform);
-            ModelManager::Draw(hModel_);
+            // 全オブジェクトの更新
+            g_pRootObject->DrawSub();
 
 #ifdef _DEBUG
             // ImGuiの終了
@@ -165,6 +132,10 @@ void Application::Release()
     
     // モデルの開放
     ModelManager::AllRelease();
+
+    // 全オブジェクトの解放
+    g_pRootObject->ReleaseSub();
+    SAFE_DELETE(g_pRootObject);
 
     // Direct3Dの解放
     Direct3D::GetInstance().Release();
