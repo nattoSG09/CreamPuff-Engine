@@ -3,7 +3,6 @@
 
 class RootObject: public GameObject
 {
-	int hModel_;
 public:
 	RootObject(GameObject* _parent);
 	~RootObject();

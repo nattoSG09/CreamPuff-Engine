@@ -37,8 +37,11 @@ public:
 
 	
 	// コンポーネント関連テンプレート
-	template<class T, typename... Args>void AddComponent(Args... args) {
-
+	template<class T>
+	void AddComponent() {
+		T* newComponent = new T();
+		components_.push_back(newComponent);
+		newComponent->Initialize();
 	}
 
 

@@ -15,5 +15,7 @@ protected:
 	/// デストラクタ
 	/// </summary>
 	virtual ~Component();
+public:
+	virtual void Initialize(){}
 };
 
