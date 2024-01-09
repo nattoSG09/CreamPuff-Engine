@@ -83,6 +83,7 @@
       <Filter>Engine\Direct3D\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Mesh\ModelManager.h" />
+    <ClInclude Include="Engine\GameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -158,6 +159,7 @@
       <Filter>Engine\Direct3D\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Mesh\ModelManager.cpp" />
+    <ClCompile Include="Engine\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
