@@ -1,12 +1,13 @@
 #pragma once
 #include "Windows/WindowManager.h"
-
+#include "RootObject.h"
 
 /// <summary>
 /// アプリケーションを管理するクラス
 /// </summary>
 class Application
 {
+	RootObject* pRootObject;
 public:
 	/// <summary>
 	/// コンストラクタ
@@ -45,4 +46,10 @@ public:
 	/// <param name="_lParam">メッセージに関連する追加情報</param>
 	/// <returns>LRESULT型の値</returns>
 	static LRESULT CALLBACK WndProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
+
+
+private:
+	int fps_;
+	bool ShouldUpdate();
+	void DisplayFPS(DWORD& _nowTime, DWORD& _startTime);
 };

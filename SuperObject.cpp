@@ -18,6 +18,10 @@ void SuperObject::Initialize()
 
 void SuperObject::Update()
 {
+    if (Input::IsKey(DIK_W))transform_.position_.z += 0.1f;
+    if (Input::IsKey(DIK_S))transform_.position_.z -= 0.1f;
+    if (Input::IsKey(DIK_D))transform_.position_.x += 0.1f;
+    if (Input::IsKey(DIK_A))transform_.position_.x -= 0.1f;
 
 #ifdef _DEBUG
     ImGui::Begin("transform"); {
