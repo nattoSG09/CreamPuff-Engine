@@ -16,6 +16,7 @@ void SuperObject::Initialize()
 
 void SuperObject::Update()
 {
+
 }
 
 void SuperObject::Draw()
