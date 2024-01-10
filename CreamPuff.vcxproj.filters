@@ -92,7 +92,6 @@
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SuperObject.h" />
-    <ClInclude Include="SubObejct.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -177,7 +176,6 @@
       <Filter>Engine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SuperObject.cpp" />
-    <ClCompile Include="SubObejct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

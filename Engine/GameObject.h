@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <list>
-#include "Components/Component.h"
 #include "Components/Transform.h"
 
 using std::string;
@@ -13,7 +12,8 @@ protected:
 	string name_;					// 名前
 	GameObject* parent_;			// 親オブジェクト
 	list<GameObject*> children_;	// 子オブジェクトの配列
-	list<Component*> components_;	// コンポーネントの配列
+	Transform transform_;			// 変換行列
+
 public:
 	GameObject();
 	GameObject(GameObject* _parent);
@@ -36,44 +36,20 @@ public:
 	void PushBackChild(GameObject* _object);
 	void PushFrontChild(GameObject* _object);
 
-	
-	// コンポーネント関連テンプレート
-	template<class T>
-	T* AddComponent() {
-		T* newComponent = new T();
-		components_.push_back(newComponent);
-		newComponent->Initialize();
-		return newComponent;
-	}
 
-	template<class T>
-	T* AddComponent(GameObject* _parent) {
-		T* newComponent = new T(_parent);
-		components_.push_back(newComponent);
-		newComponent->Initialize();
-		return newComponent;
-	}
+	// アクセス関数 //
+	XMFLOAT3 GetPosition() { return transform_.GetPosition(); }
+	void SetPosition(const XMFLOAT3 _position) { transform_.SetPosition(_position); }
+	void SetPosition(float _x, float _y, float _z) { SetPosition(XMFLOAT3(_x, _y, _z)); }
 
-	template<class T>
-	bool HasComponent() {
-		for (auto comp : components_) {
-			// 安全なキャストではない場合dynamic_castはnullptrを返す
-			T* buff = dynamic_cast<T*>(comp);
-			if (buff != nullptr)return true;
-		}
-		return false;
-	}
+	XMFLOAT4 GetRotate() { return transform_.GetRotate(); }
+	void SetRotate(const XMFLOAT4 _rotate) { transform_.SetRotate(_rotate); }
+	void SetRotate(float _x, float _y, float _z) { SetRotate(XMFLOAT4(_x, _y, _z, 0.0f)); }
+	void SetRotateAxis(XMVECTOR _rotationAxis) { transform_.SetRotateAxis(_rotationAxis); }
 
-	template<class T>
-	T* GetComponent(){
-		for (auto comp : components_) {
-			// 安全なキャストではない場合dynamic_castはnullptrを返す
-			T* buff = dynamic_cast<T*>(comp);
-			if (buff != nullptr)return buff;
-		}
-		return nullptr;
-	}
-
+	XMFLOAT3 GetScale() { return transform_.GetScale(); }
+	void SetScale(const XMFLOAT3 _scale) { transform_.SetScale(_scale); }
+	void SetScale(float _x, float _y, float _z) { SetScale(XMFLOAT3(_x, _y, _z)); }
 
 	// オブジェクトを作成するテンプレート
 	template <class T>

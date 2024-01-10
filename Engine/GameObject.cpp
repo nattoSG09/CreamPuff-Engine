@@ -15,6 +15,9 @@ GameObject::GameObject(GameObject* _parent, const string& _name)
 	:name_(_name),parent_(_parent),children_()
 {
 	children_.clear();
+
+	if (_parent != nullptr)
+		this->transform_.pParent_ = &(_parent->transform_);
 }
 
 void GameObject::UpdateSub()

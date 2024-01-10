@@ -17,6 +17,8 @@ public:
 	XMFLOAT4 rotate_;		/*方向*/
 	XMFLOAT3 scale_;		/*拡大率*/
 
+	Transform* pParent_;	/*親オブジェクトの変換行列*/
+
 private:
 	XMMATRIX matTranslate_;	/*移動行列*/
 	XMMATRIX matRotate_;	/*回転行列*/
@@ -24,7 +26,6 @@ private:
 
 	XMVECTOR rotationAxis_;	/*任意の回転に必要な軸*/
 
-	Transform* pParent_;	/*親オブジェクトの変換行列*/
 public:
 	/// <summary>
 	/// コンストラクタ

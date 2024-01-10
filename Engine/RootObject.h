@@ -3,7 +3,6 @@
 
 class RootObject: public GameObject
 {
-	Transform transform_;
 public:
 	RootObject(GameObject* _parent);
 	~RootObject();

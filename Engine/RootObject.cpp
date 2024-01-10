@@ -16,15 +16,10 @@ RootObject::~RootObject()
 
 void RootObject::Initialize()
 {
-	transform_ = *AddComponent<Transform>();
-
-	Instantiate<SuperObject>(this);
-
 }
 
 void RootObject::Update()
 {
-	transform_.position_.x += 0.1f;
 }
 
 void RootObject::Draw()

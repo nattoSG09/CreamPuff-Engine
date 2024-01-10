@@ -2,7 +2,7 @@
 #include "../Windows/WindowManager.h"
 
 namespace {
-	const XMVECTOR DEFAULT_POSITION = XMVectorSet(0, 3, 7, 0);
+	const XMVECTOR DEFAULT_POSITION = XMVectorSet(0, 3, -7, 0);
 	const XMVECTOR DEFAULT_TARGET = XMVectorSet(0, 0, 0, 0);
 	const XMVECTOR DEFAULT_UP_DIRECTION = XMVectorSet(0, 1, 0, 0);
 }
