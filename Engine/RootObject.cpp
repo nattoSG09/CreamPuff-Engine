@@ -16,6 +16,7 @@ RootObject::~RootObject()
 
 void RootObject::Initialize()
 {
+	Instantiate<SuperObject>(this);
 }
 
 void RootObject::Update()

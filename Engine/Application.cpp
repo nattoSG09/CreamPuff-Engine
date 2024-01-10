@@ -87,8 +87,6 @@ void Application::Update()
             // 入力デバイスの更新
             Input::Update();
 
-           
-
 #ifdef _DEBUG
             // ImGuiの開始 & 描画
             ImGuiManager::BeginFlame();

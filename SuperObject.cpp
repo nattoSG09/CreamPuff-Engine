@@ -2,6 +2,8 @@
 #include "Engine/Mesh/ModelManager.h"
 #include "Engine/GUI/Input.h"
 #include "Engine/GUI/ImGui/imgui.h"
+#include "Engine/Direct3D/CameraManager.h"
+
 
 SuperObject::SuperObject(GameObject* _parent)
 	:GameObject(_parent,"SuperObject"),hModel_(-1)
@@ -16,7 +18,6 @@ void SuperObject::Initialize()
 
 void SuperObject::Update()
 {
-
 }
 
 void SuperObject::Draw()
