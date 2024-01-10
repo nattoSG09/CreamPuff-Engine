@@ -87,8 +87,7 @@ void Application::Update()
             // 入力デバイスの更新
             Input::Update();
 
-            // 全オブジェクトの更新
-            g_pRootObject->UpdateSub();
+           
 
 #ifdef _DEBUG
             // ImGuiの開始 & 描画
@@ -96,6 +95,9 @@ void Application::Update()
             ImGuiManager::Draw();
 
 #endif //DEBUG
+
+            // 全オブジェクトの更新
+            g_pRootObject->UpdateSub();
 
             // Direct3Dの描画
             Direct3D& d3D = Direct3D::GetInstance();

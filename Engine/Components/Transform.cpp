@@ -1,4 +1,24 @@
 #include "Transform.h"
+#include "../GameObject.h"
+
+Transform::Transform(GameObject* _parent)
+	:pParent_(nullptr)
+{
+	if (_parent != nullptr)
+		if (_parent->HasComponent<Transform>())
+			pParent_ = _parent->GetComponent<Transform>();
+	
+	//•Ï”‚Ì‰Šú‰»
+	position_ = XMFLOAT3(0, 0, 0);
+	rotate_ = XMFLOAT4(0, 0, 0, 0);
+	scale_ = XMFLOAT3(1, 1, 1);
+
+	matTranslate_ = XMMatrixIdentity();
+	matRotate_ = XMMatrixIdentity();
+	matScale_ = XMMatrixIdentity();
+
+	rotationAxis_ = XMVectorSet(1, 0, 0, 0);
+}
 
 Transform::Transform()
 	:pParent_(nullptr)

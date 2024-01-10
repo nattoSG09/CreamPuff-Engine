@@ -2,6 +2,7 @@
 #include <string>
 #include <list>
 #include "Components/Component.h"
+#include "Components/Transform.h"
 
 using std::string;
 using std::list;
@@ -38,10 +39,39 @@ public:
 	
 	// コンポーネント関連テンプレート
 	template<class T>
-	void AddComponent() {
+	T* AddComponent() {
 		T* newComponent = new T();
 		components_.push_back(newComponent);
 		newComponent->Initialize();
+		return newComponent;
+	}
+
+	template<class T>
+	T* AddComponent(GameObject* _parent) {
+		T* newComponent = new T(_parent);
+		components_.push_back(newComponent);
+		newComponent->Initialize();
+		return newComponent;
+	}
+
+	template<class T>
+	bool HasComponent() {
+		for (auto comp : components_) {
+			// 安全なキャストではない場合dynamic_castはnullptrを返す
+			T* buff = dynamic_cast<T*>(comp);
+			if (buff != nullptr)return true;
+		}
+		return false;
+	}
+
+	template<class T>
+	T* GetComponent(){
+		for (auto comp : components_) {
+			// 安全なキャストではない場合dynamic_castはnullptrを返す
+			T* buff = dynamic_cast<T*>(comp);
+			if (buff != nullptr)return buff;
+		}
+		return nullptr;
 	}
 
 

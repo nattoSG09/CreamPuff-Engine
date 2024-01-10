@@ -1,9 +1,11 @@
 #pragma once
 #include "Component.h"
 
+
 #include <DirectXMath.h>
 using namespace DirectX;
 
+class GameObject;
 
 /// <summary>
 /// Transform(変換行列)コンポーネント
@@ -27,6 +29,8 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
+	Transform(GameObject* _parent);
+
 	Transform();
 
 	/// <summary>
