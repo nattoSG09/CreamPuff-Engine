@@ -1,8 +1,9 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "GameObject.h"
 
 class RootObject: public GameObject
 {
+	Transform transform_;
 public:
 	RootObject(GameObject* _parent);
 	~RootObject();

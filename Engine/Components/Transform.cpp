@@ -6,7 +6,7 @@ Transform::Transform(GameObject* _parent)
 {
 	if (_parent != nullptr)
 		if (_parent->HasComponent<Transform>())
-			pParent_ = _parent->GetComponent<Transform>();
+			pParent_ = _parent->GetComponent<Transform>().;
 	
 	//•Ï”‚Ì‰Šú‰»
 	position_ = XMFLOAT3(0, 0, 0);

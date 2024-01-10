@@ -6,7 +6,7 @@
 #include "Direct3D/CameraManager.h"
 #include "Mesh/ModelManager.h"
 
-#include "../RootObject.h"
+#include "RootObject.h"
 #include "Global.h"
 
 namespace {
