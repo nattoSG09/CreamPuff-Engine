@@ -1,28 +1,24 @@
 #include "sceneManager.h"
 #include "Mesh/ModelManager.h"
 #include "../TestScene.h"
+#include "../TestScene2.h"
 
-//コンストラクタ
-SceneManager::SceneManager(GameObject * parent)
-	: GameObject(parent, "SceneManager")
+SceneManager::SceneManager(GameObject * _parent)
+	: GameObject(_parent, "SceneManager")
+	,currentSceneID_(),nextSceneID_()
 {
 }
 
-//初期化
 void SceneManager::Initialize()
 {
 	//最初のシーンを準備
-	currentSceneID_ = SCENE_ID_SPLASH;
+	currentSceneID_ = SCENE_ID_TEST;	
 	nextSceneID_ = currentSceneID_;
 	Instantiate<TestScene>(this);
 }
 
-//更新
 void SceneManager::Update()
 {
-	//トランジション実行時、シーン切替のタイミングでシーンを変更する
-	if (Transition::IsChangePoint())nextSceneID_ = tmpID_;
-
 	//次のシーンが現在のシーンと違う　＝　シーンを切り替えなければならない
 	if (currentSceneID_ != nextSceneID_)
 	{
@@ -36,38 +32,22 @@ void SceneManager::Update()
 		switch (nextSceneID_)
 		{
 		case SCENE_ID_TEST: Instantiate<TestScene>(this); break;
+		case SCENE_ID_TEST2: Instantiate<TestScene2>(this); break;
 		}
 
 		currentSceneID_ = nextSceneID_;
 	}
 }
 
-//描画
 void SceneManager::Draw()
 {
 }
 
-//開放
 void SceneManager::Release()
 {
 }
 
-//シーン切り替え（実際に切り替わるのはこの次のフレーム）
-void SceneManager::ChangeScene(SCENE_ID next, TRANSITION_ID _type,float _time)
+void SceneManager::ChangeScene(SCENE_ID _next)
 {
-	//トランジションが動作中はシーン遷移を行わない
-	if (!Transition::IsActive()) {
-		//トランジションを使わない場合、シーンIDをセット
-		if (!Transition::SetTransition(_type))nextSceneID_ = next;
-		
-		//時間をセット
-		Transition::SetTime(_time);
-
-		//トランジションを開始し、シーンIDをセット
-		Transition::Start();tmpID_ = next;
-	}
+	nextSceneID_ = _next;
 }
-void SceneManager::ChangeScene(SCENE_ID next, TRANSITION_ID _type){ChangeScene(next, _type, 2);}
-void SceneManager::ChangeScene(SCENE_ID next){ChangeScene(next, TID_NONE);}
-
-

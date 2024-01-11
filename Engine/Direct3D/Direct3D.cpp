@@ -219,7 +219,7 @@ bool Direct3D::InitShader()
 	//シェーダーを用意
 	shaders_[SIMPLE_3D] = new Shader3D;
 	shaders_[DEBUG_3D] = new ShaderDebug;
-	
+
 	//シェーダーを初期化
 	for (auto it = shaders_.begin(); it != shaders_.end(); ++it) {
 		if ((*it).second->Initialize() == false)return false;

@@ -156,11 +156,8 @@
     <ClInclude Include="Engine\GUI\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Engine\GUI\ImGui\imstb_textedit.h" />
     <ClInclude Include="Engine\GUI\ImGui\imstb_truetype.h" />
-    <ClInclude Include="Engine\Mesh\Image.h" />
     <ClInclude Include="Engine\Mesh\ModelManager.h" />
-    <ClInclude Include="Engine\Mesh\Sprite.h" />
     <ClInclude Include="Engine\SceneManager.h" />
-    <ClInclude Include="Engine\Transition.h" />
     <ClInclude Include="Engine\Windows\EditorWindow.h" />
     <ClInclude Include="Engine\Windows\Window.h" />
     <ClInclude Include="Engine\Windows\WindowManager.h" />
@@ -175,6 +172,7 @@
     <ClInclude Include="Engine\RootObject.h" />
     <ClInclude Include="SuperObject.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TestScene2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Direct3D\CameraManager.cpp" />
@@ -192,17 +190,14 @@
     <ClCompile Include="Engine\GUI\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="Engine\GUI\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Engine\GUI\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Engine\Mesh\Image.cpp" />
+    <ClCompile Include="Engine\Mesh\Model.cpp" />
     <ClCompile Include="Engine\Mesh\ModelManager.cpp" />
-    <ClCompile Include="Engine\Mesh\Sprite.cpp" />
     <ClCompile Include="Engine\SceneManager.cpp" />
-    <ClCompile Include="Engine\Transition.cpp" />
     <ClCompile Include="Engine\Windows\EditorWindow.cpp" />
     <ClCompile Include="Engine\Windows\Window.cpp" />
     <ClCompile Include="Engine\Windows\WindowManager.cpp" />
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Components\Transform.cpp" />
-    <ClCompile Include="Engine\Mesh\Model.cpp" />
     <ClCompile Include="Engine\Mesh\Texture.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\Shader.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\Shader3D.cpp" />
@@ -210,6 +205,7 @@
     <ClCompile Include="Engine\RootObject.cpp" />
     <ClCompile Include="SuperObject.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TestScene2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Debug3D.hlsl">
