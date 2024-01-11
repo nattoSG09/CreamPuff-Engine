@@ -36,6 +36,9 @@ public:
 	void PushBackChild(GameObject* _object);
 	void PushFrontChild(GameObject* _object);
 
+	void KillAllChildren();
+
+	void KillObjectSub(GameObject* _object);
 
 	// アクセス関数 //
 	XMFLOAT3 GetPosition() { return transform_.GetPosition(); }

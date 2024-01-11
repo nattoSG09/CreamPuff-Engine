@@ -92,6 +92,21 @@
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SuperObject.h" />
+    <ClInclude Include="Engine\Transition.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SceneManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\Sprite.h">
+      <Filter>Engine\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Mesh\Image.h">
+      <Filter>Engine\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -176,6 +191,21 @@
       <Filter>Engine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SuperObject.cpp" />
+    <ClCompile Include="Engine\Transition.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SceneManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\Sprite.cpp">
+      <Filter>Engine\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Mesh\Image.cpp">
+      <Filter>Engine\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -210,6 +240,9 @@
     </Filter>
     <Filter Include="Engine\GameObject">
       <UniqueIdentifier>{2f0468a5-3334-4a56-a5b5-ba446cd8fc79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{ab9ee6ad-66ca-47a6-8a36-021546f6cea9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

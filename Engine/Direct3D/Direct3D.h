@@ -69,6 +69,8 @@ public:
 	/// </summary>
 	void SetShader(SHADER_HANDLE _handle);
 
+	void SetDepthBafferWriteEnable(bool isWrite);
+
 // ゲッター・セッター　//
 	ID3D11Device* Device() { return pDevice_; }									
 	ID3D11DeviceContext* Context() { return pContext_; }

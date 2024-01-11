@@ -3,7 +3,7 @@
 #include "GUI/ImGui/imgui.h"
 #include "GUI/Input.h"
 
-#include "../SuperObject.h"
+#include "SceneManager.h"
 
 RootObject::RootObject(GameObject* _parent)
 	:GameObject(_parent,"RootObject")
@@ -16,7 +16,7 @@ RootObject::~RootObject()
 
 void RootObject::Initialize()
 {
-	Instantiate<SuperObject>(this);
+	Instantiate<SceneManager>(this);
 }
 
 void RootObject::Update()

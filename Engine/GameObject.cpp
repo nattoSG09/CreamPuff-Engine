@@ -102,3 +102,42 @@ void GameObject::PushFrontChild(GameObject* _object)
 	_object->parent_ = this;
 	children_.push_front(_object);
 }
+
+void GameObject::KillAllChildren()
+{
+	// 子オブジェクトがいなければreturn
+	if (children_.empty())return;
+
+	//イテレータ
+	auto it = children_.begin();	//先頭
+	auto end = children_.end();	//末尾
+
+	//子オブジェクトを1個ずつ削除
+	while (it != end)
+	{
+		KillObjectSub(*it);
+		delete* it;
+		it = children_.erase(it);
+	}
+
+	//リストをクリア
+	children_.clear();
+}
+
+void GameObject::KillObjectSub(GameObject* _object)
+{
+	if (!children_.empty())
+	{
+		auto list = _object->children_;
+		auto it = list.begin();
+		auto end = list.end();
+		while (it != end)
+		{
+			KillObjectSub(*it);
+			delete* it;
+			it = list.erase(it);
+		}
+		list.clear();
+	}
+	_object->Release();
+}

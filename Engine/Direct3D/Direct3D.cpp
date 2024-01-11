@@ -239,3 +239,19 @@ void Direct3D::SetShader(SHADER_HANDLE _handle)
 	pContext_->IASetInputLayout(shaders_[_handle]->InputLayout());	//頂点インプットレイアウト
 	pContext_->RSSetState(shaders_[_handle]->RasterizerState());		//ラスタライザー
 }
+
+void Direct3D::SetDepthBafferWriteEnable(bool _isWrite)
+{
+	//ON
+	if (_isWrite)
+	{
+		//Zバッファ（デプスステンシルを指定する）
+		pContext_->OMSetRenderTargets(1, &pRenderTargetView_, pDepthStencilView_);
+	}
+
+	//OFF
+	else
+	{
+		pContext_->OMSetRenderTargets(1, &pRenderTargetView_, nullptr);
+	}
+}
