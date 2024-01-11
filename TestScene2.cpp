@@ -10,7 +10,6 @@ TestScene2::TestScene2(GameObject* _parent)
 
 void TestScene2::Initialize()
 {
-	int a = 0;
 }
 
 void TestScene2::Update()
