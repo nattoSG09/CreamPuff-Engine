@@ -4,7 +4,6 @@
 #include "Engine/GUI/ImGui/imgui.h"
 #include "Engine/Direct3D/CameraManager.h"
 
-
 SuperObject::SuperObject(GameObject* _parent)
 	:GameObject(_parent,"SuperObject"),hModel_(-1)
 {
