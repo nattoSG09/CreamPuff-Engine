@@ -92,20 +92,14 @@
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SuperObject.h" />
-    <ClInclude Include="Engine\Transition.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\SceneManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Mesh\Sprite.h">
-      <Filter>Engine\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Mesh\Image.h">
-      <Filter>Engine\Mesh</Filter>
+    <ClInclude Include="TestScene2.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,20 +185,14 @@
       <Filter>Engine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SuperObject.cpp" />
-    <ClCompile Include="Engine\Transition.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\SceneManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Mesh\Sprite.cpp">
-      <Filter>Engine\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Mesh\Image.cpp">
-      <Filter>Engine\Mesh</Filter>
+    <ClCompile Include="TestScene2.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +201,6 @@
     </Filter>
     <Filter Include="Engine\Windows">
       <UniqueIdentifier>{d921f55d-e2f1-41f6-b0a0-5c3069826ecd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GUI">
       <UniqueIdentifier>{b150fb93-1f77-49d7-ac16-48578f4c5d30}</UniqueIdentifier>
@@ -243,6 +228,9 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{ab9ee6ad-66ca-47a6-8a36-021546f6cea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
