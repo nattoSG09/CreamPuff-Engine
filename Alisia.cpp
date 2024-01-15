@@ -53,6 +53,8 @@ void Alisia::Update()
 
 void Alisia::Draw()
 {
+    Direct3D* d3D = &Direct3D::GetInstance();
+    d3D->SetShader(TOON_3D);
 	ModelManager::SetTransform(hModel_, transform_);
 	ModelManager::Draw(hModel_);
 }

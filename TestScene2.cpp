@@ -4,6 +4,7 @@
 
 #include "Engine/Direct3D/CameraManager.h"
 #include "Alisia.h"
+#include "SuperObject.h"
 
 TestScene2::TestScene2(GameObject* _parent)
 	:GameObject(_parent, "TestScene2")
@@ -18,6 +19,7 @@ void TestScene2::Initialize()
 	cm.SetCurrentCamera("AlisiaCamera");
 
 	Instantiate<Alisia>(this);
+	Instantiate<SuperObject>(this);
 }
 
 void TestScene2::Update()

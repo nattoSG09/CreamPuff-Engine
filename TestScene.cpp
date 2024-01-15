@@ -5,6 +5,9 @@
 #include "Engine/SceneManager.h"
 #include "Engine/GUI/Input.h"
 #include "Engine/Direct3D/CameraManager.h"
+#include "Alisia.h"
+
+
 
 TestScene::TestScene(GameObject* _parent)
 	:GameObject(_parent,"TestScene")
@@ -14,8 +17,10 @@ TestScene::TestScene(GameObject* _parent)
 void TestScene::Initialize()
 {
 	CameraManager& cm = CameraManager::GetInstance();
-	cm.SetCurrentCamera("default");
+	cm.AddCamera(new Camera("AlisiaCamera", 0, 20, -27, 0, 9, 0));
+	cm.SetCurrentCamera("AlisiaCamera");
 
+	Instantiate<Alisia>(this);
 	Instantiate<SuperObject>(this);
 }
 

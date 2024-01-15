@@ -11,19 +11,19 @@ SuperObject::SuperObject(GameObject* _parent)
 
 void SuperObject::Initialize()
 {
-	hModel_ = ModelManager::Load("Assets/blueBox.fbx");
+	hModel_ = ModelManager::Load("Assets/wood_floor.fbx");
 	assert(hModel_ >= 0);
 }
 
 void SuperObject::Update()
 {
-    if (Input::IsKey(DIK_W))transform_.position_.z += 0.1f;
+    /*if (Input::IsKey(DIK_W))transform_.position_.z += 0.1f;
     if (Input::IsKey(DIK_S))transform_.position_.z -= 0.1f;
     if (Input::IsKey(DIK_D))transform_.position_.x += 0.1f;
-    if (Input::IsKey(DIK_A))transform_.position_.x -= 0.1f;
+    if (Input::IsKey(DIK_A))transform_.position_.x -= 0.1f;*/
 
 #ifdef _DEBUG
-    ImGui::Begin("transform"); {
+    ImGui::Begin("stransform"); {
         if (ImGui::CollapsingHeader("position_")) {
             ImGui::SliderFloat("position_x", &transform_.position_.x, -100.0f, 100.0f);
             ImGui::SliderFloat("position_y", &transform_.position_.y, -100.0f, 100.0f);
@@ -50,6 +50,8 @@ void SuperObject::Update()
 
 void SuperObject::Draw()
 {
+    Direct3D* d3D = &Direct3D::GetInstance();
+    d3D->SetShader(SIMPLE_3D);
 	ModelManager::SetTransform(hModel_, transform_);
 	ModelManager::Draw(hModel_);
 }

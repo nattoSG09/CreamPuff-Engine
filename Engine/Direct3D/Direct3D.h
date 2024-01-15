@@ -8,6 +8,7 @@
 #pragma comment(lib, "d3dcompiler.lib")
 
 using std::map;
+using namespace DirectX;
 
 //‘O•ûéŒ¾
 class Window;
@@ -16,7 +17,7 @@ class Shader;
 enum SHADER_HANDLE {
 	SIMPLE_3D,
 	DEBUG_3D,
-
+	TOON_3D,
 };
 
 /// <summary>
