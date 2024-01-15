@@ -4,6 +4,7 @@
 #include "SuperObject.h"
 #include "Engine/SceneManager.h"
 #include "Engine/GUI/Input.h"
+#include "Engine/Direct3D/CameraManager.h"
 
 TestScene::TestScene(GameObject* _parent)
 	:GameObject(_parent,"TestScene")
@@ -12,6 +13,9 @@ TestScene::TestScene(GameObject* _parent)
 
 void TestScene::Initialize()
 {
+	CameraManager& cm = CameraManager::GetInstance();
+	cm.SetCurrentCamera("default");
+
 	Instantiate<SuperObject>(this);
 }
 

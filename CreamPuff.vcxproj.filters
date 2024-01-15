@@ -101,6 +101,7 @@
     <ClInclude Include="TestScene2.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Alisia.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -194,6 +195,7 @@
     <ClCompile Include="TestScene2.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Alisia.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

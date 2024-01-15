@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Alisia.h" />
     <ClInclude Include="Engine\Direct3D\CameraManager.h" />
     <ClInclude Include="Engine\Direct3D\Camera.h" />
     <ClInclude Include="Engine\GameObject.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="TestScene2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Alisia.cpp" />
     <ClCompile Include="Engine\Direct3D\CameraManager.cpp" />
     <ClCompile Include="Engine\Direct3D\Camera.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />

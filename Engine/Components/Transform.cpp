@@ -38,10 +38,10 @@ void Transform::Calclation()
 	matTranslate_ = XMMatrixTranslation(position_.x, position_.y, position_.z);
 
 	// rotate_.xyzの値をもとに_回転行列_を作成
-	matRotate_	= XMMatrixRotationX(rotate_.x)
-				* XMMatrixRotationY(rotate_.y)
-				* XMMatrixRotationZ(rotate_.z)
-				* XMMatrixRotationAxis(rotationAxis_, rotate_.w);
+	matRotate_	= XMMatrixRotationX(XMConvertToRadians(rotate_.x))
+				* XMMatrixRotationY(XMConvertToRadians( rotate_.y))
+				* XMMatrixRotationZ(XMConvertToRadians(rotate_.z))
+				* XMMatrixRotationAxis(rotationAxis_, XMConvertToRadians(rotate_.w));
 
 	// scale_.xyzの値をもとに_拡大縮小行列_を作成
 	matScale_ = XMMatrixScaling(scale_.x, scale_.y, scale_.z);
