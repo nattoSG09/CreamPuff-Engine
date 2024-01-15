@@ -202,6 +202,9 @@
     <Filter Include="Engine\Windows">
       <UniqueIdentifier>{d921f55d-e2f1-41f6-b0a0-5c3069826ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\GUI">
       <UniqueIdentifier>{b150fb93-1f77-49d7-ac16-48578f4c5d30}</UniqueIdentifier>
     </Filter>
@@ -228,9 +231,6 @@
     </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{ab9ee6ad-66ca-47a6-8a36-021546f6cea9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{4b0528ac-1c30-4e26-90a7-9e4bd1ceaa65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
