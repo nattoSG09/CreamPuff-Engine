@@ -3,6 +3,7 @@
 
 class NormalObject : public GameObject
 {
+	int hModel_;
 public:
 	NormalObject(GameObject* _parent);
 	void Initialize() override;

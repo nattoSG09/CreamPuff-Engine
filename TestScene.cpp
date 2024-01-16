@@ -7,7 +7,7 @@
 #include "Engine/Direct3D/CameraManager.h"
 #include "Alisia.h"
 
-
+#include "NormalObject.h"
 
 TestScene::TestScene(GameObject* _parent)
 	:GameObject(_parent,"TestScene")
@@ -16,13 +16,12 @@ TestScene::TestScene(GameObject* _parent)
 
 void TestScene::Initialize()
 {
-	
 }
 
 void TestScene::Update()
 {
 	SceneManager* sm = (SceneManager*)FindObject("SceneManager");
-	if(Input::IsKeyDown(DIK_G))	sm->ChangeScene(SCENE_ID_TEST2);
+	sm->ChangeScene(SCENE_ID_TEST2);
 }
 
 void TestScene::Draw()

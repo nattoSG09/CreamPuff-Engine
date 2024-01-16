@@ -161,7 +161,7 @@ bool AssimpLoader::LoadTexture(string _filePath,Material& _dst, const aiMaterial
     }
 
     // ノーマルテクスチャを取得しロード
-    _dst.diffuseTextures.resize(_src->GetTextureCount(aiTextureType_NORMALS));
+    _dst.normalTextures.resize(_src->GetTextureCount(aiTextureType_NORMALS));
     for (int i = 0; i < _src->GetTextureCount(aiTextureType_NORMALS); ++i) {
         aiString path;
         if (_src->GetTexture(aiTextureType_NORMALS, i, &path) == AI_SUCCESS) {

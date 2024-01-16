@@ -13,7 +13,7 @@ cbuffer global
 	float4x4	matWVP;		
 	float4x4	matNormal;	
 	float4		diffuseColor;	
-	bool		hasTexture;		
+	bool		hasTexture;	
 };
 
 //„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
@@ -49,8 +49,7 @@ VS_OUT VS(float4 pos : POSITION, float3 normal : NORMAL, float2 uv : TEXCOORD,
 //„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
 float4 PS(VS_OUT inData) : SV_Target
 {
-	//float d = abs(dot(normalize(inData.eyev),inData.normal));
-
-	return hasTexture ? g_texture.Sample(g_sampler, inData.uv) : diffuseColor;
+	float4 result = hasTexture ? g_texture.Sample(g_sampler, inData.uv) : diffuseColor;
+	return result * float4(0.5,1,1,1);
 }
 
