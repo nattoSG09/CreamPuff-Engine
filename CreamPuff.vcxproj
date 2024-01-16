@@ -171,6 +171,7 @@
     <ClInclude Include="Engine\Direct3D\Shaders\Shader3D.h" />
     <ClInclude Include="Engine\Direct3D\Shaders\ShaderDebug.h" />
     <ClInclude Include="Engine\RootObject.h" />
+    <ClInclude Include="NormalObject.h" />
     <ClInclude Include="SuperObject.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TestScene2.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="Engine\Direct3D\Shaders\Shader3D.cpp" />
     <ClCompile Include="Engine\Direct3D\Shaders\ShaderDebug.cpp" />
     <ClCompile Include="Engine\RootObject.cpp" />
+    <ClCompile Include="NormalObject.cpp" />
     <ClCompile Include="SuperObject.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TestScene2.cpp" />

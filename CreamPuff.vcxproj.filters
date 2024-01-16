@@ -105,6 +105,7 @@
     <ClInclude Include="Engine\Direct3D\Shaders\ShaderNormalMap.h">
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="NormalObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -202,6 +203,7 @@
     <ClCompile Include="Engine\Direct3D\Shaders\ShaderNormalMap.cpp">
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="NormalObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
