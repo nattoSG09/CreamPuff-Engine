@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Alisia.h" />
+    <ClInclude Include="CubeMapGenerator.h" />
     <ClInclude Include="Engine\Direct3D\CameraManager.h" />
     <ClInclude Include="Engine\Direct3D\Camera.h" />
     <ClInclude Include="Engine\GameObject.h" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alisia.cpp" />
+    <ClCompile Include="CubeMapGenerator.cpp" />
     <ClCompile Include="Engine\Direct3D\CameraManager.cpp" />
     <ClCompile Include="Engine\Direct3D\Camera.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
