@@ -17,7 +17,7 @@ class Shader;
 enum SHADER_HANDLE {
 	SIMPLE_3D,
 	DEBUG_3D,
-	TOON_3D,
+	NORMAL_3D,
 };
 
 /// <summary>

@@ -102,7 +102,7 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Alisia.h" />
-    <ClInclude Include="Engine\Direct3D\Shaders\ShaderToon.h">
+    <ClInclude Include="Engine\Direct3D\Shaders\ShaderNormalMap.h">
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
@@ -199,7 +199,7 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Alisia.cpp" />
-    <ClCompile Include="Engine\Direct3D\Shaders\ShaderToon.cpp">
+    <ClCompile Include="Engine\Direct3D\Shaders\ShaderNormalMap.cpp">
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
@@ -248,7 +248,7 @@
     <FxCompile Include="Assets\Shader\Debug3D.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Assets\Shader\Toon3D.hlsl">
+    <FxCompile Include="Assets\Shader\NormalMap.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

@@ -22,6 +22,7 @@ struct Vertex {
 struct Material {
 	bool hasTexture;
 	vector<Texture*> diffuseTextures;	//ディヒューズテクスチャ情報
+	vector<Texture*> normalTextures;	//ノーマルテクスチャ情報
 	XMFLOAT4 diffuse;					//ディヒューズカラー情報
 };
 

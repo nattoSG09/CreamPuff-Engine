@@ -6,7 +6,7 @@
 
 #include "Shaders/Shader3D.h"
 #include "Shaders/ShaderDebug.h"
-#include "Shaders/ShaderToon.h"
+#include "Shaders/ShaderNormalMap.h"
 
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
@@ -220,7 +220,7 @@ bool Direct3D::InitShader()
 	//シェーダーを用意
 	shaders_[SIMPLE_3D] = new Shader3D;
 	shaders_[DEBUG_3D] = new ShaderDebug;
-	shaders_[TOON_3D] = new ShaderToon;
+	shaders_[NORMAL_3D] = new ShaderNormalMap;
 
 	//シェーダーを初期化
 	for (auto it = shaders_.begin(); it != shaders_.end(); ++it) {

@@ -16,12 +16,7 @@ TestScene::TestScene(GameObject* _parent)
 
 void TestScene::Initialize()
 {
-	CameraManager& cm = CameraManager::GetInstance();
-	cm.AddCamera(new Camera("AlisiaCamera", 0, 20, -27, 0, 9, 0));
-	cm.SetCurrentCamera("AlisiaCamera");
-
-	Instantiate<Alisia>(this);
-	Instantiate<SuperObject>(this);
+	
 }
 
 void TestScene::Update()

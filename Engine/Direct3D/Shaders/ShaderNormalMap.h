@@ -1,10 +1,10 @@
 #pragma once
 #include "Shader.h"
 
-class ShaderToon : public Shader
+class ShaderNormalMap : public Shader
 {
 public:
-	ShaderToon();
+	ShaderNormalMap();
 private:
 	void InitVertexLayout() override;
 	void InitRasterizerState() override;
