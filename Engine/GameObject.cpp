@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include <cassert>
+#include "GUI/ImGui/imgui.h"
 
 GameObject::GameObject()
 	:GameObject(nullptr)
@@ -140,4 +141,37 @@ void GameObject::KillObjectSub(GameObject* _object)
 		list.clear();
 	}
 	_object->Release();
+}
+
+void GameObject::DebugMove()
+{
+#ifdef _DEBUG
+	ImGui::Begin(name_.c_str()); {
+		if (ImGui::CollapsingHeader("position_")) {
+			ImGui::SliderFloat("position_x", &transform_.position_.x, -100.0f, 100.0f);
+			ImGui::SliderFloat("position_y", &transform_.position_.y, -100.0f, 100.0f);
+			ImGui::SliderFloat("position_z", &transform_.position_.z, -100.0f, 100.0f);
+		}
+
+		if (ImGui::CollapsingHeader("rotate_")) {
+			ImGui::SliderFloat("rotate_x", &transform_.rotate_.x, 0.f, 360.0f);
+			ImGui::SliderFloat("rotate_y", &transform_.rotate_.y, 0.f, 360.0f);
+			ImGui::SliderFloat("rotate_z", &transform_.rotate_.z, 0.f, 360.0f);
+			ImGui::SliderFloat("rotate_q", &transform_.rotate_.w, 0.f, 360.0f);
+		}
+
+		if (ImGui::CollapsingHeader("scale_")) {
+			static bool fixed = false;
+			ImGui::Checkbox("fixed", &fixed);
+			if (fixed == false) {
+				ImGui::SliderFloat("scale_x", &transform_.scale_.x, -5.0f, 5.0f);
+				ImGui::SliderFloat("scale_y", &transform_.scale_.y, -5.0f, 5.0f);
+				ImGui::SliderFloat("scale_z", &transform_.scale_.z, -5.0f, 5.0f);
+			}
+
+		}
+	}
+	ImGui::End();
+#endif //_DEBUG
+
 }

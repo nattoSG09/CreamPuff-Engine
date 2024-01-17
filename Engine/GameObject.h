@@ -54,6 +54,8 @@ public:
 	void SetScale(const XMFLOAT3 _scale) { transform_.SetScale(_scale); }
 	void SetScale(float _x, float _y, float _z) { SetScale(XMFLOAT3(_x, _y, _z)); }
 
+	void DebugMove();
+
 	// オブジェクトを作成するテンプレート
 	template <class T>
 	GameObject* Instantiate(GameObject* _parent){
