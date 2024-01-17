@@ -43,6 +43,7 @@ void NormalObject::Update()
 
 }
 
+
 void NormalObject::Draw()
 {
     Direct3D* d3D = &Direct3D::GetInstance();
