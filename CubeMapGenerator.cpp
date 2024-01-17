@@ -1,4 +1,5 @@
 #include "CubeMapGenerator.h"
+#include <functional>
 
 
 CubeMapGenerator::CubeMapGenerator()
@@ -58,7 +59,7 @@ void CubeMapGenerator::Generate(int _size, const XMVECTOR _position, std::functi
 		d3d->Device()->CreateRenderTargetView(cubeMapResource, &rtvDesc, &rtv);
 
 		// RT、Zクリア
-		d3d->Context()->ClearRenderTargetView(rtv,nullptr);
+		d3d->Context()->ClearRenderTargetView(rtv,0);
 		d3d->Context()->ClearDepthStencilView(dsv_, D3D11_CLEAR_DEPTH, 1, 0);
 
 		// RTとZを変更する
@@ -70,44 +71,45 @@ void CubeMapGenerator::Generate(int _size, const XMVECTOR _position, std::functi
 		{
 			// 右面(X)
 		case D3D11_TEXTURECUBE_FACE_POSITIVE_X:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(1, 0, 0), XMVECTOR(0, 1, 0));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1));
 			break;
 			// 左面(-X)
 		case D3D11_TEXTURECUBE_FACE_NEGATIVE_X:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(-1, 0, 0), XMVECTOR(0, 1, 0));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(-1, 0, 0, 1), XMVectorSet(0, 1, 0, 1));
 			break;
 			// 上面(Y)
 		case D3D11_TEXTURECUBE_FACE_POSITIVE_Y:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(0, 1, 0), XMVECTOR(0, 0, -1));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, -1, 1));
 			break;
 			// 下面(-Y)
 		case D3D11_TEXTURECUBE_FACE_NEGATIVE_Y:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(0, -1, 0), XMVECTOR(0, 0, 1));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(0, -1, 0, 1), XMVectorSet(0, 0, 1, 1));
 			break;
 			// 後面(Z)
 		case D3D11_TEXTURECUBE_FACE_POSITIVE_Z:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(0, 0, 1), XMVECTOR(0, 1, 0));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(0, 0, 1, 1), XMVectorSet(0, 1, 0, 1));
 			break;
 			// 前面(-Z)
 		case D3D11_TEXTURECUBE_FACE_NEGATIVE_Z:
-			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVECTOR(0, 0, -1), XMVECTOR(0, 1, 0));
+			mView = DirectX::XMMatrixLookAtLH(_position, _position + XMVectorSet(0, 0, -1, 1), XMVectorSet(0, 1, 0, 1));
 			break;
 		}
 
-		// カメラ座標を定数バッファにセット
+
+		//// カメラ座標を定数バッファにセット
 		//SHADER->m_cb7_Camera.Work().CamPos = mView.Invert().Translation();
 
-		// ビュー行列を定数バッファにセット
+		//// ビュー行列を定数バッファにセット
 		//SHADER->m_cb7_Camera.Work().mView = mView;
-		// 射影行列を定数バッファにセット
+		//// 射影行列を定数バッファにセット
 		//SHADER->m_cb7_Camera.Work().mProj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90), 1.0f, 0.01f, 2000);
-		// 書き込み
+		//// 書き込み
 		//SHADER->m_cb7_Camera.Write();
 
-		//-----------------
-		// 描画実行
-		drawProc();
-		//-----------------
+		////-----------------
+		//// 描画実行
+		//drawProc();
+		////-----------------
 
 		// ビュー解放
 		rtv->Release();
