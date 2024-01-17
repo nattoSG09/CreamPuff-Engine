@@ -46,6 +46,8 @@ void Model::Draw(Transform _transform)
         cb.matNormal = XMMatrixTranspose(_transform.NormalMatrix());
         cb.diffuseColor = meshes_[i].material.diffuse;
         cb.ambientColor = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.f);
+        cb.specularColor = XMFLOAT4(1.f, 1.f, 1.f, 1.f);
+        cb.shininess = 1.0f;
         cb.hasTexture = meshes_[i].material.hasTexture;
 
 
