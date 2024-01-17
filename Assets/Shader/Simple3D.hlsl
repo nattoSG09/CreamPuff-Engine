@@ -10,10 +10,14 @@ SamplerState g_sampler : register(s0); //サンプラー
 //───────────────────────────────────────
 cbuffer global
 {
+	float4x4	matW;
 	float4x4	matWVP;			// ワールド・ビュー・プロジェクションの合成行列
     float4x4	matNormal;		// 法線行列
 								// ※頂点の法線ベクトルを変換するために使用され、光の反射や陰影などの正しい描画を行うため
 	float4		diffuseColor;	// ディヒューズカラー
+	float4		ambientColor;	// アンビエントカラー
+	float4		specularColor;	// スペキュラーカラー
+	float		shininess;		// 輝度
     bool		hasTexture;		// テクスチャの有無
 };
 

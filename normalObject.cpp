@@ -24,7 +24,7 @@ void NormalObject::Update()
 void NormalObject::Draw()
 {
     Direct3D* d3D = &Direct3D::GetInstance();
-    d3D->SetShader(NORMAL_3D);
+    d3D->SetShader(DEBUG_3D);
 	ModelManager::SetTransform(hModel_, transform_);
 	ModelManager::Draw(hModel_);
     d3D->SetShader(SIMPLE_3D);

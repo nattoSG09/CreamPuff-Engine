@@ -41,10 +41,13 @@ void Model::Draw(Transform _transform)
         XMMATRIX proj = cm.GetCurrentCamera()->GetProjectionMatrix();
 
         Constant_Buffer cb = {};
+        cb.matW = XMMatrixTranspose(_transform.WoaldMatrix());
         cb.matWVP = XMMatrixTranspose(_transform.WoaldMatrix() * view * proj);
         cb.matNormal = XMMatrixTranspose(_transform.NormalMatrix());
         cb.diffuseColor = meshes_[i].material.diffuse;
+        cb.ambientColor = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.f);
         cb.hasTexture = meshes_[i].material.hasTexture;
+
 
         D3D11_MAPPED_SUBRESOURCE pdata;
         d3d.Context()->Map(meshConstantBuffers_[i], 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata); // GPUからのデータアクセスを止める
