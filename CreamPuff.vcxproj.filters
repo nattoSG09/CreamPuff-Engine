@@ -106,7 +106,6 @@
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="NormalObject.h" />
-    <ClInclude Include="CubeMapGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Windows\EditorWindow.cpp">
@@ -205,7 +204,6 @@
       <Filter>Engine\Direct3D\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="NormalObject.cpp" />
-    <ClCompile Include="CubeMapGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
